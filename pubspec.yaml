@@ -49,6 +49,11 @@ dependencies:
   device_info_plus: ^9.1.1
   package_info_plus: ^4.2.0
 
+dependency_overrides:
+  # Override app_links to avoid hardcoded AGP version issue in 6.4.1
+  # See: https://github.com/llfbandit/app_links/issues/226
+  app_links: 6.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
