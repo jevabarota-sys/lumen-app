@@ -3,31 +3,54 @@ class NumerologyCalculator {
     int day = dateOfBirth.day;
     int month = dateOfBirth.month;
     int year = dateOfBirth.year;
-    
-    int sum = _reduceToSingleDigit(day) + 
-              _reduceToSingleDigit(month) + 
-              _reduceToSingleDigit(year);
-    
+
+    int sum = _reduceToSingleDigit(day) +
+        _reduceToSingleDigit(month) +
+        _reduceToSingleDigit(year);
+
     return _reduceToSingleDigit(sum);
   }
-  
+
   static int calculateNameNumber(String name) {
     const Map<String, int> letterValues = {
-      'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
-      'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
-      'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+      'A': 1,
+      'B': 2,
+      'C': 3,
+      'D': 4,
+      'E': 5,
+      'F': 6,
+      'G': 7,
+      'H': 8,
+      'I': 9,
+      'J': 1,
+      'K': 2,
+      'L': 3,
+      'M': 4,
+      'N': 5,
+      'O': 6,
+      'P': 7,
+      'Q': 8,
+      'R': 9,
+      'S': 1,
+      'T': 2,
+      'U': 3,
+      'V': 4,
+      'W': 5,
+      'X': 6,
+      'Y': 7,
+      'Z': 8
     };
-    
+
     int sum = 0;
     for (String char in name.toUpperCase().split('')) {
       if (letterValues.containsKey(char)) {
         sum += letterValues[char]!;
       }
     }
-    
+
     return _reduceToSingleDigit(sum);
   }
-  
+
   static int _reduceToSingleDigit(int number) {
     while (number > 9) {
       int sum = 0;
@@ -39,7 +62,7 @@ class NumerologyCalculator {
     }
     return number;
   }
-  
+
   static String getLifePathDescription(int lifePathNumber) {
     switch (lifePathNumber) {
       case 1:
@@ -64,11 +87,12 @@ class NumerologyCalculator {
         return "Your path is unique and holds special meaning.";
     }
   }
-  
-  static Map<String, dynamic> generateDailyForecast(int lifePathNumber, DateTime date) {
+
+  static Map<String, dynamic> generateDailyForecast(
+      int lifePathNumber, DateTime date) {
     final dayOfYear = date.difference(DateTime(date.year, 1, 1)).inDays + 1;
     final personalDay = _reduceToSingleDigit(dayOfYear + lifePathNumber);
-    
+
     final forecasts = {
       1: {
         'energy': 'Leadership Energy',
@@ -116,7 +140,7 @@ class NumerologyCalculator {
         'advice': 'Share your wisdom and be generous',
       },
     };
-    
+
     return forecasts[personalDay] ?? forecasts[1]!;
   }
 }

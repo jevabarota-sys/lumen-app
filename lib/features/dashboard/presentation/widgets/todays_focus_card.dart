@@ -30,8 +30,8 @@ class TodaysFocusCard extends StatelessWidget {
                 Text(
                   "Today's Focus",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
               ],
             ),
@@ -39,17 +39,17 @@ class TodaysFocusCard extends StatelessWidget {
             Text(
               'Practice Mindful Breathing',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppTheme.primary,
-              ),
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.primary,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               'Take 10 minutes today to focus on your breath. This practice will help center your energy and align with your life path number 7\'s need for inner wisdom.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.neutral,
-                height: 1.5,
-              ),
+                    color: AppTheme.neutral,
+                    height: 1.5,
+                  ),
             ),
             const SizedBox(height: 16),
             Row(

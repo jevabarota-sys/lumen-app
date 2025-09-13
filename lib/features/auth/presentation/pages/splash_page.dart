@@ -20,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> _navigateToNextPage() async {
     await Future.delayed(const Duration(seconds: 3));
-    
+
     if (mounted) {
       context.go(AppRoutes.auth);
     }
@@ -54,31 +54,31 @@ class _SplashPageState extends State<SplashPage> {
                 color: AppTheme.primary,
               ),
             ).animate().scale(
-              duration: const Duration(milliseconds: 800),
-              curve: Curves.elasticOut,
-            ),
+                  duration: const Duration(milliseconds: 800),
+                  curve: Curves.elasticOut,
+                ),
             const SizedBox(height: 32),
             Text(
               AppConstants.appName,
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                color: AppTheme.white,
-                fontWeight: FontWeight.bold,
-              ),
+                    color: AppTheme.white,
+                    fontWeight: FontWeight.bold,
+                  ),
             ).animate().fadeIn(
-              delay: const Duration(milliseconds: 400),
-              duration: const Duration(milliseconds: 600),
-            ),
+                  delay: const Duration(milliseconds: 400),
+                  duration: const Duration(milliseconds: 600),
+                ),
             const SizedBox(height: 8),
             Text(
               AppConstants.appTagline,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppTheme.white.withOpacity(0.9),
-              ),
+                    color: AppTheme.white.withOpacity(0.9),
+                  ),
               textAlign: TextAlign.center,
             ).animate().fadeIn(
-              delay: const Duration(milliseconds: 800),
-              duration: const Duration(milliseconds: 600),
-            ),
+                  delay: const Duration(milliseconds: 800),
+                  duration: const Duration(milliseconds: 600),
+                ),
           ],
         ),
       ),

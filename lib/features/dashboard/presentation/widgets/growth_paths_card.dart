@@ -30,8 +30,8 @@ class GrowthPathsCard extends StatelessWidget {
                 Text(
                   'Your Growth Paths',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
                 const Spacer(),
                 TextButton(
@@ -82,15 +82,15 @@ class GrowthPathsCard extends StatelessWidget {
             Text(
               title,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
             Text(
               '${(progress * 100).toInt()}%',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.neutral,
-                fontWeight: FontWeight.w500,
-              ),
+                    color: AppTheme.neutral,
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
           ],
         ),

@@ -43,18 +43,18 @@ class _AuthPageState extends State<AuthPage> {
               Text(
                 _isLogin ? 'Welcome Back' : 'Create Account',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.onBackground,
-                ),
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.onBackground,
+                    ),
               ),
               const SizedBox(height: 8),
               Text(
-                _isLogin 
-                  ? 'Sign in to continue your growth journey'
-                  : 'Start your personalized growth journey',
+                _isLogin
+                    ? 'Sign in to continue your growth journey'
+                    : 'Start your personalized growth journey',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppTheme.neutral,
-                ),
+                      color: AppTheme.neutral,
+                    ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 48),
@@ -81,8 +81,8 @@ class _AuthPageState extends State<AuthPage> {
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _handleAuth,
                   child: _isLoading
-                    ? const CircularProgressIndicator(color: AppTheme.white)
-                    : Text(_isLogin ? 'Sign In' : 'Create Account'),
+                      ? const CircularProgressIndicator(color: AppTheme.white)
+                      : Text(_isLogin ? 'Sign In' : 'Create Account'),
                 ),
               ),
               const SizedBox(height: 16),
@@ -93,9 +93,9 @@ class _AuthPageState extends State<AuthPage> {
                   });
                 },
                 child: Text(
-                  _isLogin 
-                    ? "Don't have an account? Sign up"
-                    : "Already have an account? Sign in",
+                  _isLogin
+                      ? "Don't have an account? Sign up"
+                      : "Already have an account? Sign in",
                 ),
               ),
             ],

@@ -30,7 +30,10 @@ class _TarotPageState extends State<TarotPage> {
           children: [
             _buildSpreadSelector(),
             const SizedBox(height: 24),
-            if (_drawnCards == null) _buildDrawSection() else _buildReadingSection(),
+            if (_drawnCards == null)
+              _buildDrawSection()
+            else
+              _buildReadingSection(),
           ],
         ),
       ),
@@ -47,8 +50,8 @@ class _TarotPageState extends State<TarotPage> {
             Text(
               'Choose Your Spread',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             Row(
@@ -80,16 +83,21 @@ class _TarotPageState extends State<TarotPage> {
     ).animate().fadeIn(duration: const Duration(milliseconds: 600));
   }
 
-  Widget _buildSpreadOption(String title, String subtitle, IconData icon, bool isSelected, VoidCallback onTap) {
+  Widget _buildSpreadOption(String title, String subtitle, IconData icon,
+      bool isSelected, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primary.withOpacity(0.1) : AppTheme.background,
+          color: isSelected
+              ? AppTheme.primary.withOpacity(0.1)
+              : AppTheme.background,
           border: Border.all(
-            color: isSelected ? AppTheme.primary : AppTheme.neutral.withOpacity(0.3),
+            color: isSelected
+                ? AppTheme.primary
+                : AppTheme.neutral.withOpacity(0.3),
             width: isSelected ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
@@ -105,15 +113,15 @@ class _TarotPageState extends State<TarotPage> {
             Text(
               title,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: isSelected ? AppTheme.primary : AppTheme.onSurface,
-              ),
+                    fontWeight: FontWeight.w600,
+                    color: isSelected ? AppTheme.primary : AppTheme.onSurface,
+                  ),
             ),
             Text(
               subtitle,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.neutral,
-              ),
+                    color: AppTheme.neutral,
+                  ),
               textAlign: TextAlign.center,
             ),
           ],
@@ -148,22 +156,22 @@ class _TarotPageState extends State<TarotPage> {
                 size: 48,
               ),
             ).animate().scale(
-              duration: const Duration(milliseconds: 800),
-              curve: Curves.elasticOut,
-            ),
+                  duration: const Duration(milliseconds: 800),
+                  curve: Curves.elasticOut,
+                ),
             const SizedBox(height: 24),
             Text(
               'Draw Your Cards',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               'Focus on your question and draw your ${_isOneCardSpread ? 'daily guidance card' : 'three-card spread'}',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.neutral,
-              ),
+                    color: AppTheme.neutral,
+                  ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
@@ -178,10 +186,10 @@ class _TarotPageState extends State<TarotPage> {
         ),
       ),
     ).animate().slideY(
-      begin: 0.3,
-      duration: const Duration(milliseconds: 600),
-      delay: const Duration(milliseconds: 200),
-    );
+          begin: 0.3,
+          duration: const Duration(milliseconds: 600),
+          delay: const Duration(milliseconds: 200),
+        );
   }
 
   Widget _buildReadingSection() {
@@ -218,8 +226,8 @@ class _TarotPageState extends State<TarotPage> {
             Text(
               _isOneCardSpread ? 'Your Daily Card' : 'Your Three-Card Reading',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             if (_isOneCardSpread)
@@ -230,9 +238,9 @@ class _TarotPageState extends State<TarotPage> {
         ),
       ),
     ).animate().fadeIn(
-      duration: const Duration(milliseconds: 600),
-      delay: const Duration(milliseconds: 200),
-    );
+          duration: const Duration(milliseconds: 600),
+          delay: const Duration(milliseconds: 200),
+        );
   }
 
   Widget _buildSingleCard(TarotCardData card) {
@@ -268,9 +276,9 @@ class _TarotPageState extends State<TarotPage> {
                   child: Text(
                     card.name,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppTheme.primary,
-                    ),
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.primary,
+                        ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -281,8 +289,8 @@ class _TarotPageState extends State<TarotPage> {
           Text(
             card.description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppTheme.neutral,
-            ),
+                  color: AppTheme.neutral,
+                ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -320,9 +328,10 @@ class _TarotPageState extends State<TarotPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: Text(
                           _drawnCards![index].name,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -335,9 +344,9 @@ class _TarotPageState extends State<TarotPage> {
                 Text(
                   positions[index],
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: AppTheme.secondary,
-                  ),
+                        fontWeight: FontWeight.w600,
+                        color: AppTheme.secondary,
+                      ),
                 ),
               ],
             );
@@ -351,7 +360,8 @@ class _TarotPageState extends State<TarotPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: AppTheme.secondary.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
@@ -359,9 +369,9 @@ class _TarotPageState extends State<TarotPage> {
                   child: Text(
                     positions[index],
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: AppTheme.secondary,
-                    ),
+                          fontWeight: FontWeight.w600,
+                          color: AppTheme.secondary,
+                        ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -404,8 +414,8 @@ class _TarotPageState extends State<TarotPage> {
                 Text(
                   'AI Reflection',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
               ],
             ),
@@ -413,29 +423,27 @@ class _TarotPageState extends State<TarotPage> {
             Text(
               _aiReflection ?? '',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                height: 1.5,
-              ),
+                    height: 1.5,
+                  ),
             ),
           ],
         ),
       ),
     ).animate().fadeIn(
-      duration: const Duration(milliseconds: 600),
-      delay: const Duration(milliseconds: 400),
-    );
+          duration: const Duration(milliseconds: 600),
+          delay: const Duration(milliseconds: 400),
+        );
   }
 
   void _drawCards() {
     final userId = 'demo_user';
     final today = DateTime.now();
     final numberOfCards = _isOneCardSpread ? 1 : 3;
-    
+
     final cards = TarotEngine.drawCards(userId, today, numberOfCards);
     final reflection = TarotEngine.generateAIReflection(
-      cards, 
-      _isOneCardSpread ? 'one_card' : 'three_card'
-    );
-    
+        cards, _isOneCardSpread ? 'one_card' : 'three_card');
+
     setState(() {
       _drawnCards = cards;
       _aiReflection = reflection;

@@ -32,8 +32,8 @@ class JournalPreviewCard extends StatelessWidget {
                 Text(
                   'AI Reflection Journal',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
                 const Spacer(),
                 TextButton(
@@ -58,9 +58,9 @@ class JournalPreviewCard extends StatelessWidget {
                   Text(
                     'Recent Entry',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppTheme.neutral,
-                      fontWeight: FontWeight.w500,
-                    ),
+                          color: AppTheme.neutral,
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -81,9 +81,9 @@ class JournalPreviewCard extends StatelessWidget {
                       Text(
                         'AI Insight Available',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.accent,
-                          fontWeight: FontWeight.w500,
-                        ),
+                              color: AppTheme.accent,
+                              fontWeight: FontWeight.w500,
+                            ),
                       ),
                     ],
                   ),

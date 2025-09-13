@@ -31,9 +31,9 @@ class PremiumBanner extends StatelessWidget {
                 child: Text(
                   'FREE TIER ACTIVE',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppTheme.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                        color: AppTheme.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
               ),
               const Spacer(),
@@ -48,16 +48,16 @@ class PremiumBanner extends StatelessWidget {
           Text(
             'Unlock Your Full Potential',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: AppTheme.white,
-              fontWeight: FontWeight.bold,
-            ),
+                  color: AppTheme.white,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(height: 4),
           Text(
             'Get unlimited access to all features, AI insights, and personalized guidance.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppTheme.white.withOpacity(0.9),
-            ),
+                  color: AppTheme.white.withOpacity(0.9),
+                ),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
