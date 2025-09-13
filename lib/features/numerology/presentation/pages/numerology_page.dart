@@ -12,7 +12,6 @@ class NumerologyPage extends StatefulWidget {
 
 class _NumerologyPageState extends State<NumerologyPage> {
   DateTime? _selectedDate;
-  String _name = '';
   int? _lifePathNumber;
   int? _nameNumber;
   Map<String, dynamic>? _dailyForecast;
@@ -70,7 +69,6 @@ class _NumerologyPageState extends State<NumerologyPage> {
               ),
               onChanged: (value) {
                 setState(() {
-                  _name = value;
                   if (value.isNotEmpty) {
                     _nameNumber = NumerologyCalculator.calculateNameNumber(value);
                   } else {
