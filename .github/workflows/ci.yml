@@ -52,12 +52,12 @@ jobs:
       run: flutter pub get
     
     - name: Build APK
-      run: flutter build apk --release
-      env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
-        STRIPE_PRICE_ID: ${{ secrets.STRIPE_PRICE_ID }}
+      run: |
+        flutter build apk --release \
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+          --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }} \
+          --dart-define=STRIPE_PUBLISHABLE_KEY=${{ secrets.STRIPE_PUBLISHABLE_KEY }} \
+          --dart-define=STRIPE_PRICE_ID=${{ secrets.STRIPE_PRICE_ID }}
     
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
@@ -81,12 +81,12 @@ jobs:
       run: flutter pub get
     
     - name: Build iOS (no codesign)
-      run: flutter build ios --release --no-codesign
-      env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
-        STRIPE_PRICE_ID: ${{ secrets.STRIPE_PRICE_ID }}
+      run: |
+        flutter build ios --release --no-codesign \
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+          --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }} \
+          --dart-define=STRIPE_PUBLISHABLE_KEY=${{ secrets.STRIPE_PUBLISHABLE_KEY }} \
+          --dart-define=STRIPE_PRICE_ID=${{ secrets.STRIPE_PRICE_ID }}
     
     - name: Create iOS archive
       run: |
