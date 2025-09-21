@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // New color palette based on Eva's logo design - extracted from the gradient
-  static const Color deepNavy = Color(0xFF0F1419);     // Darkest navy from logo edges
-  static const Color darkBlue = Color(0xFF1A237E);     // Dark blue from gradient
-  static const Color royalBlue = Color(0xFF3F51B5);    // Medium blue from gradient center
-  static const Color brightBlue = Color(0xFF5C6BC0);   // Bright blue from gradient
-  static const Color lavender = Color(0xFF9C27B0);     // Purple/lavender from logo symbol glow
-  static const Color lightLavender = Color(0xFFE1BEE7); // Light purple accent
-  static const Color warmGray = Color(0xFF6B7280);
-  static const Color lightGray = Color(0xFFF7FAFC);  // Slightly cooler light background
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color black = Color(0xFF1A202C);      // Slightly warmer dark text
+  // Color palette based on Eva's logo: pink, white, and royal blue
+  static const Color royalBlue = Color(0xFF1E3A8A);    // Deep royal blue from logo background
+  static const Color mediumBlue = Color(0xFF3B82F6);   // Medium royal blue
+  static const Color lightBlue = Color(0xFF60A5FA);    // Light royal blue
+  static const Color pink = Color(0xFFEC4899);         // Pink from logo mandala glow
+  static const Color lightPink = Color(0xFFF9A8D4);    // Light pink accent
+  static const Color softPink = Color(0xFFFCE7F3);     // Very light pink
+  static const Color white = Color(0xFFFFFFFF);        // Pure white from logo symbol
+  static const Color lightGray = Color(0xFFF8FAFC);    // Very light gray
+  static const Color darkGray = Color(0xFF374151);     // Dark gray for text
+  static const Color black = Color(0xFF111827);        // Deep black for contrast
 
-  static const Color primary = brightBlue;     // Main brand color - brighter for inverse
-  static const Color secondary = lightLavender; // Light purple accent for inverse
-  static const Color accent = royalBlue;        // Royal blue for highlights
-  static const Color backgroundGradientStart = lightLavender;  // Light gradient start
-  static const Color backgroundGradientEnd = brightBlue;       // Light gradient end
-  static const Color neutral = warmGray;
+  static const Color primary = royalBlue;      // Royal blue as main brand color
+  static const Color secondary = pink;          // Pink as secondary accent color
+  static const Color accent = mediumBlue;       // Medium blue for highlights
+  static const Color backgroundGradientStart = softPink;     // Light pink gradient start
+  static const Color backgroundGradientEnd = lightBlue;      // Light blue gradient end
+  static const Color neutral = darkGray;
   static const Color background = white;        // White background as requested
   static const Color surface = lightGray;       // Light surface
-  static const Color onPrimary = white;         // White text on bright primary
-  static const Color onSecondary = deepNavy;    // Dark text on light secondary
+  static const Color onPrimary = white;         // White text on royal blue primary
+  static const Color onSecondary = white;       // White text on pink secondary
   static const Color onSurface = black;         // Dark text on light surface
   static const Color onBackground = black;      // Dark text on white background
 
