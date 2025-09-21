@@ -11,7 +11,10 @@ class PremiumBanner extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppTheme.backgroundGradientStart, AppTheme.backgroundGradientEnd],
+          colors: [
+            AppTheme.backgroundGradientStart,
+            AppTheme.backgroundGradientEnd
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

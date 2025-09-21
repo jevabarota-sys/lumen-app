@@ -1,36 +1,58 @@
 class AIAdvisor {
   static String generateConflictAdvice(String conflictDescription) {
     final content = conflictDescription.toLowerCase();
-    
-    if (content.contains('communication') || content.contains('talking') || content.contains('listen')) {
+
+    if (content.contains('communication') ||
+        content.contains('talking') ||
+        content.contains('listen')) {
       return 'Focus on active listening and expressing your feelings with "I" statements. Clear communication is the foundation of resolving conflicts. Take turns speaking and really hear what the other person is saying.';
-    } else if (content.contains('trust') || content.contains('betrayal') || content.contains('lie')) {
+    } else if (content.contains('trust') ||
+        content.contains('betrayal') ||
+        content.contains('lie')) {
       return 'Rebuilding trust takes time and consistent actions. Be patient with the process and focus on transparency and reliability. Small, consistent gestures matter more than grand promises.';
-    } else if (content.contains('jealous') || content.contains('envy') || content.contains('insecure')) {
+    } else if (content.contains('jealous') ||
+        content.contains('envy') ||
+        content.contains('insecure')) {
       return 'Jealousy often stems from insecurity. Work on building self-confidence and communicate your needs openly with your partner. Focus on your own growth and self-worth.';
-    } else if (content.contains('money') || content.contains('financial') || content.contains('spending')) {
+    } else if (content.contains('money') ||
+        content.contains('financial') ||
+        content.contains('spending')) {
       return 'Financial disagreements require open discussion about values and goals. Create a budget together and establish clear agreements about spending and saving priorities.';
-    } else if (content.contains('family') || content.contains('in-laws') || content.contains('parents')) {
+    } else if (content.contains('family') ||
+        content.contains('in-laws') ||
+        content.contains('parents')) {
       return 'Family conflicts require setting healthy boundaries while maintaining respect. Discuss your needs privately first, then present a united front when addressing family issues.';
-    } else if (content.contains('time') || content.contains('attention') || content.contains('neglect')) {
+    } else if (content.contains('time') ||
+        content.contains('attention') ||
+        content.contains('neglect')) {
       return 'Quality time is essential for relationships. Schedule regular one-on-one time and be fully present. Discuss how you both prefer to give and receive attention.';
-    } else if (content.contains('chores') || content.contains('housework') || content.contains('cleaning')) {
+    } else if (content.contains('chores') ||
+        content.contains('housework') ||
+        content.contains('cleaning')) {
       return 'Household responsibilities should be shared fairly. Create a clear division of tasks based on preferences and schedules. Appreciate each other\'s contributions.';
-    } else if (content.contains('intimacy') || content.contains('physical') || content.contains('affection')) {
+    } else if (content.contains('intimacy') ||
+        content.contains('physical') ||
+        content.contains('affection')) {
       return 'Physical and emotional intimacy require open communication about needs and boundaries. Create a safe space to discuss desires and concerns without judgment.';
-    } else if (content.contains('future') || content.contains('goals') || content.contains('plans')) {
+    } else if (content.contains('future') ||
+        content.contains('goals') ||
+        content.contains('plans')) {
       return 'Align your future visions through honest conversation about individual and shared goals. Find compromises that honor both of your dreams and aspirations.';
-    } else if (content.contains('angry') || content.contains('fight') || content.contains('argument')) {
+    } else if (content.contains('angry') ||
+        content.contains('fight') ||
+        content.contains('argument')) {
       return 'When emotions run high, take a break to cool down before continuing the discussion. Focus on the issue, not personal attacks. Remember you\'re on the same team.';
     }
-    
+
     return 'Take time to understand both perspectives. Approach the situation with empathy and focus on finding solutions together. Remember that conflicts can strengthen relationships when handled with care and respect.';
   }
 
   static List<String> generateSelfGrowthSuggestions(String growthArea) {
     final area = growthArea.toLowerCase();
-    
-    if (area.contains('confidence') || area.contains('self-esteem') || area.contains('worth')) {
+
+    if (area.contains('confidence') ||
+        area.contains('self-esteem') ||
+        area.contains('worth')) {
       return [
         'Practice daily affirmations that reinforce your worth and capabilities',
         'Set small, achievable goals to build momentum and celebrate wins',
@@ -38,7 +60,9 @@ class AIAdvisor {
         'Keep a success journal to track your accomplishments',
         'Surround yourself with supportive people who believe in you'
       ];
-    } else if (area.contains('relationship') || area.contains('social') || area.contains('communication')) {
+    } else if (area.contains('relationship') ||
+        area.contains('social') ||
+        area.contains('communication')) {
       return [
         'Practice active listening in your daily interactions',
         'Express gratitude to people who matter to you regularly',
@@ -46,7 +70,9 @@ class AIAdvisor {
         'Learn to say no without guilt when necessary',
         'Practice empathy by trying to understand others\' perspectives'
       ];
-    } else if (area.contains('anxiety') || area.contains('stress') || area.contains('worry')) {
+    } else if (area.contains('anxiety') ||
+        area.contains('stress') ||
+        area.contains('worry')) {
       return [
         'Practice deep breathing exercises when feeling overwhelmed',
         'Challenge anxious thoughts by examining evidence for and against them',
@@ -54,7 +80,9 @@ class AIAdvisor {
         'Limit exposure to stress triggers when possible',
         'Focus on what you can control and let go of what you cannot'
       ];
-    } else if (area.contains('career') || area.contains('work') || area.contains('professional')) {
+    } else if (area.contains('career') ||
+        area.contains('work') ||
+        area.contains('professional')) {
       return [
         'Set clear professional goals and create action plans to achieve them',
         'Seek feedback regularly to understand your strengths and growth areas',
@@ -62,7 +90,9 @@ class AIAdvisor {
         'Build meaningful professional relationships and networks',
         'Find ways to align your work with your values and passions'
       ];
-    } else if (area.contains('health') || area.contains('fitness') || area.contains('wellness')) {
+    } else if (area.contains('health') ||
+        area.contains('fitness') ||
+        area.contains('wellness')) {
       return [
         'Start with small, sustainable changes to your daily routine',
         'Focus on progress, not perfection, in your health journey',
@@ -70,7 +100,9 @@ class AIAdvisor {
         'Prioritize sleep and create a consistent sleep schedule',
         'Practice self-compassion when you have setbacks'
       ];
-    } else if (area.contains('creativity') || area.contains('artistic') || area.contains('expression')) {
+    } else if (area.contains('creativity') ||
+        area.contains('artistic') ||
+        area.contains('expression')) {
       return [
         'Set aside regular time for creative pursuits without judgment',
         'Experiment with different forms of creative expression',
@@ -78,7 +110,9 @@ class AIAdvisor {
         'Embrace imperfection and focus on the joy of creating',
         'Document your creative journey to see your growth over time'
       ];
-    } else if (area.contains('spiritual') || area.contains('meaning') || area.contains('purpose')) {
+    } else if (area.contains('spiritual') ||
+        area.contains('meaning') ||
+        area.contains('purpose')) {
       return [
         'Explore different spiritual practices to find what resonates with you',
         'Spend time in nature to connect with something greater than yourself',
@@ -86,7 +120,9 @@ class AIAdvisor {
         'Engage in service to others to find meaning and purpose',
         'Reflect regularly on your values and how they guide your decisions'
       ];
-    } else if (area.contains('emotional') || area.contains('feelings') || area.contains('mood')) {
+    } else if (area.contains('emotional') ||
+        area.contains('feelings') ||
+        area.contains('mood')) {
       return [
         'Practice identifying and naming your emotions as they arise',
         'Keep an emotion journal to track patterns and triggers',
@@ -95,7 +131,7 @@ class AIAdvisor {
         'Seek support from trusted friends or professionals when needed'
       ];
     }
-    
+
     return [
       'Reflect on your values and align your actions with them',
       'Practice mindfulness to stay present and aware of your thoughts',
@@ -105,7 +141,8 @@ class AIAdvisor {
     ];
   }
 
-  static String generateRelationshipInsight(String relationshipType, int compatibilityScore) {
+  static String generateRelationshipInsight(
+      String relationshipType, int compatibilityScore) {
     if (relationshipType.toLowerCase().contains('romantic')) {
       if (compatibilityScore >= 85) {
         return 'Your romantic compatibility suggests a harmonious partnership with natural understanding. Focus on nurturing this connection through quality time and open communication.';
@@ -138,7 +175,7 @@ class AIAdvisor {
       'Give them your full attention without distractions',
       'Compliment them on something beyond their appearance',
     ];
-    
+
     final now = DateTime.now();
     final dayOfYear = now.difference(DateTime(now.year, 1, 1)).inDays;
     return [tips[dayOfYear % tips.length]];

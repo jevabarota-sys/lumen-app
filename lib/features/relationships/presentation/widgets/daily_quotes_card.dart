@@ -59,9 +59,10 @@ class _DailyQuotesCardState extends State<DailyQuotesCard> {
                     children: [
                       Text(
                         'Daily Inspiration',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       Text(
                         'Wisdom from successful leaders and thinkers',
@@ -105,10 +106,11 @@ class _DailyQuotesCardState extends State<DailyQuotesCard> {
                         const Spacer(),
                         Text(
                           '— ${_currentQuote!['author']}',
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                color: AppTheme.primary,
-                                fontWeight: FontWeight.w600,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: AppTheme.primary,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
                       ],
                     ),
@@ -184,11 +186,20 @@ class _DailyQuotesCardState extends State<DailyQuotesCard> {
                       Expanded(
                         child: TabBarView(
                           children: [
-                            _buildQuotesList(InspirationalQuotes.getAllQuotes()),
-                            _buildQuotesList(InspirationalQuotes.getQuotesByCategory('love')),
-                            _buildQuotesList(InspirationalQuotes.getQuotesByCategory('success')),
-                            _buildQuotesList(InspirationalQuotes.getQuotesByCategory('motivation')),
-                            _buildQuotesList(InspirationalQuotes.getQuotesByCategory('wisdom')),
+                            _buildQuotesList(
+                                InspirationalQuotes.getAllQuotes()),
+                            _buildQuotesList(
+                                InspirationalQuotes.getQuotesByCategory(
+                                    'love')),
+                            _buildQuotesList(
+                                InspirationalQuotes.getQuotesByCategory(
+                                    'success')),
+                            _buildQuotesList(
+                                InspirationalQuotes.getQuotesByCategory(
+                                    'motivation')),
+                            _buildQuotesList(
+                                InspirationalQuotes.getQuotesByCategory(
+                                    'wisdom')),
                           ],
                         ),
                       ),

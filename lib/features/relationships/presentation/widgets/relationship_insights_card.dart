@@ -7,7 +7,8 @@ class RelationshipInsightsCard extends StatefulWidget {
   const RelationshipInsightsCard({super.key});
 
   @override
-  State<RelationshipInsightsCard> createState() => _RelationshipInsightsCardState();
+  State<RelationshipInsightsCard> createState() =>
+      _RelationshipInsightsCardState();
 }
 
 class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
@@ -56,9 +57,10 @@ class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
                     children: [
                       Text(
                         'Relationship Insights',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       Text(
                         'Daily tips and insights for better relationships',
@@ -153,7 +155,8 @@ class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.format_quote, color: AppTheme.primary, size: 20),
+                      Icon(Icons.format_quote,
+                          color: AppTheme.primary, size: 20),
                       const SizedBox(width: 8),
                       Text(
                         'Daily Inspiration',
@@ -270,7 +273,7 @@ class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
 
   Widget _buildQuotesList(String category) {
     final quotes = InspirationalQuotes.getQuotesByCategory(category);
-    
+
     return ListView.builder(
       padding: const EdgeInsets.all(16),
       itemCount: quotes.length,

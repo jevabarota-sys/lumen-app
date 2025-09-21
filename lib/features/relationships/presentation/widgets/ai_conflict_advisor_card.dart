@@ -43,9 +43,10 @@ class _AIConflictAdvisorCardState extends State<AIConflictAdvisorCard> {
                     children: [
                       Text(
                         'AI Conflict Advisor',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       Text(
                         'Get personalized advice for relationship challenges',
@@ -63,7 +64,8 @@ class _AIConflictAdvisorCardState extends State<AIConflictAdvisorCard> {
               controller: _conflictController,
               decoration: const InputDecoration(
                 labelText: 'Describe your situation',
-                hintText: 'Tell me about the conflict or challenge you\'re facing...',
+                hintText:
+                    'Tell me about the conflict or challenge you\'re facing...',
                 alignLabelWithHint: true,
               ),
               maxLines: 4,
@@ -105,10 +107,11 @@ class _AIConflictAdvisorCardState extends State<AIConflictAdvisorCard> {
                         const SizedBox(width: 8),
                         Text(
                           'AI Advice',
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: AppTheme.accent,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppTheme.accent,
+                                  ),
                         ),
                       ],
                     ),

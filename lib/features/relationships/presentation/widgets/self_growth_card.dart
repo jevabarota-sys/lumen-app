@@ -54,9 +54,10 @@ class _SelfGrowthCardState extends State<SelfGrowthCard> {
                     children: [
                       Text(
                         'AI Self Growth',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       Text(
                         'Personalized suggestions for your growth journey',
@@ -126,14 +127,16 @@ class _SelfGrowthCardState extends State<SelfGrowthCard> {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.auto_awesome, color: AppTheme.primary, size: 20),
+                        Icon(Icons.auto_awesome,
+                            color: AppTheme.primary, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'Growth Suggestions',
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: AppTheme.primary,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppTheme.primary,
+                                  ),
                         ),
                       ],
                     ),
@@ -146,7 +149,8 @@ class _SelfGrowthCardState extends State<SelfGrowthCard> {
                               Container(
                                 width: 6,
                                 height: 6,
-                                margin: const EdgeInsets.only(top: 8, right: 12),
+                                margin:
+                                    const EdgeInsets.only(top: 8, right: 12),
                                 decoration: BoxDecoration(
                                   color: AppTheme.primary,
                                   borderRadius: BorderRadius.circular(3),
@@ -155,7 +159,10 @@ class _SelfGrowthCardState extends State<SelfGrowthCard> {
                               Expanded(
                                 child: Text(
                                   suggestion,
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
                                         height: 1.5,
                                       ),
                                 ),
@@ -180,7 +187,8 @@ class _SelfGrowthCardState extends State<SelfGrowthCard> {
 
     await Future.delayed(const Duration(milliseconds: 600));
 
-    final suggestions = AIAdvisor.generateSelfGrowthSuggestions(_selectedGrowthArea);
+    final suggestions =
+        AIAdvisor.generateSelfGrowthSuggestions(_selectedGrowthArea);
 
     setState(() {
       _suggestions = suggestions;

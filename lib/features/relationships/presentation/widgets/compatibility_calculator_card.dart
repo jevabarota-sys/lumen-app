@@ -6,10 +6,12 @@ class CompatibilityCalculatorCard extends StatefulWidget {
   const CompatibilityCalculatorCard({super.key});
 
   @override
-  State<CompatibilityCalculatorCard> createState() => _CompatibilityCalculatorCardState();
+  State<CompatibilityCalculatorCard> createState() =>
+      _CompatibilityCalculatorCardState();
 }
 
-class _CompatibilityCalculatorCardState extends State<CompatibilityCalculatorCard> {
+class _CompatibilityCalculatorCardState
+    extends State<CompatibilityCalculatorCard> {
   final _person1NameController = TextEditingController();
   final _person2NameController = TextEditingController();
   DateTime? _person1Birth;
@@ -46,9 +48,10 @@ class _CompatibilityCalculatorCardState extends State<CompatibilityCalculatorCar
                     children: [
                       Text(
                         'Compatibility Calculator',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       Text(
                         'Discover your relationship compatibility',
