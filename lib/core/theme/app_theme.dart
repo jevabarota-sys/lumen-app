@@ -19,18 +19,18 @@ class AppTheme {
   static const Color accent = royalBlue;        // Royal blue for highlights
   static const Color backgroundGradientStart = lightLavender;  // Light gradient start
   static const Color backgroundGradientEnd = brightBlue;       // Light gradient end
-  static const Color neutral = lightGray;
-  static const Color background = deepNavy;     // Dark background (inverted)
-  static const Color surface = darkBlue;        // Dark surface (inverted)
-  static const Color onPrimary = deepNavy;      // Dark text on bright primary
+  static const Color neutral = warmGray;
+  static const Color background = white;        // White background as requested
+  static const Color surface = lightGray;       // Light surface
+  static const Color onPrimary = white;         // White text on bright primary
   static const Color onSecondary = deepNavy;    // Dark text on light secondary
-  static const Color onSurface = white;         // Light text on dark surface
-  static const Color onBackground = white;      // Light text on dark background
+  static const Color onSurface = black;         // Dark text on light surface
+  static const Color onBackground = black;      // Dark text on white background
 
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: const ColorScheme.dark(
+      colorScheme: const ColorScheme.light(
         primary: primary,
         secondary: secondary,
         tertiary: accent,
