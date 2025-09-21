@@ -14,23 +14,23 @@ class AppTheme {
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF1A202C);      // Slightly warmer dark text
 
-  static const Color primary = royalBlue;      // Main brand color from gradient center
-  static const Color secondary = lavender;     // Purple accent from logo glow
-  static const Color accent = brightBlue;      // Bright blue for highlights
-  static const Color backgroundGradientStart = deepNavy;  // Gradient start color
-  static const Color backgroundGradientEnd = darkBlue;    // Gradient end color
-  static const Color neutral = warmGray;
-  static const Color background = lightGray;
-  static const Color surface = white;
-  static const Color onPrimary = white;
-  static const Color onSecondary = white;
-  static const Color onSurface = black;
-  static const Color onBackground = black;
+  static const Color primary = brightBlue;     // Main brand color - brighter for inverse
+  static const Color secondary = lightLavender; // Light purple accent for inverse
+  static const Color accent = royalBlue;        // Royal blue for highlights
+  static const Color backgroundGradientStart = lightLavender;  // Light gradient start
+  static const Color backgroundGradientEnd = brightBlue;       // Light gradient end
+  static const Color neutral = lightGray;
+  static const Color background = deepNavy;     // Dark background (inverted)
+  static const Color surface = darkBlue;        // Dark surface (inverted)
+  static const Color onPrimary = deepNavy;      // Dark text on bright primary
+  static const Color onSecondary = deepNavy;    // Dark text on light secondary
+  static const Color onSurface = white;         // Light text on dark surface
+  static const Color onBackground = white;      // Light text on dark background
 
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: const ColorScheme.light(
+      colorScheme: const ColorScheme.dark(
         primary: primary,
         secondary: secondary,
         tertiary: accent,
@@ -41,7 +41,7 @@ class AppTheme {
         onSurface: onSurface,
         onBackground: onBackground,
       ),
-      textTheme: GoogleFonts.interTextTheme(),
+      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
       appBarTheme: AppBarTheme(
         backgroundColor: surface,
         foregroundColor: onSurface,
