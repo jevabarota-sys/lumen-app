@@ -43,6 +43,7 @@ class AppRoutes {
   static const String tarot = '/tarot';
   static const String journal = '/journal';
   static const String community = '/community';
+  static const String relationships = '/relationships';
   static const String premium = '/premium';
   static const String profile = '/profile';
 }

@@ -34,11 +34,11 @@ class QuickActionsGrid extends StatelessWidget {
         ),
         _buildActionCard(
           context,
-          'Angel Cards',
-          'Receive divine guidance',
+          'Relationships',
+          'Compatibility & growth',
           Icons.favorite,
           AppTheme.accent,
-          () => context.go(AppRoutes.tarot),
+          () => context.go(AppRoutes.relationships),
         ),
         _buildActionCard(
           context,

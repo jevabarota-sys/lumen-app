@@ -7,6 +7,7 @@ import '../../features/numerology/presentation/pages/numerology_page.dart';
 import '../../features/tarot/presentation/pages/tarot_page.dart';
 import '../../features/journal/presentation/pages/journal_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
+import '../../features/relationships/presentation/pages/relationships_page.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -39,6 +40,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.community,
         builder: (context, state) => const CommunityPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.relationships,
+        builder: (context, state) => const RelationshipsPage(),
       ),
     ],
   );
