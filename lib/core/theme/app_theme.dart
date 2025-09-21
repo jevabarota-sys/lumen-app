@@ -9,6 +9,8 @@ class AppTheme {
   static const Color pink = Color(0xFFEC4899);         // Pink from logo mandala glow
   static const Color lightPink = Color(0xFFF9A8D4);    // Light pink accent
   static const Color softPink = Color(0xFFFCE7F3);     // Very light pink
+  static const Color lightPurple = Color(0xFFE9D5FF);  // Light purple for background
+  static const Color veryLightPink = Color(0xFFFDF2F8); // Very light pink for background
   static const Color white = Color(0xFFFFFFFF);        // Pure white from logo symbol
   static const Color lightGray = Color(0xFFF8FAFC);    // Very light gray
   static const Color darkGray = Color(0xFF374151);     // Dark gray for text
@@ -17,15 +19,15 @@ class AppTheme {
   static const Color primary = royalBlue;      // Royal blue as main brand color
   static const Color secondary = pink;          // Pink as secondary accent color
   static const Color accent = mediumBlue;       // Medium blue for highlights
-  static const Color backgroundGradientStart = softPink;     // Light pink gradient start
-  static const Color backgroundGradientEnd = lightBlue;      // Light blue gradient end
+  static const Color backgroundGradientStart = lightPurple;  // Light purple gradient start
+  static const Color backgroundGradientEnd = veryLightPink;  // Very light pink gradient end
   static const Color neutral = darkGray;
-  static const Color background = white;        // White background as requested
-  static const Color surface = lightGray;       // Light surface
+  static const Color background = lightPurple;  // Light purple background as requested
+  static const Color surface = white;           // White surface for cards
   static const Color onPrimary = white;         // White text on royal blue primary
   static const Color onSecondary = white;       // White text on pink secondary
   static const Color onSurface = black;         // Dark text on light surface
-  static const Color onBackground = black;      // Dark text on white background
+  static const Color onBackground = black;      // Dark text on light purple background
 
   static ThemeData get lightTheme {
     return ThemeData(
