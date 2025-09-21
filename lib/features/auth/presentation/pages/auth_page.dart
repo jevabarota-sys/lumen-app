@@ -41,9 +41,19 @@ class _AuthPageState extends State<AuthPage> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
+                  child: Image.network(
                     'assets/images/lumen_logo.png',
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: AppTheme.primary,
+                        child: const Icon(
+                          Icons.auto_awesome,
+                          color: AppTheme.white,
+                          size: 40,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

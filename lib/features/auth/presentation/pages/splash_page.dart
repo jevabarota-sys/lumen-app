@@ -56,9 +56,19 @@ class _SplashPageState extends State<SplashPage> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
-                child: Image.asset(
+                child: Image.network(
                   'assets/images/lumen_logo.png',
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: AppTheme.primary,
+                      child: const Icon(
+                        Icons.auto_awesome,
+                        color: AppTheme.white,
+                        size: 60,
+                      ),
+                    );
+                  },
                 ),
               ),
             ).animate().scale(
