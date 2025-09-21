@@ -29,29 +29,37 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primary,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [AppTheme.backgroundGradientStart, AppTheme.backgroundGradientEnd],
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
             Container(
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: AppTheme.white,
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withOpacity(0.2),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   ),
                 ],
               ),
-              child: const Icon(
-                Icons.auto_awesome,
-                size: 60,
-                color: AppTheme.primary,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.asset(
+                  'assets/images/lumen_logo.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ).animate().scale(
                   duration: const Duration(milliseconds: 800),
@@ -79,7 +87,8 @@ class _SplashPageState extends State<SplashPage> {
                   delay: const Duration(milliseconds: 800),
                   duration: const Duration(milliseconds: 600),
                 ),
-          ],
+            ],
+          ),
         ),
       ),
     );

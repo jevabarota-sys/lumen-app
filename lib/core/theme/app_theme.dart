@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const Color deepBlue = Color(0xFF1E3A8A);
-  static const Color teal = Color(0xFF0D9488);
-  static const Color softGreen = Color(0xFF10B981);
+  // New color palette based on Eva's logo design - extracted from the gradient
+  static const Color deepNavy = Color(0xFF0F1419);     // Darkest navy from logo edges
+  static const Color darkBlue = Color(0xFF1A237E);     // Dark blue from gradient
+  static const Color royalBlue = Color(0xFF3F51B5);    // Medium blue from gradient center
+  static const Color brightBlue = Color(0xFF5C6BC0);   // Bright blue from gradient
+  static const Color lavender = Color(0xFF9C27B0);     // Purple/lavender from logo symbol glow
+  static const Color lightLavender = Color(0xFFE1BEE7); // Light purple accent
   static const Color warmGray = Color(0xFF6B7280);
-  static const Color lightGray = Color(0xFFF9FAFB);
+  static const Color lightGray = Color(0xFFF7FAFC);  // Slightly cooler light background
   static const Color white = Color(0xFFFFFFFF);
-  static const Color black = Color(0xFF111827);
+  static const Color black = Color(0xFF1A202C);      // Slightly warmer dark text
 
-  static const Color primary = deepBlue;
-  static const Color secondary = teal;
-  static const Color accent = softGreen;
+  static const Color primary = royalBlue;      // Main brand color from gradient center
+  static const Color secondary = lavender;     // Purple accent from logo glow
+  static const Color accent = brightBlue;      // Bright blue for highlights
+  static const Color backgroundGradientStart = deepNavy;  // Gradient start color
+  static const Color backgroundGradientEnd = darkBlue;    // Gradient end color
   static const Color neutral = warmGray;
   static const Color background = lightGray;
   static const Color surface = white;

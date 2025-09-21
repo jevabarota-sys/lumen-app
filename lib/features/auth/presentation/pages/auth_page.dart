@@ -30,13 +30,21 @@ class _AuthPageState extends State<AuthPage> {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: AppTheme.primary,
                   borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
                 ),
-                child: const Icon(
-                  Icons.auto_awesome,
-                  size: 40,
-                  color: AppTheme.white,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/images/lumen_logo.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               const SizedBox(height: 32),
