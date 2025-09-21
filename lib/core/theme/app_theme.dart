@@ -19,15 +19,15 @@ class AppTheme {
   static const Color primary = royalBlue;      // Royal blue as main brand color
   static const Color secondary = pink;          // Pink as secondary accent color
   static const Color accent = mediumBlue;       // Medium blue for highlights
-  static const Color backgroundGradientStart = lightPurple;  // Light purple gradient start
-  static const Color backgroundGradientEnd = lightRoyalBlue;  // Light royal blue gradient end
+  static const Color backgroundGradientStart = royalBlue;  // Royal blue gradient start
+  static const Color backgroundGradientEnd = mediumBlue;  // Medium blue gradient end
   static const Color neutral = darkGray;
-  static const Color background = lightPurple;  // Light purple background as requested
+  static const Color background = royalBlue;  // Royal blue background as requested
   static const Color surface = white;           // White surface for cards
   static const Color onPrimary = white;         // White text on royal blue primary
   static const Color onSecondary = white;       // White text on pink secondary
   static const Color onSurface = black;         // Dark text on light surface
-  static const Color onBackground = black;      // Dark text on light purple background
+  static const Color onBackground = white;      // White text on royal blue background
 
   static ThemeData get lightTheme {
     return ThemeData(
