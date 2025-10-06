@@ -200,6 +200,63 @@ class NotificationService {
     }
   }
 
+  Future<void> schedule369ManifestationReminders({
+    required String manifestationText,
+    required List<DateTime> reminderTimes,
+    required int durationInDays,
+  }) async {
+    if (!_isInitialized) await initialize();
+
+    await cancel369ManifestationReminders();
+
+    final repetitions = [3, 6, 9]; // 369 method repetitions
+    final timeLabels = ['Morning', 'Afternoon', 'Evening'];
+
+    for (int day = 0; day < durationInDays; day++) {
+      for (int timeIndex = 0; timeIndex < reminderTimes.length && timeIndex < 3; timeIndex++) {
+        final reminderTime = reminderTimes[timeIndex];
+        final scheduledDate = DateTime.now().add(Duration(days: day));
+        final scheduledDateTime = DateTime(
+          scheduledDate.year,
+          scheduledDate.month,
+          scheduledDate.day,
+          reminderTime.hour,
+          reminderTime.minute,
+        );
+
+        if (scheduledDateTime.isBefore(DateTime.now())) continue;
+
+        final notificationId = _generate369NotificationId(day, timeIndex);
+        final reps = repetitions[timeIndex];
+        final timeLabel = timeLabels[timeIndex];
+
+        await _scheduleNotification(
+          id: notificationId,
+          title: '✨ 369 Manifestation - $timeLabel',
+          body: 'Write your manifestation $reps times: "$manifestationText"',
+          scheduledDate: scheduledDateTime,
+          payload: jsonEncode({
+            'type': '369_manifestation',
+            'day': day,
+            'timeIndex': timeIndex,
+            'repetitions': reps,
+            'manifestationText': manifestationText,
+            'timeLabel': timeLabel,
+          }),
+        );
+      }
+    }
+  }
+
+  Future<void> cancel369ManifestationReminders() async {
+    final pendingNotifications = await getPendingNotifications();
+    for (final notification in pendingNotifications) {
+      if (notification.payload?.contains('"type":"369_manifestation"') == true) {
+        await _notifications.cancel(notification.id);
+      }
+    }
+  }
+
   Future<void> cancelAllAffirmationReminders() async {
     await _notifications.cancelAll();
   }
@@ -214,6 +271,10 @@ class NotificationService {
 
   int _generateNotificationId(int day, int timeIndex) {
     return (day * 100) + timeIndex;
+  }
+
+  int _generate369NotificationId(int day, int timeIndex) {
+    return 50000 + (day * 100) + timeIndex; // Different range for 369 notifications
   }
 
   List<String> _getAffirmationPool() {

@@ -34,6 +34,14 @@ class QuickActionsGrid extends StatelessWidget {
         ),
         _buildActionCard(
           context,
+          '369 Manifestation',
+          'Tesla\'s powerful method',
+          Icons.auto_fix_high,
+          AppTheme.lightPink,
+          () => context.go(AppRoutes.manifestation369),
+        ),
+        _buildActionCard(
+          context,
           'Relationships',
           'Compatibility & growth',
           Icons.favorite,
@@ -47,6 +55,14 @@ class QuickActionsGrid extends StatelessWidget {
           Icons.people,
           AppTheme.neutral,
           () => context.go(AppRoutes.community),
+        ),
+        _buildActionCard(
+          context,
+          'Journal',
+          'AI reflection & insights',
+          Icons.book,
+          AppTheme.mediumBlue,
+          () => context.go(AppRoutes.journal),
         ),
       ],
     );

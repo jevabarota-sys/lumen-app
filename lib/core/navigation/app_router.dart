@@ -9,6 +9,7 @@ import '../../features/journal/presentation/pages/journal_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
 import '../../features/relationships/presentation/pages/relationships_page.dart';
 import '../../features/notifications/presentation/pages/notification_settings_page.dart';
+import '../../features/manifestation/presentation/pages/manifestation_369_page.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -49,6 +50,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.notificationSettings,
         builder: (context, state) => const NotificationSettingsPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.manifestation369,
+        builder: (context, state) => const Manifestation369Page(),
       ),
     ],
   );
