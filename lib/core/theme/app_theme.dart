@@ -35,6 +35,11 @@ class AppTheme {
   static const Color onSurface = black; // Dark text on light surface
   static const Color onBackground =
       white; // White text on royal blue background
+  
+  // Additional theme properties for notifications
+  static const Color error = Color(0xFFEF4444); // Red for error states
+  static const Color success = Color(0xFF10B981); // Green for success states
+  static const Color border = Color(0xFFE5E7EB); // Light gray for borders
 
   static ThemeData get lightTheme {
     return ThemeData(

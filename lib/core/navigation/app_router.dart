@@ -8,6 +8,7 @@ import '../../features/tarot/presentation/pages/tarot_page.dart';
 import '../../features/journal/presentation/pages/journal_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
 import '../../features/relationships/presentation/pages/relationships_page.dart';
+import '../../features/notifications/presentation/pages/notification_settings_page.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -44,6 +45,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.relationships,
         builder: (context, state) => const RelationshipsPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.notificationSettings,
+        builder: (context, state) => const NotificationSettingsPage(),
       ),
     ],
   );

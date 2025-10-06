@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/constants/app_constants.dart';
 import '../../../../shared/widgets/premium_banner.dart';
 import '../widgets/todays_focus_card.dart';
 import '../widgets/growth_paths_card.dart';
@@ -34,7 +35,9 @@ class DashboardPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.notificationSettings);
+            },
           ),
           IconButton(
             icon: const Icon(Icons.person_outlined),

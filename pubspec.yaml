@@ -48,6 +48,10 @@ dependencies:
   
   device_info_plus: ^9.1.1
   package_info_plus: ^4.2.0
+  
+  flutter_local_notifications: ^17.2.2
+  timezone: ^0.9.4
+  permission_handler: ^11.3.1
 
 dependency_overrides:
   # Override app_links to avoid hardcoded AGP version issue in 6.4.1

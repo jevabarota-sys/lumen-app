@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'core/constants/app_constants.dart';
 import 'core/theme/app_theme.dart';
 import 'core/services/supabase_service.dart';
+import 'core/services/notification_service.dart';
 import 'core/navigation/app_router.dart';
 
 void main() async {
@@ -11,6 +12,7 @@ void main() async {
 
   await Hive.initFlutter();
   await SupabaseService.initialize();
+  await NotificationService().initialize();
 
   runApp(
     const ProviderScope(
