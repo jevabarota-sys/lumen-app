@@ -41,3 +41,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Sensitive files - DO NOT COMMIT
+/android/key.properties
+/android/*.keystore
+/android/*.jks
+*.keystore
+*.jks
+.env
+.env.local
+.env.production
