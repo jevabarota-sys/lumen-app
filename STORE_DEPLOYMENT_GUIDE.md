@@ -24,11 +24,11 @@ This guide assumes you will implement native IAP as recommended.
 
 **Supabase Production:**
 - URL: `https://slvwtiicaxkpvupbmbki.supabase.co`
-- Anon Key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsdnd0aWljYXhrcHZ1cGJtYmtpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc4NjU3MjQsImV4cCI6MjA3MzQ0MTcyNH0.xh-Y5fvHozvCoZAX_OB8-yjw61YOGdB-L-dquNhbVrc`
+- Anon Key: `YOUR_SUPABASE_ANON_KEY_HERE`
 
 **App Identifiers:**
-- iOS Bundle ID: `com.lumen.app.lumen`
-- Android Package Name: `com.lumen.app.lumen`
+- iOS Bundle ID: `com.growwithlumen.app`
+- Android Package Name: `com.growwithlumen.app`
 
 ## Part 1: Implement Native In-App Purchases
 
@@ -126,7 +126,7 @@ android {
 ```bash
 flutter build appbundle --release \
   --dart-define=SUPABASE_URL=https://slvwtiicaxkpvupbmbki.supabase.co \
-  --dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsdnd0aWljYXhrcHZ1cGJtYmtpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc4NjU3MjQsImV4cCI6MjA3MzQ0MTcyNH0.xh-Y5fvHozvCoZAX_OB8-yjw61YOGdB-L-dquNhbVrc
+  --dart-define=SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY_HERE
 ```
 
 The AAB file will be at: `build/app/outputs/bundle/release/app-release.aab`
@@ -248,7 +248,7 @@ Features:
 2. Select Runner target
 3. Update **General** tab:
    - **Display Name:** Lumen
-   - **Bundle Identifier:** com.lumen.app.lumen
+   - **Bundle Identifier:** com.growwithlumen.app
    - **Version:** 1.0.0
    - **Build:** 1
 
@@ -262,7 +262,7 @@ Features:
 ```bash
 flutter build ios --release \
   --dart-define=SUPABASE_URL=https://slvwtiicaxkpvupbmbki.supabase.co \
-  --dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsdnd0aWljYXhrcHZ1cGJtYmtpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc4NjU3MjQsImV4cCI6MjA3MzQ0MTcyNH0.xh-Y5fvHozvCoZAX_OB8-yjw61YOGdB-L-dquNhbVrc
+  --dart-define=SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY_HERE
 ```
 
 ### Step 3: Archive and Upload
@@ -282,7 +282,7 @@ flutter build ios --release \
    - **Platform:** iOS
    - **Name:** Lumen: Your Personalized Growth Compass
    - **Primary Language:** English (U.S.)
-   - **Bundle ID:** com.lumen.app.lumen
+   - **Bundle ID:** com.growwithlumen.app
    - **SKU:** lumen-app-ios
    - **User Access:** Full Access
 
