@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_theme.dart';
+import '../../features/premium/providers/iap_provider.dart';
 
-class PremiumBanner extends StatelessWidget {
+class PremiumBanner extends ConsumerWidget {
   const PremiumBanner({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final products = ref.watch(productsProvider);
+    final isPremiumAsync = ref.watch(isPremiumProvider);
+    
+    return isPremiumAsync.when(
+      data: (isPremium) {
+        if (isPremium) {
+          return const SizedBox.shrink();
+        }
+        return _buildBanner(context, ref, products);
+      },
+      loading: () => const SizedBox.shrink(),
+      error: (_, __) => _buildBanner(context, ref, products),
+    );
+  }
+  
+  Widget _buildBanner(BuildContext context, WidgetRef ref, List products) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -64,15 +82,27 @@ class PremiumBanner extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              final iapService = ref.read(iapServiceProvider);
+              final success = await iapService.purchasePremium();
+              if (!success && context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Unable to start purchase. Please try again.'),
+                  ),
+                );
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppTheme.white,
               foregroundColor: AppTheme.primary,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
             child: Text(
-              'Start Premium Trial - \$9.99/month',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              products.isNotEmpty 
+                ? 'Start Premium - ${products.first.price}/month'
+                : 'Start Premium - \$9.99/month',
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
           ),
         ],
