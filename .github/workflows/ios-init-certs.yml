@@ -1,0 +1,49 @@
+name: iOS Initialize Certificates (One-Time Setup)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  init-certificates:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      
+      - name: Install Fastlane
+        run: |
+          gem install fastlane
+          gem install cocoapods
+      
+      - name: Create App Store Connect API Key
+        run: |
+          mkdir -p ~/private_keys
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY }}" | base64 --decode > ~/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+      
+      - name: Initialize Fastlane Match (Create Certificates)
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_PATH: ~/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          FASTLANE_USER: jevabarota@gmail.com
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        run: |
+          cd ios
+          fastlane match appstore \
+            --readonly false \
+            --app_identifier "com.growwithlumen.app" \
+            --git_url "https://github.com/jevabarota-sys/lumen-certificates" \
+            --username "jevabarota@gmail.com"
+      
+      - name: Verify certificates were created
+        run: |
+          echo "✅ Certificates initialized successfully!"
+          echo "Check your lumen-certificates repository to verify certificates were uploaded."
