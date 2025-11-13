@@ -41,3 +41,26 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Sensitive files - DO NOT COMMIT
+/android/key.properties
+/android/*.keystore
+/android/*.jks
+*.keystore
+*.jks
+.env
+.env.local
+.env.production
+
+# Fastlane sensitive files
+/ios/fastlane/report.xml
+/ios/fastlane/Preview.html
+/ios/fastlane/test_output
+/ios/fastlane/.env
+/ios/fastlane/.env.*
+*.cer
+*.p12
+*.mobileprovision
+*.p8
+/ios/Gemfile.lock
+/ios/vendor
