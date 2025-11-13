@@ -37,6 +37,16 @@ jobs:
           cd ios
           bundle install
       
+      - name: Test Git Authentication (Preflight Check)
+        run: |
+          echo "Testing authentication to lumen-certificates repository..."
+          git ls-remote https://github.com/jevabarota-sys/lumen-certificates \
+            -c http.extraheader="Authorization: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}" || {
+            echo "❌ Authentication failed! Please check MATCH_GIT_BASIC_AUTHORIZATION secret."
+            exit 1
+          }
+          echo "✅ Authentication successful!"
+      
       - name: Initialize Fastlane Match (Create Certificates)
         env:
           APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
