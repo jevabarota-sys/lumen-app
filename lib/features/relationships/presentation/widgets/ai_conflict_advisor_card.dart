@@ -15,6 +15,15 @@ class _AIConflictAdvisorCardState extends State<AIConflictAdvisorCard> {
   bool _isLoading = false;
 
   @override
+  void initState() {
+    super.initState();
+    // Add listener to rebuild when text changes
+    _conflictController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
