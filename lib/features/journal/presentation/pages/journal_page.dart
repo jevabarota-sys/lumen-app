@@ -96,13 +96,14 @@ class _JournalPageState extends State<JournalPage> {
               'Start Your Journey',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
+                    color: AppTheme.onBackground,
                   ),
             ),
             const SizedBox(height: 8),
             Text(
               'Begin documenting your thoughts, feelings, and insights. Our AI will help you discover patterns and provide personalized affirmations.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppTheme.neutral,
+                    color: AppTheme.onBackground.withOpacity(0.9),
                   ),
               textAlign: TextAlign.center,
             ),

@@ -76,6 +76,7 @@ class DashboardPage extends StatelessWidget {
               'Quick Actions',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
+                    color: AppTheme.onBackground,
                   ),
             ),
             const SizedBox(height: 16),

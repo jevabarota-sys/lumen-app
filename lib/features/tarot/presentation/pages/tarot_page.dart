@@ -106,7 +106,7 @@ class _TarotPageState extends State<TarotPage> {
           children: [
             Icon(
               icon,
-              color: isSelected ? AppTheme.primary : AppTheme.neutral,
+              color: isSelected ? AppTheme.primary : AppTheme.onBackground,
               size: 32,
             ),
             const SizedBox(height: 8),
@@ -114,13 +114,13 @@ class _TarotPageState extends State<TarotPage> {
               title,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: isSelected ? AppTheme.primary : AppTheme.onSurface,
+                    color: isSelected ? AppTheme.primary : AppTheme.onBackground,
                   ),
             ),
             Text(
               subtitle,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppTheme.neutral,
+                    color: isSelected ? AppTheme.neutral : AppTheme.onBackground.withOpacity(0.85),
                   ),
               textAlign: TextAlign.center,
             ),
@@ -289,7 +289,8 @@ class _TarotPageState extends State<TarotPage> {
           Text(
             card.description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.neutral,
+                  color: AppTheme.primary,
+                  fontWeight: FontWeight.w500,
                 ),
             textAlign: TextAlign.center,
           ),
@@ -378,7 +379,10 @@ class _TarotPageState extends State<TarotPage> {
                 Expanded(
                   child: Text(
                     '${_drawnCards![index].name}: ${_drawnCards![index].description}',
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppTheme.primary,
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                 ),
               ],

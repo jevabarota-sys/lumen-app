@@ -71,7 +71,7 @@ class _AuthPageState extends State<AuthPage> {
                     ? 'Sign in to continue your growth journey'
                     : 'Start your personalized growth journey',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppTheme.neutral,
+                      color: AppTheme.onBackground.withOpacity(0.9),
                     ),
                 textAlign: TextAlign.center,
               ),
