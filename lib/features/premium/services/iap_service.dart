@@ -122,7 +122,7 @@ class IapService {
     // Platform-specific handling
     if (Platform.isAndroid) {
       final androidDetails = purchaseDetails as GooglePlayPurchaseDetails;
-      await prefs.setString('purchase_token', androidDetails.purchaseData.purchaseToken);
+      await prefs.setString('purchase_token', androidDetails.billingClientPurchase.purchaseToken);
     } else if (Platform.isIOS) {
       final iosDetails = purchaseDetails as AppStorePurchaseDetails;
       await prefs.setString('transaction_id', iosDetails.skPaymentTransaction.transactionIdentifier ?? '');
