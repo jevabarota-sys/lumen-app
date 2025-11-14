@@ -48,6 +48,7 @@ class IapInitializer extends ConsumerWidget {
       },
     );
   }
+}
 
 class LumenApp extends StatelessWidget {
   const LumenApp({super.key});
