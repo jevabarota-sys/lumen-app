@@ -34,6 +34,14 @@ class QuickActionsGrid extends StatelessWidget {
         ),
         _buildActionCard(
           context,
+          'Angel Cards',
+          'Divine guidance & messages',
+          Icons.auto_awesome,
+          AppTheme.accent,
+          () => context.push(AppRoutes.angelCards),
+        ),
+        _buildActionCard(
+          context,
           '369 Manifestation',
           'Tesla\'s powerful method',
           Icons.auto_fix_high,
