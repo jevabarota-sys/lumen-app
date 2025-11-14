@@ -2,6 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../services/iap_service.dart';
 
+// Test mode state for Premium features
+final testPremiumModeProvider = StateProvider<bool>((ref) => false);
+
 final iapServiceProvider = Provider<IapService>((ref) {
   final service = IapService();
   ref.onDispose(() => service.dispose());
@@ -14,6 +17,10 @@ final iapInitializationProvider = FutureProvider<void>((ref) async {
 });
 
 final isPremiumProvider = FutureProvider<bool>((ref) async {
+  // Check test mode first
+  final testMode = ref.watch(testPremiumModeProvider);
+  if (testMode) return true;
+  
   final service = ref.watch(iapServiceProvider);
   return await service.isPremium();
 });

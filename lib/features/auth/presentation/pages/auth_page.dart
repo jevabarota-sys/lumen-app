@@ -103,6 +103,19 @@ class _AuthPageState extends State<AuthPage> {
                       : Text(_isLogin ? 'Sign In' : 'Create Account'),
                 ),
               ),
+              if (_isLogin) ...[
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: _showForgotPasswordDialog,
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(color: AppTheme.primary),
+                    ),
+                  ),
+                ),
+              ],
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
@@ -119,6 +132,44 @@ class _AuthPageState extends State<AuthPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _showForgotPasswordDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Reset Password'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Enter your email address and we\'ll send you a password reset link.'),
+            const SizedBox(height: 16),
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                prefixIcon: Icon(Icons.email_outlined),
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Password reset link sent to your email')),
+              );
+            },
+            child: const Text('Send Reset Link'),
+          ),
+        ],
       ),
     );
   }
