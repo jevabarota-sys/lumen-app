@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/constants/app_constants.dart';
 
 class GrowthPathsCard extends StatelessWidget {
   const GrowthPathsCard({super.key});
@@ -35,7 +37,9 @@ class GrowthPathsCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(AppRoutes.relationships);
+                  },
                   child: const Text('View All'),
                 ),
               ],

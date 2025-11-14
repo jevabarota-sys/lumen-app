@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/constants/app_constants.dart';
 
 class TodaysFocusCard extends StatelessWidget {
   const TodaysFocusCard({super.key});
@@ -56,13 +58,22 @@ class TodaysFocusCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Great job! Keep up the good work! 🌟'),
+                          backgroundColor: AppTheme.success,
+                        ),
+                      );
+                    },
                     child: const Text('Mark Complete'),
                   ),
                 ),
                 const SizedBox(width: 12),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(AppRoutes.manifestation369);
+                  },
                   child: const Text('Learn More'),
                 ),
               ],
