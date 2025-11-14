@@ -69,12 +69,13 @@ class _AIConflictAdvisorCardState extends State<AIConflictAdvisorCard> {
                 alignLabelWithHint: true,
               ),
               maxLines: 4,
+              onChanged: (_) => setState(() {}),
             ),
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _conflictController.text.isNotEmpty && !_isLoading
+                onPressed: _conflictController.text.trim().isNotEmpty && !_isLoading
                     ? _getAdvice
                     : null,
                 child: _isLoading
