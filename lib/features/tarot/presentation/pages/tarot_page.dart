@@ -202,14 +202,19 @@ class _TarotPageState extends State<TarotPage> {
         const SizedBox(height: 24),
         SizedBox(
           width: double.infinity,
-          child: OutlinedButton(
+          child: ElevatedButton(
             onPressed: () {
               setState(() {
                 _drawnCards = null;
                 _aiReflection = null;
               });
             },
-            child: const Text('Draw New Cards'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primary,
+              foregroundColor: AppTheme.white,
+              padding: const EdgeInsets.symmetric(vertical: 16),
+            ),
+            child: const Text('New Draw'),
           ),
         ),
       ],
@@ -444,7 +449,8 @@ class _TarotPageState extends State<TarotPage> {
     final today = DateTime.now();
     final numberOfCards = _isOneCardSpread ? 1 : 3;
 
-    final cards = TarotEngine.drawCards(userId, today, numberOfCards);
+    // Always use random draws (isRandom: true)
+    final cards = TarotEngine.drawCards(userId, today, numberOfCards, isRandom: true);
     final reflection = TarotEngine.generateAIReflection(
         cards, _isOneCardSpread ? 'one_card' : 'three_card');
 

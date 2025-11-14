@@ -71,9 +71,18 @@ class TarotEngine {
   ];
 
   static List<TarotCardData> drawCards(
-      String userId, DateTime date, int numberOfCards) {
-    final seed = _generateDeterministicSeed(userId, date);
-    final random = Random(seed);
+      String userId, DateTime date, int numberOfCards,
+      {bool isRandom = true}) {
+    final Random random;
+    
+    if (isRandom) {
+      // True random draw each time
+      random = Random();
+    } else {
+      // Deterministic daily draw (same cards for same user/date)
+      final seed = _generateDeterministicSeed(userId, date);
+      random = Random(seed);
+    }
 
     final shuffledCards = List<TarotCardData>.from(_majorArcana);
     shuffledCards.shuffle(random);
@@ -158,9 +167,21 @@ class TarotEngine {
   }
 
   static String _generateThreeCardReflection(List<TarotCardData> cards) {
-    return 'Your past (${cards[0].name}) has shaped your current situation (${cards[1].name}), '
-        'and this foundation guides you toward your future (${cards[2].name}). '
-        'Reflect on how these energies connect in your life\'s journey.';
+    final pastInsight = _generateSingleCardReflection(cards[0]);
+    final presentInsight = _generateSingleCardReflection(cards[1]);
+    final futureInsight = _generateSingleCardReflection(cards[2]);
+    
+    return 'PAST - ${cards[0].name}:\n$pastInsight\n\n'
+        'PRESENT - ${cards[1].name}:\n$presentInsight\n\n'
+        'FUTURE - ${cards[2].name}:\n$futureInsight\n\n'
+        'SUMMARY:\n'
+        'Your past experiences with ${cards[0].name} have shaped your current situation represented by ${cards[1].name}. '
+        'This foundation is guiding you toward a future illuminated by ${cards[2].name}. '
+        'These three energies work together to show you the path of your personal growth journey.';
+  }
+  
+  static String generateCardInsight(TarotCardData card) {
+    return _generateSingleCardReflection(card);
   }
 }
 

@@ -14,7 +14,7 @@ class QuickActionsGrid extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
-      childAspectRatio: 1.2,
+      childAspectRatio: 1.1,
       children: [
         _buildActionCard(
           context,
@@ -47,14 +47,6 @@ class QuickActionsGrid extends StatelessWidget {
           Icons.favorite,
           AppTheme.accent,
           () => context.push(AppRoutes.relationships),
-        ),
-        _buildActionCard(
-          context,
-          'Community',
-          'Connect with others',
-          Icons.people,
-          AppTheme.neutral,
-          () => context.push(AppRoutes.community),
         ),
         _buildActionCard(
           context,
