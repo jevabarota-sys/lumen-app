@@ -34,6 +34,12 @@ class DashboardPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
+            icon: const Icon(Icons.support_agent_outlined),
+            onPressed: () {
+              context.push(AppRoutes.support);
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {
               Navigator.pushNamed(context, AppRoutes.notificationSettings);

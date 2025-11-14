@@ -48,4 +48,5 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String notificationSettings = '/notification-settings';
   static const String manifestation369 = '/manifestation-369';
+  static const String support = '/support';
 }

@@ -2,7 +2,7 @@ name: lumen
 description: "Lumen: Your Personalized Growth Compass - A cross-platform mobile app for personal growth through numerology, tarot, and AI-powered reflection."
 publish_to: 'none'
 
-version: 1.0.0+10
+version: 1.0.0+11
 
 environment:
   sdk: ^3.5.3
@@ -43,6 +43,7 @@ dependencies:
   crypto: ^3.0.3
   
   markdown: ^7.1.1
+  url_launcher: ^6.2.5
   
   cached_network_image: ^3.3.0
   
