@@ -12,6 +12,7 @@ import '../../features/notifications/presentation/pages/notification_settings_pa
 import '../../features/manifestation/presentation/pages/manifestation_369_page.dart';
 import '../../features/support/presentation/pages/support_page.dart';
 import '../../features/menu/presentation/pages/app_menu_page.dart';
+import '../../features/angel_cards/presentation/pages/angel_cards_page.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -64,6 +65,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.menu,
         builder: (context, state) => const AppMenuPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.angelCards,
+        builder: (context, state) => const AngelCardsPage(),
       ),
     ],
   );

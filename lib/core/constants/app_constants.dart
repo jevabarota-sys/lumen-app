@@ -50,4 +50,5 @@ class AppRoutes {
   static const String manifestation369 = '/manifestation-369';
   static const String support = '/support';
   static const String menu = '/menu';
+  static const String angelCards = '/angel-cards';
 }
