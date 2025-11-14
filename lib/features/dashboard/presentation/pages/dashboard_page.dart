@@ -38,6 +38,14 @@ class DashboardPage extends ConsumerWidget {
           ],
         ),
         actions: [
+          // Menu Button
+          IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              context.push(AppRoutes.menu);
+            },
+            tooltip: 'Features Menu',
+          ),
           // Premium Test Button
           IconButton(
             icon: Icon(
