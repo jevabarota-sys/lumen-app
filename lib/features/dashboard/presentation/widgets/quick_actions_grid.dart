@@ -22,7 +22,7 @@ class QuickActionsGrid extends StatelessWidget {
           'Calculate your numbers',
           Icons.calculate,
           AppTheme.primary,
-          () => context.go(AppRoutes.numerology),
+          () => context.push(AppRoutes.numerology),
         ),
         _buildActionCard(
           context,
@@ -30,7 +30,7 @@ class QuickActionsGrid extends StatelessWidget {
           'Draw your daily cards',
           Icons.auto_awesome,
           AppTheme.secondary,
-          () => context.go(AppRoutes.tarot),
+          () => context.push(AppRoutes.tarot),
         ),
         _buildActionCard(
           context,
@@ -38,7 +38,7 @@ class QuickActionsGrid extends StatelessWidget {
           'Tesla\'s powerful method',
           Icons.auto_fix_high,
           AppTheme.lightPink,
-          () => context.go(AppRoutes.manifestation369),
+          () => context.push(AppRoutes.manifestation369),
         ),
         _buildActionCard(
           context,
@@ -46,7 +46,7 @@ class QuickActionsGrid extends StatelessWidget {
           'Compatibility & growth',
           Icons.favorite,
           AppTheme.accent,
-          () => context.go(AppRoutes.relationships),
+          () => context.push(AppRoutes.relationships),
         ),
         _buildActionCard(
           context,
@@ -54,7 +54,7 @@ class QuickActionsGrid extends StatelessWidget {
           'Connect with others',
           Icons.people,
           AppTheme.neutral,
-          () => context.go(AppRoutes.community),
+          () => context.push(AppRoutes.community),
         ),
         _buildActionCard(
           context,
@@ -62,7 +62,7 @@ class QuickActionsGrid extends StatelessWidget {
           'AI reflection & insights',
           Icons.book,
           AppTheme.mediumBlue,
-          () => context.go(AppRoutes.journal),
+          () => context.push(AppRoutes.journal),
         ),
       ],
     );
