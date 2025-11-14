@@ -20,9 +20,10 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
   bool _isScheduled = false;
   int _selectedDays = 21; // Default 21 days for manifestation
   String _manifestationText = '';
+  String _selectedSound = 'Calm Bell';
   
   // Default 369 method times: 6:30 AM, 12:30 PM, 9:30 PM
-  final List<TimeOfDay> _defaultTimes = [
+  List<TimeOfDay> _selectedTimes = [
     const TimeOfDay(hour: 6, minute: 30),   // Morning
     const TimeOfDay(hour: 12, minute: 30),  // Afternoon  
     const TimeOfDay(hour: 21, minute: 30),  // Evening
@@ -52,7 +53,7 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
     }
 
     try {
-      final reminderTimes = _defaultTimes.map((time) => DateTime(
+      final reminderTimes = _selectedTimes.map((time) => DateTime(
         DateTime.now().year,
         DateTime.now().month,
         DateTime.now().day,
@@ -70,7 +71,7 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
         _isScheduled = true;
       });
 
-      _showSnackBar('369 Manifestation reminders scheduled successfully! 🌟');
+      _showSnackBar('369 Manifestation reminders scheduled with $_selectedSound sound! 🌟');
     } catch (e) {
       _showSnackBar('Failed to schedule reminders: $e', isError: true);
     }
@@ -161,10 +162,20 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
                   _selectedDays = days;
                 });
               },
-              defaultTimes: _defaultTimes,
+              defaultTimes: _selectedTimes,
               isScheduled: _isScheduled,
               onSchedule: _schedule369Manifestation,
               onCancel: _cancelSchedule,
+              onTimesChanged: (times) {
+                setState(() {
+                  _selectedTimes = times;
+                });
+              },
+              onSoundChanged: (sound) {
+                setState(() {
+                  _selectedSound = sound;
+                });
+              },
             ).animate().slideX(
               begin: 0.3,
               duration: const Duration(milliseconds: 600),
