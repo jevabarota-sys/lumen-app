@@ -55,7 +55,12 @@ class AppTheme {
         onSurface: onSurface,
         onBackground: onBackground,
       ),
-      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+      textTheme: GoogleFonts.interTextTheme(
+        ThemeData.light().textTheme.apply(
+          bodyColor: onSurface,
+          displayColor: onSurface,
+        ),
+      ),
       appBarTheme: AppBarTheme(
         backgroundColor: surface,
         foregroundColor: onSurface,
@@ -105,6 +110,13 @@ class AppTheme {
         ),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        labelStyle: const TextStyle(color: neutral),
+        hintStyle: TextStyle(color: neutral.withOpacity(0.6)),
+      ),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: primary,
+        selectionColor: lightBlue,
+        selectionHandleColor: primary,
       ),
     );
   }
