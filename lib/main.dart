@@ -11,9 +11,26 @@ import 'features/premium/providers/iap_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Hive.initFlutter();
-  await SupabaseService.initialize();
-  await NotificationService().initialize();
+  try {
+    await Hive.initFlutter();
+  } catch (e, stackTrace) {
+    print('ERROR: Hive initialization failed: $e');
+    print('Stack trace: $stackTrace');
+  }
+
+  try {
+    await SupabaseService.initialize();
+  } catch (e, stackTrace) {
+    print('ERROR: Supabase initialization failed: $e');
+    print('Stack trace: $stackTrace');
+  }
+
+  try {
+    await NotificationService().initialize();
+  } catch (e, stackTrace) {
+    print('ERROR: Notification service initialization failed: $e');
+    print('Stack trace: $stackTrace');
+  }
 
   runApp(
     const ProviderScope(
