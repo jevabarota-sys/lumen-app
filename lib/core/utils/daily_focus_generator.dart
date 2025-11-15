@@ -9,6 +9,8 @@ class DailyFocusGenerator {
     List<String>? recentJournalTopics,
     String? currentMood,
     DateTime? date,
+    double? recentSentimentScore,
+    List<String>? dominantEmotions,
   }) {
     final now = date ?? DateTime.now();
     final dayOfWeek = now.weekday;
@@ -20,6 +22,8 @@ class DailyFocusGenerator {
       recentJournalTopics: recentJournalTopics,
       currentMood: currentMood,
       dayOfWeek: dayOfWeek,
+      recentSentimentScore: recentSentimentScore,
+      dominantEmotions: dominantEmotions,
     );
     
     // Generate focus based on context
@@ -31,6 +35,8 @@ class DailyFocusGenerator {
     List<String>? recentJournalTopics,
     String? currentMood,
     int? dayOfWeek,
+    double? recentSentimentScore,
+    List<String>? dominantEmotions,
   }) {
     final context = <String, dynamic>{
       'needsGrounding': false,
@@ -41,7 +47,38 @@ class DailyFocusGenerator {
       'primaryNeed': 'balance',
     };
     
-    // Analyze mood
+    // Analyze sentiment score from recent journal entries
+    if (recentSentimentScore != null) {
+      if (recentSentimentScore < -0.3) {
+        // User has been experiencing negative emotions
+        context['needsGrounding'] = true;
+        context['primaryNeed'] = 'grounding';
+      } else if (recentSentimentScore > 0.5) {
+        // User is in a positive state, encourage action
+        context['needsAction'] = true;
+        context['primaryNeed'] = 'action';
+      }
+    }
+    
+    // Analyze dominant emotions from journal entries
+    if (dominantEmotions != null && dominantEmotions.isNotEmpty) {
+      for (final emotion in dominantEmotions) {
+        if (emotion == 'anxiety' || emotion == 'sadness') {
+          context['needsGrounding'] = true;
+          context['primaryNeed'] = 'grounding';
+        } else if (emotion == 'loneliness') {
+          context['needsConnection'] = true;
+          context['primaryNeed'] = 'connection';
+        } else if (emotion == 'confusion') {
+          context['needsReflection'] = true;
+          context['primaryNeed'] = 'reflection';
+        } else if (emotion == 'joy' || emotion == 'gratitude') {
+          context['needsAction'] = true;
+        }
+      }
+    }
+    
+    // Analyze mood (this can override sentiment if more recent)
     if (currentMood != null) {
       final mood = currentMood.toLowerCase();
       if (mood.contains('anxious') || mood.contains('stressed') || mood.contains('overwhelmed')) {
