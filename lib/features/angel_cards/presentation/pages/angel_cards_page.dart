@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/angel_card_engine.dart';
 import '../../../premium/providers/iap_provider.dart';
+import '../../../../shared/widgets/angel_card_widget.dart';
 
 class AngelCardsPage extends ConsumerStatefulWidget {
   const AngelCardsPage({super.key});
@@ -288,7 +289,7 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (_selectedSpread == 3) ...[
               Container(
@@ -305,36 +306,20 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
                       ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
             ],
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppTheme.secondary.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    Icons.auto_awesome,
-                    color: AppTheme.secondary,
-                    size: 32,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Text(
-                    card['name']!,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppTheme.primary,
-                        ),
-                  ),
-                ),
-              ],
+            // Beautiful angel card widget
+            AngelCardWidget(
+              cardName: card['name']!,
+              message: card['message']!,
+              isRevealed: true,
+              width: 200,
+              height: 320,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
+            // Message section
             Container(
+              width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: AppTheme.secondary.withOpacity(0.05),
@@ -368,7 +353,9 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
               ),
             ),
             const SizedBox(height: 12),
+            // Guidance section
             Container(
+              width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: AppTheme.accent.withOpacity(0.05),
