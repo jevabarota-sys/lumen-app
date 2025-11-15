@@ -98,35 +98,75 @@ class _AuthPageState extends State<AuthPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _handleAuth,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.primary,
+                    foregroundColor: AppTheme.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  ),
                   child: _isLoading
                       ? const CircularProgressIndicator(color: AppTheme.white)
-                      : Text(_isLogin ? 'Sign In' : 'Create Account'),
+                      : Text(
+                          _isLogin ? 'Sign In' : 'Create Account',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                 ),
               ),
               if (_isLogin) ...[
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: _showForgotPasswordDialog,
-                    child: Text(
+                    child: const Text(
                       'Forgot Password?',
-                      style: TextStyle(color: AppTheme.primary),
+                      style: TextStyle(
+                        color: AppTheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
               ],
-              const SizedBox(height: 16),
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    _isLogin = !_isLogin;
-                  });
-                },
-                child: Text(
-                  _isLogin
-                      ? "Don't have an account? Sign up"
-                      : "Already have an account? Sign in",
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(child: Divider(color: AppTheme.border)),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'OR',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: AppTheme.neutral,
+                          ),
+                    ),
+                  ),
+                  Expanded(child: Divider(color: AppTheme.border)),
+                ],
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () {
+                    setState(() {
+                      _isLogin = !_isLogin;
+                    });
+                  },
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppTheme.primary,
+                    side: const BorderSide(color: AppTheme.primary, width: 2),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  ),
+                  child: Text(
+                    _isLogin ? 'Create New Account' : 'Sign In Instead',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               ),
             ],

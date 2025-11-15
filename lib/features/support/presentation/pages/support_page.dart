@@ -137,7 +137,6 @@ class SupportPage extends StatelessWidget {
 
   Widget _buildContactCard(BuildContext context) {
     return Card(
-      color: AppTheme.primary.withOpacity(0.1),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -147,7 +146,6 @@ class SupportPage extends StatelessWidget {
               'Need Immediate Help?',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.primary,
                   ),
             ),
             const SizedBox(height: 12),
