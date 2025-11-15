@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/constants/app_constants.dart';
+import '../../../../core/services/supabase_service.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -177,6 +178,8 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _showForgotPasswordDialog() {
+    final emailController = TextEditingController();
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -187,6 +190,7 @@ class _AuthPageState extends State<AuthPage> {
             const Text('Enter your email address and we\'ll send you a password reset link.'),
             const SizedBox(height: 16),
             TextField(
+              controller: emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 prefixIcon: Icon(Icons.email_outlined),
@@ -201,11 +205,42 @@ class _AuthPageState extends State<AuthPage> {
             child: const Text('Cancel'),
           ),
           ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Password reset link sent to your email')),
-              );
+            onPressed: () async {
+              final email = emailController.text.trim();
+              if (email.isEmpty) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Please enter your email address'),
+                    backgroundColor: AppTheme.error,
+                  ),
+                );
+                return;
+              }
+
+              try {
+                final supabase = SupabaseService().client;
+                await supabase.auth.resetPasswordForEmail(
+                  email,
+                  redirectTo: 'lumen://reset-password',
+                );
+                
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Password reset link sent to your email'),
+                    backgroundColor: AppTheme.success,
+                  ),
+                );
+              } catch (e) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Failed to send reset link: $e'),
+                    backgroundColor: AppTheme.error,
+                  ),
+                );
+              }
             },
             child: const Text('Send Reset Link'),
           ),
