@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/ai_advisor.dart';
 import '../../../../core/utils/inspirational_quotes.dart';
+import '../../../premium/providers/iap_provider.dart';
 
-class RelationshipInsightsCard extends StatefulWidget {
+class RelationshipInsightsCard extends ConsumerStatefulWidget {
   const RelationshipInsightsCard({super.key});
 
   @override
-  State<RelationshipInsightsCard> createState() =>
+  ConsumerState<RelationshipInsightsCard> createState() =>
       _RelationshipInsightsCardState();
 }
 
-class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
+class _RelationshipInsightsCardState extends ConsumerState<RelationshipInsightsCard> {
   List<String>? _dailyTips;
   Map<String, String>? _dailyQuote;
 
@@ -30,6 +32,16 @@ class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
 
   @override
   Widget build(BuildContext context) {
+    final isPremiumAsync = ref.watch(isPremiumProvider);
+
+    return isPremiumAsync.when(
+      data: (isPremium) => _buildCard(context, isPremium),
+      loading: () => _buildCard(context, false),
+      error: (_, __) => _buildCard(context, false),
+    );
+  }
+
+  Widget _buildCard(BuildContext context, bool isPremium) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -74,138 +86,177 @@ class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
               ],
             ),
             const SizedBox(height: 20),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppTheme.secondary.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.secondary.withOpacity(0.3)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.today, color: AppTheme.secondary, size: 20),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Today\'s Relationship Tip',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: AppTheme.secondary,
-                            ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  if (_dailyTips != null)
+            if (!isPremium) ...[
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppTheme.primary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppTheme.primary.withOpacity(0.3)),
+                ),
+                child: Column(
+                  children: [
+                    Icon(Icons.lock, color: AppTheme.primary, size: 32),
+                    const SizedBox(height: 12),
                     Text(
-                      _dailyTips!.first,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            height: 1.5,
-                          ),
-                    ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppTheme.accent.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.accent.withOpacity(0.3)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.favorite, color: AppTheme.accent, size: 20),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Relationship Wisdom',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: AppTheme.accent,
-                            ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'Strong relationships are built on trust, communication, and mutual respect. Remember that every relationship requires effort from both people to thrive.',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          height: 1.5,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppTheme.primary.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.primary.withOpacity(0.3)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.format_quote,
-                          color: AppTheme.primary, size: 20),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Daily Inspiration',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: AppTheme.primary,
-                            ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  if (_dailyQuote != null) ...[
-                    Text(
-                      '"${_dailyQuote!['quote']}"',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            height: 1.5,
-                            fontStyle: FontStyle.italic,
+                      'Premium Feature',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.primary,
                           ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '— ${_dailyQuote!['author']}',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppTheme.primary,
-                            fontWeight: FontWeight.w600,
+                      'Upgrade to Premium to get daily relationship insights, tips, and inspirational quotes',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppTheme.neutral,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () => _showUpgradeDialog(context),
+                      child: const Text('Upgrade to Premium'),
+                    ),
+                  ],
+                ),
+              ),
+            ] else ...[
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppTheme.secondary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppTheme.secondary.withOpacity(0.3)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.today, color: AppTheme.secondary, size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Today\'s Relationship Tip',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: AppTheme.secondary,
+                              ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    if (_dailyTips != null)
+                      Text(
+                        _dailyTips!.first,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              height: 1.5,
+                            ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+            if (isPremium) ...[
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppTheme.accent.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppTheme.accent.withOpacity(0.3)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.favorite, color: AppTheme.accent, size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Relationship Wisdom',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: AppTheme.accent,
+                              ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      'Strong relationships are built on trust, communication, and mutual respect. Remember that every relationship requires effort from both people to thrive.',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            height: 1.5,
                           ),
                     ),
                   ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppTheme.primary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppTheme.primary.withOpacity(0.3)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.format_quote,
+                            color: AppTheme.primary, size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Daily Inspiration',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: AppTheme.primary,
+                              ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    if (_dailyQuote != null) ...[
+                      Text(
+                        '"${_dailyQuote!['quote']}"',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              height: 1.5,
+                              fontStyle: FontStyle.italic,
+                            ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '— ${_dailyQuote!['author']}',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppTheme.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: _loadDailyContent,
+                      child: const Text('New Tip'),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: _showQuotesDialog,
+                      child: const Text('More Quotes'),
+                    ),
+                  ),
                 ],
               ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: _loadDailyContent,
-                    child: const Text('New Tip'),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: _showQuotesDialog,
-                    child: const Text('More Quotes'),
-                  ),
-                ),
-              ],
-            ),
+            ],
           ],
         ),
       ),
@@ -306,6 +357,32 @@ class _RelationshipInsightsCardState extends State<RelationshipInsightsCard> {
           ),
         );
       },
+    );
+  }
+
+  void _showUpgradeDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Upgrade to Premium'),
+        content: const Text(
+          'Get unlimited access to Relationship Insights and all premium features for \$9.99/month.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Maybe Later'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              final iapService = ref.read(iapServiceProvider);
+              await iapService.purchasePremium();
+            },
+            child: const Text('Upgrade Now'),
+          ),
+        ],
+      ),
     );
   }
 }

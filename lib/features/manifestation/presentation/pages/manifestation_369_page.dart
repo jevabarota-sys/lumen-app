@@ -260,6 +260,13 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
         title: const Text('369 Manifestation Method'),
         backgroundColor: AppTheme.surface,
         foregroundColor: AppTheme.onSurface,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () => _showInfoDialog(context),
+            tooltip: 'Learn about 369 Method',
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
