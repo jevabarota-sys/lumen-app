@@ -1,4 +1,25 @@
 class AIAdvisor {
+  /// General advice generator for Ask Lumen feature
+  static String generateAdvice({required String topic, required String context}) {
+    final text = context.toLowerCase();
+
+    // If it smells like a relationship conflict, route to the existing engine
+    final conflictHints = RegExp(r'\b(argue|fight|conflict|misunderstanding|trust|jealous|money|finance|family|ignore|neglect|communication)\b');
+    if (conflictHints.hasMatch(text)) {
+      return generateConflictAdvice(context);
+    }
+
+    // Lightweight topic-aware general guidance
+    switch (topic.toLowerCase()) {
+      case 'career':
+        return 'Move one step forward today: clarify your next outcome, block 25 minutes, and start. Progress creates clarity.';
+      case 'mindfulness':
+        return 'Pause, breathe slowly for four counts in and six out. Ask: "What matters most right now?" Take one kind action for yourself.';
+      default: // 'general_guidance' and other topics
+        return 'Choose one small, meaningful step you can complete today. Write it down, commit to a time, and take it. Small steps compound into transformation.';
+    }
+  }
+
   /// Enhanced conflict advice with multi-pattern detection and context awareness
   static String generateConflictAdvice(String conflictDescription) {
     final content = conflictDescription.toLowerCase();
