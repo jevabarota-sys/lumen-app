@@ -83,6 +83,18 @@ class AppMenuPage extends ConsumerWidget {
               context.push(AppRoutes.journal);
             },
           ),
+          _buildMenuItem(
+            context,
+            icon: Icons.chat_bubble_outline,
+            title: 'Ask Lumen (AI Assistant)',
+            description: 'Get AI guidance on life, spirituality, and growth',
+            isFree: true,
+            isPremium: isPremium,
+            onTap: () {
+              Navigator.pop(context);
+              context.push(AppRoutes.askLumen);
+            },
+          ),
 
           const SizedBox(height: 32),
 

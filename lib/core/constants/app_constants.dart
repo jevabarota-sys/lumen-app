@@ -52,4 +52,5 @@ class AppRoutes {
   static const String menu = '/menu';
   static const String angelCards = '/angel-cards';
   static const String settings = '/settings';
+  static const String askLumen = '/ask-lumen';
 }
