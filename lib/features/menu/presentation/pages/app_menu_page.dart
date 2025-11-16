@@ -95,6 +95,18 @@ class AppMenuPage extends ConsumerWidget {
               context.push(AppRoutes.askLumen);
             },
           ),
+          _buildMenuItem(
+            context,
+            icon: Icons.auto_awesome,
+            title: 'Angel Card Reading',
+            description: 'Draw angel cards for divine guidance',
+            isFree: true,
+            isPremium: isPremium,
+            onTap: () {
+              Navigator.pop(context);
+              context.push(AppRoutes.angelCards);
+            },
+          ),
 
           const SizedBox(height: 32),
 
