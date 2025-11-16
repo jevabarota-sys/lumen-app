@@ -121,6 +121,137 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
     });
   }
 
+  void _showInfoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Row(
+          children: [
+            Icon(Icons.auto_fix_high, color: AppTheme.primary),
+            const SizedBox(width: 12),
+            const Text('369 Manifestation Method'),
+          ],
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'What is the 369 Method?',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.primary,
+                    ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'The 369 manifestation method is based on Nikola Tesla\'s belief in the power of these numbers. It\'s a simple yet powerful technique to manifest your desires into reality.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.5,
+                    ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'How it works:',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.primary,
+                    ),
+              ),
+              const SizedBox(height: 8),
+              _buildInfoBullet(context, '3 times in the morning', 'Write your manifestation 3 times when you wake up'),
+              _buildInfoBullet(context, '6 times in the afternoon', 'Write it 6 times during the day'),
+              _buildInfoBullet(context, '9 times in the evening', 'Write it 9 times before bed'),
+              const SizedBox(height: 16),
+              Text(
+                'Best Practices:',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.primary,
+                    ),
+              ),
+              const SizedBox(height: 8),
+              _buildInfoBullet(context, 'Be specific', 'Write your desire in present tense as if it\'s already happened'),
+              _buildInfoBullet(context, 'Feel the emotion', 'Connect with the feeling of having your desire'),
+              _buildInfoBullet(context, 'Stay consistent', 'Practice for 33 or 45 days without skipping'),
+              _buildInfoBullet(context, 'Trust the process', 'Let go of attachment to the outcome'),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: AppTheme.accent.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: AppTheme.accent.withOpacity(0.3)),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.lightbulb_outline, color: AppTheme.accent, size: 20),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Example: "I am living in my dream home filled with love and abundance"',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppTheme.accent,
+                              fontStyle: FontStyle.italic,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Got it!'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoBullet(BuildContext context, String title, String description) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 6,
+            height: 6,
+            margin: const EdgeInsets.only(top: 8, right: 12),
+            decoration: BoxDecoration(
+              color: AppTheme.primary,
+              borderRadius: BorderRadius.circular(3),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                Text(
+                  description,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppTheme.neutral,
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
