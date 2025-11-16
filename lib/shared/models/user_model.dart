@@ -14,7 +14,7 @@ class UserModel {
   final DateTime? premiumExpiresAt;
   final DateTime createdAt;
   final DateTime updatedAt;
-  
+
   const UserModel({
     required this.id,
     required this.email,
@@ -27,10 +27,11 @@ class UserModel {
     required this.createdAt,
     required this.updatedAt,
   });
-  
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
-  
+
   UserModel copyWith({
     String? id,
     String? email,

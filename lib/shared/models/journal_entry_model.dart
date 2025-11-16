@@ -13,7 +13,7 @@ class JournalEntryModel {
   final List<String>? aiAffirmations;
   final DateTime createdAt;
   final DateTime updatedAt;
-  
+
   const JournalEntryModel({
     required this.id,
     required this.userId,
@@ -25,7 +25,8 @@ class JournalEntryModel {
     required this.createdAt,
     required this.updatedAt,
   });
-  
-  factory JournalEntryModel.fromJson(Map<String, dynamic> json) => _$JournalEntryModelFromJson(json);
+
+  factory JournalEntryModel.fromJson(Map<String, dynamic> json) =>
+      _$JournalEntryModelFromJson(json);
   Map<String, dynamic> toJson() => _$JournalEntryModelToJson(this);
 }

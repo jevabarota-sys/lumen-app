@@ -14,7 +14,8 @@ class _CommunityPageState extends State<CommunityPage> {
     CommunityPost(
       id: '1',
       authorName: 'Sarah M.',
-      content: 'Just completed my first month of daily tarot draws and the insights have been incredible! The AI reflections really help me understand the deeper meanings.',
+      content:
+          'Just completed my first month of daily tarot draws and the insights have been incredible! The AI reflections really help me understand the deeper meanings.',
       likes: 24,
       timeAgo: '2 hours ago',
       isLiked: false,
@@ -22,7 +23,8 @@ class _CommunityPageState extends State<CommunityPage> {
     CommunityPost(
       id: '2',
       authorName: 'Michael R.',
-      content: 'My life path number 7 reading was so accurate. The daily activities suggested really align with my spiritual journey. Grateful for this community! 🙏',
+      content:
+          'My life path number 7 reading was so accurate. The daily activities suggested really align with my spiritual journey. Grateful for this community! 🙏',
       likes: 18,
       timeAgo: '5 hours ago',
       isLiked: true,
@@ -30,7 +32,8 @@ class _CommunityPageState extends State<CommunityPage> {
     CommunityPost(
       id: '3',
       authorName: 'Emma L.',
-      content: 'The journal feature with AI insights has helped me recognize patterns in my thoughts I never noticed before. This app is truly transformative.',
+      content:
+          'The journal feature with AI insights has helped me recognize patterns in my thoughts I never noticed before. This app is truly transformative.',
       likes: 31,
       timeAgo: '1 day ago',
       isLiked: false,
@@ -98,8 +101,8 @@ class _CommunityPageState extends State<CommunityPage> {
                 Text(
                   'Welcome to the Community',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
               ],
             ),
@@ -107,9 +110,9 @@ class _CommunityPageState extends State<CommunityPage> {
             Text(
               'Share your journey, insights, and connect with others on their path of personal growth. All posts are moderated to ensure a safe and supportive environment.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.neutral,
-                height: 1.5,
-              ),
+                    color: AppTheme.neutral,
+                    height: 1.5,
+                  ),
             ),
             const SizedBox(height: 16),
             Row(
@@ -123,9 +126,9 @@ class _CommunityPageState extends State<CommunityPage> {
                 Text(
                   'AI Moderated for Safety',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppTheme.secondary,
-                    fontWeight: FontWeight.w500,
-                  ),
+                        color: AppTheme.secondary,
+                        fontWeight: FontWeight.w500,
+                      ),
                 ),
               ],
             ),
@@ -163,14 +166,14 @@ class _CommunityPageState extends State<CommunityPage> {
                       Text(
                         post.authorName,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                       Text(
                         post.timeAgo,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.neutral,
-                        ),
+                              color: AppTheme.neutral,
+                            ),
                       ),
                     ],
                   ),
@@ -190,8 +193,8 @@ class _CommunityPageState extends State<CommunityPage> {
             Text(
               post.content,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                height: 1.5,
-              ),
+                    height: 1.5,
+                  ),
             ),
             const SizedBox(height: 16),
             Row(
@@ -200,22 +203,27 @@ class _CommunityPageState extends State<CommunityPage> {
                   onTap: () => _toggleLike(post),
                   borderRadius: BorderRadius.circular(20),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
                           post.isLiked ? Icons.favorite : Icons.favorite_border,
-                          color: post.isLiked ? AppTheme.accent : AppTheme.neutral,
+                          color:
+                              post.isLiked ? AppTheme.accent : AppTheme.neutral,
                           size: 20,
                         ),
                         const SizedBox(width: 4),
                         Text(
                           '${post.likes}',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: post.isLiked ? AppTheme.accent : AppTheme.neutral,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: post.isLiked
+                                        ? AppTheme.accent
+                                        : AppTheme.neutral,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       ],
                     ),
@@ -226,7 +234,8 @@ class _CommunityPageState extends State<CommunityPage> {
                   onTap: () {},
                   borderRadius: BorderRadius.circular(20),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -238,10 +247,11 @@ class _CommunityPageState extends State<CommunityPage> {
                         const SizedBox(width: 4),
                         Text(
                           'Reply',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppTheme.neutral,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: AppTheme.neutral,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       ],
                     ),
@@ -253,10 +263,10 @@ class _CommunityPageState extends State<CommunityPage> {
         ),
       ),
     ).animate().slideX(
-      begin: index % 2 == 0 ? -0.3 : 0.3,
-      duration: const Duration(milliseconds: 600),
-      delay: Duration(milliseconds: index * 100),
-    );
+          begin: index % 2 == 0 ? -0.3 : 0.3,
+          duration: const Duration(milliseconds: 600),
+          delay: Duration(milliseconds: index * 100),
+        );
   }
 
   void _toggleLike(CommunityPost post) {
@@ -281,14 +291,15 @@ class _CommunityPageState extends State<CommunityPage> {
             timeAgo: 'Just now',
             isLiked: false,
           );
-          
+
           setState(() {
             _posts.insert(0, newPost);
           });
-          
+
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Your post is being reviewed and will appear soon!'),
+              content:
+                  Text('Your post is being reviewed and will appear soon!'),
               backgroundColor: AppTheme.secondary,
             ),
           );
@@ -358,8 +369,8 @@ class _NewPostSheetState extends State<_NewPostSheet> {
                 Text(
                   'Share with Community',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const Spacer(),
                 TextButton(
@@ -396,9 +407,10 @@ class _NewPostSheetState extends State<_NewPostSheet> {
                         Expanded(
                           child: Text(
                             'Posts are reviewed by AI moderation before appearing in the community feed.',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppTheme.accent,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: AppTheme.accent,
+                                    ),
                           ),
                         ),
                       ],
@@ -409,7 +421,8 @@ class _NewPostSheetState extends State<_NewPostSheet> {
                     child: TextField(
                       controller: _contentController,
                       decoration: const InputDecoration(
-                        hintText: 'Share your insights, experiences, or ask for guidance...',
+                        hintText:
+                            'Share your insights, experiences, or ask for guidance...',
                         border: InputBorder.none,
                       ),
                       maxLines: null,
