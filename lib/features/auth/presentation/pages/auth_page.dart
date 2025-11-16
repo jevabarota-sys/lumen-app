@@ -219,7 +219,7 @@ class _AuthPageState extends State<AuthPage> {
               }
 
               try {
-                final supabase = SupabaseService().client;
+                final supabase = SupabaseService.client;
                 await supabase.auth.resetPasswordForEmail(
                   email,
                   redirectTo: 'lumen://reset-password',

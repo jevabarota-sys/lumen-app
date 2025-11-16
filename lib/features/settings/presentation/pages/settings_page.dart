@@ -112,7 +112,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     }
 
     try {
-      final supabase = SupabaseService().client;
+      final supabase = SupabaseService.client;
       final user = supabase.auth.currentUser;
       
       if (user != null) {
@@ -170,7 +170,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
     if (confirmed == true) {
       try {
-        final supabase = SupabaseService().client;
+        final supabase = SupabaseService.client;
         final user = supabase.auth.currentUser;
         
         if (user != null) {
@@ -192,7 +192,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _signOut() async {
     try {
-      final supabase = SupabaseService().client;
+      final supabase = SupabaseService.client;
       await supabase.auth.signOut();
       
       if (mounted) {
