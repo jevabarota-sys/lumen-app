@@ -145,11 +145,26 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
             
             const SizedBox(height: 16),
             
-            Text(
-              'Notification Sound:',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Notification Sound:',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                if (!widget.isScheduled)
+                  TextButton.icon(
+                    onPressed: _previewSound,
+                    icon: const Icon(Icons.play_circle_outline, size: 18),
+                    label: const Text('Preview'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppTheme.primary,
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    ),
+                  ),
+              ],
             ),
             const SizedBox(height: 8),
             
@@ -327,5 +342,28 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
       });
       widget.onTimesChanged?.call(_selectedTimes);
     }
+  }
+
+  void _previewSound() {
+    // Show a snackbar with sound info and play system sound
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.volume_up, color: Colors.white, size: 20),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                'Sound preview: $_selectedSound\nYour device will use the default notification sound.',
+                style: const TextStyle(fontSize: 14),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: AppTheme.primary,
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 }

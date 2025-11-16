@@ -211,24 +211,34 @@ class NotificationService {
 
     final repetitions = [3, 6, 9]; // 369 method repetitions
     final timeLabels = ['Morning', 'Afternoon', 'Evening'];
+    final now = DateTime.now();
 
     for (int day = 0; day < durationInDays; day++) {
       for (int timeIndex = 0; timeIndex < reminderTimes.length && timeIndex < 3; timeIndex++) {
         final reminderTime = reminderTimes[timeIndex];
-        final scheduledDate = DateTime.now().add(Duration(days: day));
-        final scheduledDateTime = DateTime(
-          scheduledDate.year,
-          scheduledDate.month,
-          scheduledDate.day,
+        
+        // Calculate the scheduled date/time
+        var scheduledDateTime = DateTime(
+          now.year,
+          now.month,
+          now.day,
           reminderTime.hour,
           reminderTime.minute,
         );
-
-        if (scheduledDateTime.isBefore(DateTime.now())) continue;
+        
+        // If the time is in the past today, start from tomorrow
+        if (scheduledDateTime.isBefore(now)) {
+          scheduledDateTime = scheduledDateTime.add(const Duration(days: 1));
+        }
+        
+        // Add the day offset
+        scheduledDateTime = scheduledDateTime.add(Duration(days: day));
 
         final notificationId = _generate369NotificationId(day, timeIndex);
         final reps = repetitions[timeIndex];
         final timeLabel = timeLabels[timeIndex];
+
+        debugPrint('Scheduling 369 notification #$notificationId for $scheduledDateTime');
 
         await _scheduleNotification(
           id: notificationId,
@@ -246,6 +256,8 @@ class NotificationService {
         );
       }
     }
+    
+    debugPrint('Scheduled ${durationInDays * reminderTimes.length} 369 manifestation notifications');
   }
 
   Future<void> cancel369ManifestationReminders() async {
@@ -322,5 +334,44 @@ class NotificationService {
       return result?.isEnabled ?? false;
     }
     return false;
+  }
+
+  /// Send a test notification immediately to verify setup
+  Future<void> sendTestNotification({String? title, String? body}) async {
+    if (!_isInitialized) await initialize();
+
+    const androidDetails = AndroidNotificationDetails(
+      'test_notifications',
+      'Test Notifications',
+      channelDescription: 'Test notifications to verify setup',
+      importance: Importance.high,
+      priority: Priority.high,
+      icon: '@mipmap/ic_launcher',
+      color: Color(0xFF3B82F6),
+      enableVibration: true,
+      playSound: true,
+    );
+
+    const iosDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+      sound: 'default',
+    );
+
+    const notificationDetails = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
+
+    await _notifications.show(
+      999999,
+      title ?? '✨ Test Notification',
+      body ?? 'If you see this, notifications are working correctly!',
+      notificationDetails,
+      payload: jsonEncode({'type': 'test'}),
+    );
+    
+    debugPrint('Test notification sent');
   }
 }
