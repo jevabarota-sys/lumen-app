@@ -87,7 +87,7 @@ class AIAdvisor {
     if (content.contains(RegExp(r'\b(frustrated|annoyed|irritated|fed up)\b'))) {
       return 'frustrated';
     }
-    if (content.contains(RegExp(r'\b(confused|lost|don\'t know|uncertain|unclear)\b'))) {
+    if (content.contains(RegExp(r"\b(confused|lost|don't know|uncertain|unclear)\b"))) {
       return 'confused';
     }
     if (content.contains(RegExp(r'\b(hopeful|trying|want to|willing|open)\b'))) {
