@@ -39,7 +39,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     setState(() => _isLoading = true);
     
     try {
-      final supabase = SupabaseService().client;
+      final supabase = SupabaseService.client;
       final user = supabase.auth.currentUser;
       
       if (user != null) {
