@@ -346,7 +346,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                     isPremium ? 'Premium Member' : 'Free Plan',
                                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                           fontWeight: FontWeight.bold,
-                                          color: isPremium ? AppTheme.success : null,
+                                          color: isPremium ? AppTheme.success : AppTheme.onSurface,
                                         ),
                                   ),
                                   Text(

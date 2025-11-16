@@ -42,7 +42,7 @@ class _AuthPageState extends State<AuthPage> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
+                  child: Image.asset(
                     'assets/images/lumen_logo.png',
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
@@ -124,7 +124,7 @@ class _AuthPageState extends State<AuthPage> {
                     child: const Text(
                       'Forgot Password?',
                       style: TextStyle(
-                        color: AppTheme.primary,
+                        color: AppTheme.white,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -134,17 +134,18 @@ class _AuthPageState extends State<AuthPage> {
               const SizedBox(height: 24),
               Row(
                 children: [
-                  Expanded(child: Divider(color: AppTheme.border)),
+                  Expanded(child: Divider(color: AppTheme.white.withOpacity(0.3))),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       'OR',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppTheme.neutral,
+                            color: AppTheme.white,
+                            fontWeight: FontWeight.w600,
                           ),
                     ),
                   ),
-                  Expanded(child: Divider(color: AppTheme.border)),
+                  Expanded(child: Divider(color: AppTheme.white.withOpacity(0.3))),
                 ],
               ),
               const SizedBox(height: 24),
@@ -157,8 +158,8 @@ class _AuthPageState extends State<AuthPage> {
                     });
                   },
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: AppTheme.primary,
-                    side: const BorderSide(color: AppTheme.primary, width: 2),
+                    foregroundColor: AppTheme.white,
+                    side: const BorderSide(color: AppTheme.white, width: 2),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: Text(

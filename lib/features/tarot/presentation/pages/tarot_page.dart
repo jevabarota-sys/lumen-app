@@ -63,7 +63,11 @@ class _TarotPageState extends State<TarotPage> {
                     'Daily guidance',
                     Icons.crop_portrait,
                     _isOneCardSpread,
-                    () => setState(() => _isOneCardSpread = true),
+                    () => setState(() {
+                      _isOneCardSpread = true;
+                      _drawnCards = null;
+                      _aiReflection = null;
+                    }),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -73,7 +77,11 @@ class _TarotPageState extends State<TarotPage> {
                     'Past, Present, Future',
                     Icons.view_column,
                     !_isOneCardSpread,
-                    () => setState(() => _isOneCardSpread = false),
+                    () => setState(() {
+                      _isOneCardSpread = false;
+                      _drawnCards = null;
+                      _aiReflection = null;
+                    }),
                   ),
                 ),
               ],
@@ -283,6 +291,25 @@ class _TarotPageState extends State<TarotPage> {
   }
 
   Widget _buildThreeCardSpread() {
+    // Guard against short results
+    if (_drawnCards == null || _drawnCards!.length < 3) {
+      return Center(
+        child: Column(
+          children: [
+            const Text(
+              'Please draw 3 cards to see your reading',
+              style: TextStyle(color: AppTheme.neutral),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _drawCards,
+              child: const Text('Draw 3 Cards'),
+            ),
+          ],
+        ),
+      );
+    }
+    
     final positions = ['Past', 'Present', 'Future'];
     return Column(
       children: [

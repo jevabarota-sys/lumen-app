@@ -163,7 +163,7 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
                     count: 3,
                     title: '3-Card Spread',
                     description: 'Past, Present, Future',
-                    isLocked: !isPremium,
+                    isLocked: false,
                   ),
                 ),
               ],
@@ -239,7 +239,7 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
   }
 
   Widget _buildDrawButton(bool isPremium) {
-    final canDraw = isPremium || _selectedSpread == 1;
+    final canDraw = true; // Allow all spreads for now
 
     return SizedBox(
       width: double.infinity,
