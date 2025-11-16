@@ -115,7 +115,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
           Text(
             'Receive personalized affirmations throughout your day to support your growth journey. Set multiple reminders and schedule them months in advance.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppTheme.neutral,
+                  color: AppTheme.onSurface,
                   height: 1.5,
                 ),
           ),
@@ -156,7 +156,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                       ? 'Reminders are active'
                       : 'Turn on to receive daily affirmations',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.neutral,
+                        color: AppTheme.onSurface,
                       ),
                 ),
               ],
@@ -298,8 +298,8 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('1 week', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.neutral)),
-              Text('1 year', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.neutral)),
+              Text('1 week', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.onSurface)),
+              Text('1 year', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.onSurface)),
             ],
           ),
         ],
