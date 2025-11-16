@@ -9,27 +9,31 @@ part of 'journal_entry_model.dart';
 JournalEntryModel _$JournalEntryModelFromJson(Map<String, dynamic> json) =>
     JournalEntryModel(
       id: json['id'] as String,
-      userId: json['userId'] as String,
+      userId: json['user_id'] as String? ?? json['userId'] as String,
       title: json['title'] as String,
       content: json['content'] as String,
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      aiSummary: json['aiSummary'] as String?,
-      aiAffirmations: (json['aiAffirmations'] as List<dynamic>?)
+      aiSummary: json['ai_summary'] as String? ?? json['aiSummary'] as String?,
+      aiAffirmations: (json['ai_affirmations'] as List<dynamic>? ?? json['aiAffirmations'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      sentimentScore: (json['sentiment_score'] as num?)?.toDouble() ?? (json['sentimentScore'] as num?)?.toDouble(),
+      dominantEmotion: json['dominant_emotion'] as String? ?? json['dominantEmotion'] as String?,
+      createdAt: DateTime.parse(json['created_at'] as String? ?? json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String? ?? json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$JournalEntryModelToJson(JournalEntryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'userId': instance.userId,
+      'user_id': instance.userId,
       'title': instance.title,
       'content': instance.content,
       'tags': instance.tags,
-      'aiSummary': instance.aiSummary,
-      'aiAffirmations': instance.aiAffirmations,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'ai_summary': instance.aiSummary,
+      'ai_affirmations': instance.aiAffirmations,
+      'sentiment_score': instance.sentimentScore,
+      'dominant_emotion': instance.dominantEmotion,
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
     };

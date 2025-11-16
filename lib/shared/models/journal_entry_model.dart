@@ -11,6 +11,8 @@ class JournalEntryModel {
   final List<String>? tags;
   final String? aiSummary;
   final List<String>? aiAffirmations;
+  final double? sentimentScore;
+  final String? dominantEmotion;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -22,6 +24,8 @@ class JournalEntryModel {
     this.tags,
     this.aiSummary,
     this.aiAffirmations,
+    this.sentimentScore,
+    this.dominantEmotion,
     required this.createdAt,
     required this.updatedAt,
   });
