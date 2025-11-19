@@ -327,7 +327,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     data: (isPremium) => Card(
                       color: isPremium 
                           ? AppTheme.success.withOpacity(0.1)
-                          : AppTheme.neutral.withOpacity(0.1),
+                          : AppTheme.white,
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Row(

@@ -97,11 +97,11 @@ class _AuthPageState extends State<AuthPage> {
               const SizedBox(height: 32),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
+                child: OutlinedButton(
                   onPressed: _isLoading ? null : _handleAuth,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primary,
+                  style: OutlinedButton.styleFrom(
                     foregroundColor: AppTheme.white,
+                    side: const BorderSide(color: AppTheme.white, width: 2),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: _isLoading
@@ -117,8 +117,7 @@ class _AuthPageState extends State<AuthPage> {
               ),
               if (_isLogin) ...[
                 const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerRight,
+                Center(
                   child: TextButton(
                     onPressed: _showForgotPasswordDialog,
                     child: const Text(
@@ -151,15 +150,15 @@ class _AuthPageState extends State<AuthPage> {
               const SizedBox(height: 24),
               SizedBox(
                 width: double.infinity,
-                child: OutlinedButton(
+                child: ElevatedButton(
                   onPressed: () {
                     setState(() {
                       _isLogin = !_isLogin;
                     });
                   },
-                  style: OutlinedButton.styleFrom(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.primary,
                     foregroundColor: AppTheme.white,
-                    side: const BorderSide(color: AppTheme.white, width: 2),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: Text(
