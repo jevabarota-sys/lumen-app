@@ -131,6 +131,88 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     }
   }
 
+  Future<void> _viewPurchaseHistory() async {
+    // TODO: Implement purchase history view
+    _showSnackBar('Purchase history feature coming soon!');
+  }
+
+  Future<void> _downloadInvoices() async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Download Invoices'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Choose how you\'d like to receive your invoices:'),
+            const SizedBox(height: 16),
+            ListTile(
+              leading: const Icon(Icons.download),
+              title: const Text('Download to Device'),
+              onTap: () {
+                Navigator.pop(context);
+                _showSnackBar('Invoice download feature coming soon!');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.email),
+              title: const Text('Email Invoices'),
+              onTap: () {
+                Navigator.pop(context);
+                _showEmailInvoicesDialog();
+              },
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEmailInvoicesDialog() {
+    final emailController = TextEditingController(text: _emailController.text);
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Email Invoices'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Enter the email address where you\'d like to receive your invoices:'),
+            const SizedBox(height: 16),
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
+                labelText: 'Email Address',
+                prefixIcon: Icon(Icons.email_outlined),
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _showSnackBar('Invoices will be sent to ${emailController.text}');
+            },
+            child: const Text('Send'),
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<void> _exportJournalToPDF() async {
     final isPremiumAsync = ref.read(isPremiumProvider);
     final isPremium = isPremiumAsync.value ?? false;
@@ -374,6 +456,37 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   ),
 
                   const SizedBox(height: 32),
+
+                  // Purchases & Invoices Section
+                  isPremiumAsync.when(
+                    data: (isPremium) => isPremium ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Purchases & Invoices',
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        const SizedBox(height: 16),
+                        _buildSettingsItem(
+                          icon: Icons.receipt_long,
+                          title: 'Purchase History',
+                          subtitle: 'View your monthly subscription purchases',
+                          onTap: _viewPurchaseHistory,
+                        ),
+                        _buildSettingsItem(
+                          icon: Icons.download,
+                          title: 'Download Invoices',
+                          subtitle: 'Download or email your invoices',
+                          onTap: _downloadInvoices,
+                        ),
+                        const SizedBox(height: 32),
+                      ],
+                    ) : const SizedBox(),
+                    loading: () => const SizedBox(),
+                    error: (_, __) => const SizedBox(),
+                  ),
 
                   // Data & Privacy Section
                   Text(
