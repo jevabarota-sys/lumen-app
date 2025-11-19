@@ -17,6 +17,7 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
   List<Map<String, String>>? _drawnCards;
   bool _isDrawing = false;
   int _selectedSpread = 1; // 1 or 3 cards
+  String? _aiSummary;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +70,31 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
                     ),
               );
             }).toList(),
+            if (_selectedSpread == 3 && _aiSummary != null) ...[
+              const SizedBox(height: 24),
+              _buildAISummary().animate().fadeIn(
+                    duration: const Duration(milliseconds: 600),
+                    delay: const Duration(milliseconds: 1200),
+                  ),
+            ],
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _drawnCards = null;
+                    _aiSummary = null;
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppTheme.primary,
+                  foregroundColor: AppTheme.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+                child: const Text('New Draw'),
+              ),
+            ),
           ],
         ],
       ),
@@ -394,6 +420,49 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
     );
   }
 
+  Widget _buildAISummary() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: AppTheme.accent.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(
+                    Icons.psychology,
+                    color: AppTheme.accent,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  'AI Summary & Guidance',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Text(
+              _aiSummary ?? '',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    height: 1.5,
+                  ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<void> _drawCards() async {
     setState(() {
       _isDrawing = true;
@@ -406,10 +475,30 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
       isRandom: true,
     );
 
+    // Generate AI summary for 3-card spreads
+    String? summary;
+    if (_selectedSpread == 3 && cards.length == 3) {
+      summary = _generateAISummary(cards);
+    }
+
     setState(() {
       _drawnCards = cards;
+      _aiSummary = summary;
       _isDrawing = false;
     });
+  }
+
+  String _generateAISummary(List<Map<String, String>> cards) {
+    final cardNames = cards.map((c) => c['name']).join(', ');
+    
+    return 'Your three angel cards (${cardNames}) reveal a powerful message about your spiritual journey. '
+        'The Past card shows the foundation you\'ve built and lessons learned. '
+        'The Present card illuminates your current path and what requires your attention now. '
+        'The Future card offers guidance on where your journey is leading. '
+        'Together, these angels encourage you to trust in divine timing, stay open to guidance, '
+        'and remember that you are supported every step of the way. '
+        'Pay special attention to recurring themes across all three cards - '
+        'these are the areas where the angels are calling you to focus your energy and intention.';
   }
 
   void _showPremiumDialog(BuildContext context) {
