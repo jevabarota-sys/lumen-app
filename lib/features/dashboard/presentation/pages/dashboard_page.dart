@@ -75,11 +75,18 @@ class DashboardPage extends ConsumerWidget {
             },
             tooltip: 'Toggle Premium Test Mode',
           ),
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {
-              context.push(AppRoutes.notificationSettings);
-            },
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            decoration: BoxDecoration(
+              color: AppTheme.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.notifications_outlined),
+              onPressed: () {
+                context.push(AppRoutes.notificationSettings);
+              },
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.person_outlined),
