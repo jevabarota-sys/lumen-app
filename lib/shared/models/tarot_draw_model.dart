@@ -13,7 +13,7 @@ class TarotDrawModel {
   final String? aiReflection;
   final DateTime drawDate;
   final DateTime createdAt;
-  
+
   const TarotDrawModel({
     required this.id,
     required this.userId,
@@ -23,8 +23,9 @@ class TarotDrawModel {
     required this.drawDate,
     required this.createdAt,
   });
-  
-  factory TarotDrawModel.fromJson(Map<String, dynamic> json) => _$TarotDrawModelFromJson(json);
+
+  factory TarotDrawModel.fromJson(Map<String, dynamic> json) =>
+      _$TarotDrawModelFromJson(json);
   Map<String, dynamic> toJson() => _$TarotDrawModelToJson(this);
 }
 
@@ -35,7 +36,7 @@ class TarotCard {
   final String imageUrl;
   final String position;
   final bool isReversed;
-  
+
   const TarotCard({
     required this.name,
     required this.description,
@@ -43,7 +44,8 @@ class TarotCard {
     required this.position,
     this.isReversed = false,
   });
-  
-  factory TarotCard.fromJson(Map<String, dynamic> json) => _$TarotCardFromJson(json);
+
+  factory TarotCard.fromJson(Map<String, dynamic> json) =>
+      _$TarotCardFromJson(json);
   Map<String, dynamic> toJson() => _$TarotCardToJson(this);
 }

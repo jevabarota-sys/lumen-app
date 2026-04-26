@@ -2,7 +2,7 @@ name: lumen
 description: "Lumen: Your Personalized Growth Compass - A cross-platform mobile app for personal growth through numerology, tarot, and AI-powered reflection."
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.0+19
 
 environment:
   sdk: ^3.5.3
@@ -19,6 +19,8 @@ dependencies:
   riverpod_annotation: ^2.3.3
   
   supabase_flutter: ^2.0.0
+  
+  json_annotation: ^4.8.1
   
   flutter_stripe: ^10.1.1
   in_app_purchase: ^3.1.11
@@ -41,11 +43,23 @@ dependencies:
   crypto: ^3.0.3
   
   markdown: ^7.1.1
+  url_launcher: ^6.2.5
   
   cached_network_image: ^3.3.0
   
   device_info_plus: ^9.1.1
   package_info_plus: ^4.2.0
+  
+  flutter_local_notifications: ^17.2.2
+  timezone: ^0.9.4
+  permission_handler: ^11.3.1
+  
+  fl_chart: ^0.66.0
+
+dependency_overrides:
+  # Override app_links to avoid hardcoded AGP version issue in 6.4.1
+  # See: https://github.com/llfbandit/app_links/issues/226
+  app_links: 6.4.0
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +68,6 @@ dev_dependencies:
   
   riverpod_generator: ^2.3.9
   build_runner: ^2.4.7
-  json_annotation: ^4.8.1
   json_serializable: ^6.7.1
   
   mockito: ^5.4.4
@@ -74,14 +87,3 @@ flutter:
     - assets/tarot/
     - assets/angel_cards/
     - assets/animations/
-
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter-Regular.ttf
-        - asset: assets/fonts/Inter-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Inter-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Inter-Bold.ttf
-          weight: 700
