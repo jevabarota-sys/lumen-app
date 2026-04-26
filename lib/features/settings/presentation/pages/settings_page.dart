@@ -17,7 +17,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _birthdateController = TextEditingController();
-  
+
   bool _isLoading = true;
   DateTime? _selectedBirthdate;
 
@@ -37,21 +37,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _loadUserData() async {
     setState(() => _isLoading = true);
-    
+
     try {
       final supabase = SupabaseService.client;
       final user = supabase.auth.currentUser;
-      
+
       if (user != null) {
         _emailController.text = user.email ?? '';
-        
+
         // Load user profile data from database
         final response = await supabase
             .from('users')
             .select()
             .eq('id', user.id)
             .maybeSingle();
-        
+
         if (response != null) {
           _nameController.text = response['name'] ?? '';
           if (response['birthdate'] != null) {
@@ -114,7 +114,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     try {
       final supabase = SupabaseService.client;
       final user = supabase.auth.currentUser;
-      
+
       if (user != null) {
         await supabase.from('users').upsert({
           'id': user.id,
@@ -123,7 +123,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           'birthdate': _selectedBirthdate!.toIso8601String(),
           'updated_at': DateTime.now().toIso8601String(),
         });
-        
+
         _showSnackBar('Profile updated successfully!');
       }
     } catch (e) {
@@ -134,7 +134,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _exportJournalToPDF() async {
     final isPremiumAsync = ref.read(isPremiumProvider);
     final isPremium = isPremiumAsync.value ?? false;
-    
+
     if (!isPremium) {
       _showUpgradeDialog();
       return;
@@ -172,14 +172,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       try {
         final supabase = SupabaseService.client;
         final user = supabase.auth.currentUser;
-        
+
         if (user != null) {
           // Delete user data from database
           await supabase.from('users').delete().eq('id', user.id);
-          
+
           // Sign out
           await supabase.auth.signOut();
-          
+
           if (mounted) {
             context.go(AppRoutes.auth);
           }
@@ -194,7 +194,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     try {
       final supabase = SupabaseService.client;
       await supabase.auth.signOut();
-      
+
       if (mounted) {
         context.go(AppRoutes.auth);
       }
@@ -263,7 +263,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   Card(
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -304,7 +304,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppTheme.primary,
                                 foregroundColor: AppTheme.white,
-                                padding: const EdgeInsets.symmetric(vertical: 16),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
                               ),
                               child: const Text(
                                 'Save Profile',
@@ -325,7 +326,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   // Premium Status
                   isPremiumAsync.when(
                     data: (isPremium) => Card(
-                      color: isPremium 
+                      color: isPremium
                           ? AppTheme.success.withOpacity(0.1)
                           : AppTheme.neutral.withOpacity(0.1),
                       child: Padding(
@@ -334,7 +335,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                           children: [
                             Icon(
                               isPremium ? Icons.star : Icons.star_border,
-                              color: isPremium ? AppTheme.success : AppTheme.neutral,
+                              color: isPremium
+                                  ? AppTheme.success
+                                  : AppTheme.neutral,
                               size: 32,
                             ),
                             const SizedBox(width: 16),
@@ -344,16 +347,24 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                 children: [
                                   Text(
                                     isPremium ? 'Premium Member' : 'Free Plan',
-                                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
                                           fontWeight: FontWeight.bold,
-                                          color: isPremium ? AppTheme.success : null,
+                                          color: isPremium
+                                              ? AppTheme.success
+                                              : null,
                                         ),
                                   ),
                                   Text(
-                                    isPremium 
+                                    isPremium
                                         ? 'You have access to all features'
                                         : 'Upgrade to unlock all features',
-                                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
                                           color: AppTheme.neutral,
                                         ),
                                   ),
@@ -362,7 +373,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                             ),
                             if (!isPremium)
                               ElevatedButton(
-                                onPressed: () => context.push(AppRoutes.premium),
+                                onPressed: () =>
+                                    context.push(AppRoutes.premium),
                                 child: const Text('Upgrade'),
                               ),
                           ],
@@ -463,7 +475,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       children: [
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: isDestructive ? AppTheme.error : null,
                               ),
@@ -471,7 +486,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         if (isPremiumFeature) ...[
                           const SizedBox(width: 8),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
                               color: AppTheme.accent,
                               borderRadius: BorderRadius.circular(8),

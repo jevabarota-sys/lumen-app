@@ -43,13 +43,13 @@ void main() async {
 
 class IapInitializer extends ConsumerWidget {
   final Widget child;
-  
+
   const IapInitializer({super.key, required this.child});
-  
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final iapInit = ref.watch(iapInitializationProvider);
-    
+
     return iapInit.when(
       data: (_) => child,
       loading: () => const MaterialApp(

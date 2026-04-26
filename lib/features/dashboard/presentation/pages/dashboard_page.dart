@@ -17,7 +17,7 @@ class DashboardPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final testPremiumMode = ref.watch(testPremiumModeProvider);
-    
+
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
@@ -61,13 +61,14 @@ class DashboardPage extends ConsumerWidget {
               color: testPremiumMode ? Colors.amber : null,
             ),
             onPressed: () {
-              ref.read(testPremiumModeProvider.notifier).state = !testPremiumMode;
+              ref.read(testPremiumModeProvider.notifier).state =
+                  !testPremiumMode;
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    testPremiumMode 
-                      ? 'Premium Test Mode: OFF' 
-                      : 'Premium Test Mode: ON',
+                    testPremiumMode
+                        ? 'Premium Test Mode: OFF'
+                        : 'Premium Test Mode: ON',
                   ),
                   duration: const Duration(seconds: 2),
                 ),
@@ -164,7 +165,8 @@ class DashboardPage extends ConsumerWidget {
             ),
             ListTile(
               leading: const Icon(Icons.delete_outline, color: Colors.red),
-              title: const Text('Delete Account', style: TextStyle(color: Colors.red)),
+              title: const Text('Delete Account',
+                  style: TextStyle(color: Colors.red)),
               onTap: () {
                 Navigator.pop(context);
                 _showDeleteAccountDialog(context);
@@ -233,7 +235,8 @@ class DashboardPage extends ConsumerWidget {
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Account deletion request submitted. You will receive a confirmation email.'),
+                  content: Text(
+                      'Account deletion request submitted. You will receive a confirmation email.'),
                 ),
               );
             },

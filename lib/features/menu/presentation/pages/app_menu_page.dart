@@ -75,7 +75,8 @@ class AppMenuPage extends ConsumerWidget {
             context,
             icon: Icons.book,
             title: 'Limited Journal Entries',
-            description: 'Up to ${AppConstants.maxFreeJournalEntries} journal entries',
+            description:
+                'Up to ${AppConstants.maxFreeJournalEntries} journal entries',
             isFree: true,
             isPremium: isPremium,
             onTap: () {
@@ -404,7 +405,8 @@ class AppMenuPage extends ConsumerWidget {
               if (!success && context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Unable to start purchase. Please try again.'),
+                    content:
+                        Text('Unable to start purchase. Please try again.'),
                   ),
                 );
               }

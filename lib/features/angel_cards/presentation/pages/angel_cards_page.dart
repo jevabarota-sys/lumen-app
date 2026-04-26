@@ -293,7 +293,8 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
           children: [
             if (_selectedSpread == 3) ...[
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: colors[index].withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
@@ -433,7 +434,8 @@ class _AngelCardsPageState extends ConsumerState<AngelCardsPage> {
               if (!success && mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Unable to start purchase. Please try again.'),
+                    content:
+                        Text('Unable to start purchase. Please try again.'),
                   ),
                 );
               }

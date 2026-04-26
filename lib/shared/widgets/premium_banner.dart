@@ -10,7 +10,7 @@ class PremiumBanner extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final products = ref.watch(productsProvider);
     final isPremiumAsync = ref.watch(isPremiumProvider);
-    
+
     return isPremiumAsync.when(
       data: (isPremium) {
         if (isPremium) {
@@ -22,7 +22,7 @@ class PremiumBanner extends ConsumerWidget {
       error: (_, __) => _buildBanner(context, ref, products),
     );
   }
-  
+
   Widget _buildBanner(BuildContext context, WidgetRef ref, List products) {
     return Container(
       width: double.infinity,
@@ -88,7 +88,8 @@ class PremiumBanner extends ConsumerWidget {
               if (!success && context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Unable to start purchase. Please try again.'),
+                    content:
+                        Text('Unable to start purchase. Please try again.'),
                   ),
                 );
               }
@@ -99,9 +100,9 @@ class PremiumBanner extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
             child: Text(
-              products.isNotEmpty 
-                ? 'Start Premium - ${products.first.price}/month'
-                : 'Start Premium - \$9.99/month',
+              products.isNotEmpty
+                  ? 'Start Premium - ${products.first.price}/month'
+                  : 'Start Premium - \$9.99/month',
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
           ),

@@ -41,14 +41,14 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
                       Text(
                         '369 Manifestation Method',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       Text(
                         'Nikola Tesla\'s powerful manifestation technique',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppTheme.neutral,
-                        ),
+                              color: AppTheme.neutral,
+                            ),
                       ),
                     ],
                   ),
@@ -66,7 +66,6 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
                 ),
               ],
             ),
-            
             if (_isExpanded) ...[
               const SizedBox(height: 16),
               Container(
@@ -81,12 +80,11 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
                     Text(
                       'How the 369 Method Works:',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.primary,
-                      ),
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.primary,
+                          ),
                     ),
                     const SizedBox(height: 12),
-                    
                     _buildStep(
                       context,
                       '1. Morning (6:30 AM)',
@@ -96,7 +94,6 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
                       AppTheme.secondary,
                     ),
                     const SizedBox(height: 12),
-                    
                     _buildStep(
                       context,
                       '2. Afternoon (12:30 PM)',
@@ -106,7 +103,6 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
                       AppTheme.accent,
                     ),
                     const SizedBox(height: 12),
-                    
                     _buildStep(
                       context,
                       '3. Evening (9:30 PM)',
@@ -115,14 +111,14 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
                       Icons.nightlight_round,
                       AppTheme.primary,
                     ),
-                    
                     const SizedBox(height: 16),
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: AppTheme.success.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: AppTheme.success.withOpacity(0.3)),
+                        border: Border.all(
+                            color: AppTheme.success.withOpacity(0.3)),
                       ),
                       child: Row(
                         children: [
@@ -135,10 +131,13 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
                           Expanded(
                             child: Text(
                               'Pro Tip: Write with intention and emotion. Feel as if your manifestation has already happened!',
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppTheme.success,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: AppTheme.success,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
                           ),
                         ],
@@ -185,21 +184,21 @@ class _ManifestationGuideCardState extends State<ManifestationGuideCard> {
               Text(
                 title,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: color,
-                ),
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
               ),
               Text(
                 action,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
               Text(
                 description,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppTheme.neutral,
-                ),
+                      color: AppTheme.neutral,
+                    ),
               ),
             ],
           ),

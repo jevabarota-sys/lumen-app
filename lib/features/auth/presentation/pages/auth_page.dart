@@ -179,7 +179,7 @@ class _AuthPageState extends State<AuthPage> {
 
   void _showForgotPasswordDialog() {
     final emailController = TextEditingController();
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -187,7 +187,8 @@ class _AuthPageState extends State<AuthPage> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('Enter your email address and we\'ll send you a password reset link.'),
+            const Text(
+                'Enter your email address and we\'ll send you a password reset link.'),
             const SizedBox(height: 16),
             TextField(
               controller: emailController,
@@ -224,7 +225,7 @@ class _AuthPageState extends State<AuthPage> {
                   email,
                   redirectTo: 'lumen://reset-password',
                 );
-                
+
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(

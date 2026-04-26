@@ -11,7 +11,7 @@ class QuickActionsGrid extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isPremiumAsync = ref.watch(isPremiumProvider);
-    
+
     return isPremiumAsync.when(
       data: (isPremium) => GridView.count(
         crossAxisCount: 2,
@@ -54,9 +54,9 @@ class QuickActionsGrid extends ConsumerWidget {
             'Tesla\'s powerful method',
             Icons.auto_fix_high,
             AppTheme.lightPink,
-            isPremium 
-              ? () => context.push(AppRoutes.manifestation369)
-              : () => _showPremiumDialog(context),
+            isPremium
+                ? () => context.push(AppRoutes.manifestation369)
+                : () => _showPremiumDialog(context),
             isPremium: isPremium,
             isPremiumFeature: true,
           ),
@@ -89,12 +89,54 @@ class QuickActionsGrid extends ConsumerWidget {
         mainAxisSpacing: 16,
         childAspectRatio: 1.1,
         children: [
-          _buildActionCard(context, 'Numerology', 'Calculate your numbers', Icons.calculate, AppTheme.primary, () => context.push(AppRoutes.numerology), isPremium: true),
-          _buildActionCard(context, 'Tarot Reading', 'Draw your daily cards', Icons.auto_awesome, AppTheme.secondary, () => context.push(AppRoutes.tarot), isPremium: true),
-          _buildActionCard(context, 'Angel Cards', 'Divine guidance & messages', Icons.auto_awesome, AppTheme.accent, () => context.push(AppRoutes.angelCards), isPremium: true),
-          _buildActionCard(context, '369 Manifestation', 'Tesla\'s powerful method', Icons.auto_fix_high, AppTheme.lightPink, () => context.push(AppRoutes.manifestation369), isPremium: true),
-          _buildActionCard(context, 'Relationships', 'Compatibility & growth', Icons.favorite, AppTheme.accent, () => context.push(AppRoutes.relationships), isPremium: true),
-          _buildActionCard(context, 'Journal', 'AI reflection & insights', Icons.book, AppTheme.mediumBlue, () => context.push(AppRoutes.journal), isPremium: true),
+          _buildActionCard(
+              context,
+              'Numerology',
+              'Calculate your numbers',
+              Icons.calculate,
+              AppTheme.primary,
+              () => context.push(AppRoutes.numerology),
+              isPremium: true),
+          _buildActionCard(
+              context,
+              'Tarot Reading',
+              'Draw your daily cards',
+              Icons.auto_awesome,
+              AppTheme.secondary,
+              () => context.push(AppRoutes.tarot),
+              isPremium: true),
+          _buildActionCard(
+              context,
+              'Angel Cards',
+              'Divine guidance & messages',
+              Icons.auto_awesome,
+              AppTheme.accent,
+              () => context.push(AppRoutes.angelCards),
+              isPremium: true),
+          _buildActionCard(
+              context,
+              '369 Manifestation',
+              'Tesla\'s powerful method',
+              Icons.auto_fix_high,
+              AppTheme.lightPink,
+              () => context.push(AppRoutes.manifestation369),
+              isPremium: true),
+          _buildActionCard(
+              context,
+              'Relationships',
+              'Compatibility & growth',
+              Icons.favorite,
+              AppTheme.accent,
+              () => context.push(AppRoutes.relationships),
+              isPremium: true),
+          _buildActionCard(
+              context,
+              'Journal',
+              'AI reflection & insights',
+              Icons.book,
+              AppTheme.mediumBlue,
+              () => context.push(AppRoutes.journal),
+              isPremium: true),
         ],
       ),
     );
@@ -159,7 +201,8 @@ class QuickActionsGrid extends ConsumerWidget {
                 top: 8,
                 right: 8,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: AppTheme.accent,
                     borderRadius: BorderRadius.circular(12),

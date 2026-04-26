@@ -12,7 +12,8 @@ class NotificationService {
   factory NotificationService() => _instance;
   NotificationService._internal();
 
-  final FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _notifications =
+      FlutterLocalNotificationsPlugin();
   bool _isInitialized = false;
 
   Future<void> initialize() async {
@@ -20,7 +21,8 @@ class NotificationService {
 
     tz.initializeTimeZones();
 
-    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const androidSettings =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     const iosSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -47,7 +49,8 @@ class NotificationService {
       await Permission.scheduleExactAlarm.request();
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       await _notifications
-          .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+          .resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin>()
           ?.requestPermissions(
             alert: true,
             badge: true,
@@ -86,7 +89,7 @@ class NotificationService {
 
         if (scheduledDateTime.isBefore(DateTime.now())) continue;
 
-        final affirmation = customAffirmation ?? 
+        final affirmation = customAffirmation ??
             affirmations[random.nextInt(affirmations.length)];
 
         final notificationId = _generateNotificationId(day, timeIndex);
@@ -168,7 +171,8 @@ class NotificationService {
       for (int day = 0; day < 7; day++) {
         for (int timeIndex = 0; timeIndex < reminderTimes.length; timeIndex++) {
           final reminderTime = reminderTimes[timeIndex];
-          final scheduledDate = DateTime.now().add(Duration(days: week * 7 + day));
+          final scheduledDate =
+              DateTime.now().add(Duration(days: week * 7 + day));
           final scheduledDateTime = DateTime(
             scheduledDate.year,
             scheduledDate.month,
@@ -180,7 +184,8 @@ class NotificationService {
           if (scheduledDateTime.isBefore(DateTime.now())) continue;
 
           final affirmation = affirmations[random.nextInt(affirmations.length)];
-          final notificationId = _generateNotificationId(week * 7 + day, timeIndex);
+          final notificationId =
+              _generateNotificationId(week * 7 + day, timeIndex);
 
           await _scheduleNotification(
             id: notificationId,
@@ -213,7 +218,9 @@ class NotificationService {
     final timeLabels = ['Morning', 'Afternoon', 'Evening'];
 
     for (int day = 0; day < durationInDays; day++) {
-      for (int timeIndex = 0; timeIndex < reminderTimes.length && timeIndex < 3; timeIndex++) {
+      for (int timeIndex = 0;
+          timeIndex < reminderTimes.length && timeIndex < 3;
+          timeIndex++) {
         final reminderTime = reminderTimes[timeIndex];
         final scheduledDate = DateTime.now().add(Duration(days: day));
         final scheduledDateTime = DateTime(
@@ -251,7 +258,8 @@ class NotificationService {
   Future<void> cancel369ManifestationReminders() async {
     final pendingNotifications = await getPendingNotifications();
     for (final notification in pendingNotifications) {
-      if (notification.payload?.contains('"type":"369_manifestation"') == true) {
+      if (notification.payload?.contains('"type":"369_manifestation"') ==
+          true) {
         await _notifications.cancel(notification.id);
       }
     }
@@ -274,7 +282,9 @@ class NotificationService {
   }
 
   int _generate369NotificationId(int day, int timeIndex) {
-    return 50000 + (day * 100) + timeIndex; // Different range for 369 notifications
+    return 50000 +
+        (day * 100) +
+        timeIndex; // Different range for 369 notifications
   }
 
   List<String> _getAffirmationPool() {
@@ -317,7 +327,8 @@ class NotificationService {
       return await Permission.notification.isGranted;
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       final result = await _notifications
-          .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+          .resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin>()
           ?.checkPermissions();
       return result?.isEnabled ?? false;
     }

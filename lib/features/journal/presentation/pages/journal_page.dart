@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../shared/models/journal_entry_model.dart';
-import '../../../../core/utils/sentiment_analyzer.dart';
-import '../widgets/sentiment_trend_chart.dart';
 
 class JournalPage extends StatefulWidget {
   const JournalPage({super.key});

@@ -7,12 +7,13 @@ class NotificationSettingsPage extends StatefulWidget {
   const NotificationSettingsPage({super.key});
 
   @override
-  State<NotificationSettingsPage> createState() => _NotificationSettingsPageState();
+  State<NotificationSettingsPage> createState() =>
+      _NotificationSettingsPageState();
 }
 
 class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
   final NotificationService _notificationService = NotificationService();
-  
+
   bool _notificationsEnabled = false;
   List<TimeOfDay> _reminderTimes = [
     const TimeOfDay(hour: 9, minute: 0),
@@ -88,7 +89,10 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppTheme.primary.withOpacity(0.1), AppTheme.accent.withOpacity(0.1)],
+          colors: [
+            AppTheme.primary.withOpacity(0.1),
+            AppTheme.accent.withOpacity(0.1)
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -100,7 +104,8 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
         children: [
           Row(
             children: [
-              Icon(Icons.notifications_active, color: AppTheme.primary, size: 28),
+              Icon(Icons.notifications_active,
+                  color: AppTheme.primary, size: 28),
               const SizedBox(width: 12),
               Text(
                 'Daily Affirmations',
@@ -135,7 +140,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
       child: Row(
         children: [
           Icon(
-            _notificationsEnabled ? Icons.notifications : Icons.notifications_off,
+            _notificationsEnabled
+                ? Icons.notifications
+                : Icons.notifications_off,
             color: _notificationsEnabled ? AppTheme.primary : AppTheme.neutral,
             size: 24,
           ),
@@ -152,7 +159,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  _notificationsEnabled 
+                  _notificationsEnabled
                       ? 'Reminders are active'
                       : 'Turn on to receive daily affirmations',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -205,19 +212,25 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                     child: GestureDetector(
                       onTap: () => _selectTime(index),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
                         decoration: BoxDecoration(
                           color: AppTheme.primary.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: AppTheme.primary.withOpacity(0.3)),
+                          border: Border.all(
+                              color: AppTheme.primary.withOpacity(0.3)),
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.access_time, color: AppTheme.primary, size: 18),
+                            Icon(Icons.access_time,
+                                color: AppTheme.primary, size: 18),
                             const SizedBox(width: 8),
                             Text(
                               _reminderTimes[index].format(context),
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w500,
                                   ),
                             ),
@@ -228,10 +241,14 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    onPressed: _reminderTimes.length > 1 ? () => _removeTime(index) : null,
+                    onPressed: _reminderTimes.length > 1
+                        ? () => _removeTime(index)
+                        : null,
                     icon: Icon(
                       Icons.remove_circle_outline,
-                      color: _reminderTimes.length > 1 ? AppTheme.error : AppTheme.neutral.withOpacity(0.5),
+                      color: _reminderTimes.length > 1
+                          ? AppTheme.error
+                          : AppTheme.neutral.withOpacity(0.5),
                     ),
                   ),
                 ],
@@ -298,8 +315,16 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('1 week', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.onSurface)),
-              Text('1 year', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.onSurface)),
+              Text('1 week',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: AppTheme.onSurface)),
+              Text('1 year',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: AppTheme.onSurface)),
             ],
           ),
         ],
@@ -373,7 +398,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
       setState(() {
         _notificationsEnabled = enabled;
       });
-      
+
       if (!enabled) {
         _showPermissionDialog();
       }
@@ -390,7 +415,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
       context: context,
       initialTime: _reminderTimes[index],
     );
-    
+
     if (picked != null) {
       setState(() {
         _reminderTimes[index] = picked;
@@ -433,7 +458,8 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Scheduled ${_reminderTimes.length} daily reminders for $_durationInDays days!'),
+            content: Text(
+                'Scheduled ${_reminderTimes.length} daily reminders for $_durationInDays days!'),
             backgroundColor: AppTheme.success,
           ),
         );
@@ -461,7 +487,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
 
     try {
       await _notificationService.cancelAllAffirmationReminders();
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

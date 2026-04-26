@@ -11,7 +11,7 @@ class RestorePurchasesButton extends ConsumerWidget {
       onPressed: () async {
         final iapService = ref.read(iapServiceProvider);
         await iapService.restorePurchases();
-        
+
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

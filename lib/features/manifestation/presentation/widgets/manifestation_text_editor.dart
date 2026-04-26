@@ -32,8 +32,8 @@ class ManifestationTextEditor extends StatelessWidget {
                 Text(
                   'Your Manifestation',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const Spacer(),
                 TextButton.icon(
@@ -54,7 +54,6 @@ class ManifestationTextEditor extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            
             Container(
               decoration: BoxDecoration(
                 color: AppTheme.lightBlue.withOpacity(0.05),
@@ -66,7 +65,8 @@ class ManifestationTextEditor extends StatelessWidget {
                 onChanged: onChanged,
                 maxLines: 4,
                 decoration: InputDecoration(
-                  hintText: 'Write your manifestation in present tense...\n\nExample: "I am attracting abundance and success into my life with ease and gratitude."',
+                  hintText:
+                      'Write your manifestation in present tense...\n\nExample: "I am attracting abundance and success into my life with ease and gratitude."',
                   hintStyle: TextStyle(
                     color: AppTheme.neutral.withOpacity(0.6),
                     fontSize: 14,
@@ -75,13 +75,11 @@ class ManifestationTextEditor extends StatelessWidget {
                   contentPadding: const EdgeInsets.all(16),
                 ),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                ),
+                      height: 1.5,
+                    ),
               ),
             ),
-            
             const SizedBox(height: 12),
-            
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -100,24 +98,22 @@ class ManifestationTextEditor extends StatelessWidget {
                     child: Text(
                       'Tips: Use present tense, be specific, include emotions, and keep it positive!',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppTheme.secondary,
-                        fontWeight: FontWeight.w500,
-                      ),
+                            color: AppTheme.secondary,
+                            fontWeight: FontWeight.w500,
+                          ),
                     ),
                   ),
                 ],
               ),
             ),
-            
             const SizedBox(height: 16),
-            
             Text(
               'Character count: ${controller.text.length}/200',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: controller.text.length > 200 
-                    ? AppTheme.error 
-                    : AppTheme.neutral.withOpacity(0.7),
-              ),
+                    color: controller.text.length > 200
+                        ? AppTheme.error
+                        : AppTheme.neutral.withOpacity(0.7),
+                  ),
             ),
           ],
         ),

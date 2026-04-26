@@ -24,7 +24,8 @@ class ManifestationScheduleCard extends StatefulWidget {
   });
 
   @override
-  State<ManifestationScheduleCard> createState() => _ManifestationScheduleCardState();
+  State<ManifestationScheduleCard> createState() =>
+      _ManifestationScheduleCardState();
 }
 
 class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
@@ -69,29 +70,35 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                 Text(
                   'Schedule Your 369 Practice',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            
             Text(
               'Daily Reminder Times:',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             const SizedBox(height: 8),
-            
             ..._selectedTimes.asMap().entries.map((entry) {
               final index = entry.key;
               final time = entry.value;
               final labels = ['Morning', 'Afternoon', 'Evening'];
               final repetitions = ['3 times', '6 times', '9 times'];
-              final icons = [Icons.wb_sunny, Icons.wb_sunny_outlined, Icons.nightlight_round];
-              final colors = [AppTheme.secondary, AppTheme.accent, AppTheme.primary];
-              
+              final icons = [
+                Icons.wb_sunny,
+                Icons.wb_sunny_outlined,
+                Icons.nightlight_round
+              ];
+              final colors = [
+                AppTheme.secondary,
+                AppTheme.accent,
+                AppTheme.primary
+              ];
+
               return Container(
                 margin: const EdgeInsets.only(bottom: 8),
                 padding: const EdgeInsets.all(12),
@@ -101,7 +108,9 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                   border: Border.all(color: colors[index].withOpacity(0.3)),
                 ),
                 child: InkWell(
-                  onTap: widget.isScheduled ? null : () => _selectTime(context, index),
+                  onTap: widget.isScheduled
+                      ? null
+                      : () => _selectTime(context, index),
                   borderRadius: BorderRadius.circular(8),
                   child: Row(
                     children: [
@@ -117,16 +126,22 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                           children: [
                             Text(
                               '${labels[index]} - ${time.format(context)}',
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: colors[index],
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: colors[index],
+                                  ),
                             ),
                             Text(
                               'Write your manifestation ${repetitions[index]}',
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppTheme.neutral,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: AppTheme.neutral,
+                                  ),
                             ),
                           ],
                         ),
@@ -142,17 +157,14 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                 ),
               );
             }).toList(),
-            
             const SizedBox(height: 16),
-            
             Text(
               'Notification Sound:',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             const SizedBox(height: 8),
-            
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
@@ -170,34 +182,34 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                     value: sound,
                     child: Row(
                       children: [
-                        Icon(Icons.volume_up, size: 16, color: AppTheme.primary),
+                        Icon(Icons.volume_up,
+                            size: 16, color: AppTheme.primary),
                         const SizedBox(width: 8),
                         Text(sound),
                       ],
                     ),
                   );
                 }).toList(),
-                onChanged: widget.isScheduled ? null : (value) {
-                  if (value != null) {
-                    setState(() {
-                      _selectedSound = value;
-                    });
-                    widget.onSoundChanged?.call(value);
-                  }
-                },
+                onChanged: widget.isScheduled
+                    ? null
+                    : (value) {
+                        if (value != null) {
+                          setState(() {
+                            _selectedSound = value;
+                          });
+                          widget.onSoundChanged?.call(value);
+                        }
+                      },
               ),
             ),
-            
             const SizedBox(height: 16),
-            
             Text(
               'Duration:',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             const SizedBox(height: 8),
-            
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -212,16 +224,17 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                     children: [
                       Text(
                         '${widget.selectedDays} days',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppTheme.primary,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppTheme.primary,
+                                ),
                       ),
                       Text(
                         _getDurationDescription(widget.selectedDays),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.neutral,
-                        ),
+                              color: AppTheme.neutral,
+                            ),
                       ),
                     ],
                   ),
@@ -243,29 +256,29 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                       Text(
                         '7 days',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.neutral,
-                        ),
+                              color: AppTheme.neutral,
+                            ),
                       ),
                       Text(
                         '90 days',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.neutral,
-                        ),
+                              color: AppTheme.neutral,
+                            ),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            
             const SizedBox(height: 24),
-            
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: widget.isScheduled ? widget.onCancel : widget.onSchedule,
+                onPressed:
+                    widget.isScheduled ? widget.onCancel : widget.onSchedule,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: widget.isScheduled ? AppTheme.error : AppTheme.primary,
+                  backgroundColor:
+                      widget.isScheduled ? AppTheme.error : AppTheme.primary,
                   foregroundColor: AppTheme.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
@@ -273,12 +286,16 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      widget.isScheduled ? Icons.cancel : Icons.notifications_active,
+                      widget.isScheduled
+                          ? Icons.cancel
+                          : Icons.notifications_active,
                       size: 20,
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      widget.isScheduled ? 'Cancel 369 Practice' : 'Start 369 Practice',
+                      widget.isScheduled
+                          ? 'Cancel 369 Practice'
+                          : 'Start 369 Practice',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

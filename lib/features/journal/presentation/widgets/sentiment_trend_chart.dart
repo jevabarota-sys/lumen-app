@@ -51,9 +51,10 @@ class SentimentTrendChart extends StatelessWidget {
                     children: [
                       Text(
                         'Sentiment Trends',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                       ),
                       Text(
                         'Your emotional journey over time',
@@ -68,7 +69,7 @@ class SentimentTrendChart extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            
+
             // Chart
             SizedBox(
               height: 200,
@@ -99,7 +100,8 @@ class SentimentTrendChart extends StatelessWidget {
                         reservedSize: 30,
                         interval: 1,
                         getTitlesWidget: (value, meta) {
-                          if (value.toInt() >= scores.length) return const SizedBox();
+                          if (value.toInt() >= scores.length)
+                            return const SizedBox();
                           return Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
@@ -120,12 +122,16 @@ class SentimentTrendChart extends StatelessWidget {
                         reservedSize: 40,
                         getTitlesWidget: (value, meta) {
                           String label = '';
-                          if (value == 1.0) label = 'Very Positive';
-                          else if (value == 0.5) label = 'Positive';
-                          else if (value == 0.0) label = 'Neutral';
-                          else if (value == -0.5) label = 'Negative';
+                          if (value == 1.0)
+                            label = 'Very Positive';
+                          else if (value == 0.5)
+                            label = 'Positive';
+                          else if (value == 0.0)
+                            label = 'Neutral';
+                          else if (value == -0.5)
+                            label = 'Negative';
                           else if (value == -1.0) label = 'Very Negative';
-                          
+
                           return Text(
                             label,
                             style: TextStyle(
@@ -208,9 +214,9 @@ class SentimentTrendChart extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             const SizedBox(height: 24),
-            
+
             // Stats
             Row(
               children: [
@@ -235,9 +241,9 @@ class SentimentTrendChart extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // Insight
             Container(
               padding: const EdgeInsets.all(16),
@@ -305,7 +311,7 @@ class SentimentTrendChart extends StatelessWidget {
   Widget _buildTrendIndicator(String trend) {
     IconData icon;
     Color color;
-    
+
     if (trend == 'improving') {
       icon = Icons.trending_up;
       color = AppTheme.success;
@@ -316,7 +322,7 @@ class SentimentTrendChart extends StatelessWidget {
       icon = Icons.trending_flat;
       color = AppTheme.neutral;
     }
-    
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(

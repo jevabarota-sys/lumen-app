@@ -84,9 +84,10 @@ class _AIConflictAdvisorCardState extends State<AIConflictAdvisorCard> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _conflictController.text.trim().isNotEmpty && !_isLoading
-                    ? _getAdvice
-                    : null,
+                onPressed:
+                    _conflictController.text.trim().isNotEmpty && !_isLoading
+                        ? _getAdvice
+                        : null,
                 child: _isLoading
                     ? const SizedBox(
                         height: 20,

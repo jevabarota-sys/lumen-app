@@ -115,13 +115,16 @@ class _TarotPageState extends State<TarotPage> {
               title,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: isSelected ? AppTheme.primary : AppTheme.onBackground,
+                    color:
+                        isSelected ? AppTheme.primary : AppTheme.onBackground,
                   ),
             ),
             Text(
               subtitle,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isSelected ? AppTheme.neutral : AppTheme.onBackground.withOpacity(0.85),
+                    color: isSelected
+                        ? AppTheme.neutral
+                        : AppTheme.onBackground.withOpacity(0.85),
                   ),
               textAlign: TextAlign.center,
             ),
@@ -303,11 +306,13 @@ class _TarotPageState extends State<TarotPage> {
                     ),
                     const SizedBox(height: 12),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
                         color: AppTheme.secondary.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: AppTheme.secondary.withOpacity(0.3)),
+                        border: Border.all(
+                            color: AppTheme.secondary.withOpacity(0.3)),
                       ),
                       child: Text(
                         positions[index],
@@ -340,27 +345,30 @@ class _TarotPageState extends State<TarotPage> {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
                           color: AppTheme.secondary.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
                           positions[index],
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: AppTheme.secondary,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppTheme.secondary,
+                                  ),
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
                           _drawnCards![index].name,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppTheme.primary,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppTheme.primary,
+                                  ),
                         ),
                       ),
                     ],
@@ -434,7 +442,8 @@ class _TarotPageState extends State<TarotPage> {
     final numberOfCards = _isOneCardSpread ? 1 : 3;
 
     // Always use random draws (isRandom: true)
-    final cards = TarotEngine.drawCards(userId, today, numberOfCards, isRandom: true);
+    final cards =
+        TarotEngine.drawCards(userId, today, numberOfCards, isRandom: true);
     final reflection = TarotEngine.generateAIReflection(
         cards, _isOneCardSpread ? 'one_card' : 'three_card');
 

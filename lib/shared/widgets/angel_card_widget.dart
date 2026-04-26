@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../core/theme/app_theme.dart';
 
 /// Beautiful, colorful angel card widget with ethereal gradients and angelic designs
 class AngelCardWidget extends StatelessWidget {
@@ -62,7 +61,7 @@ class AngelCardWidget extends StatelessWidget {
               painter: _AngelCardGlowPainter(color: _getCardColor(cardName)),
             ),
           ),
-          
+
           // Card content
           Padding(
             padding: const EdgeInsets.all(24),
@@ -94,9 +93,9 @@ class AngelCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Main icon with halo
                 Stack(
                   alignment: Alignment.center,
@@ -138,12 +137,13 @@ class AngelCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                
+
                 const Spacer(),
-                
+
                 // Card name
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.95),
                     borderRadius: BorderRadius.circular(16),
@@ -166,9 +166,9 @@ class AngelCardWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                
+
                 const SizedBox(height: 12),
-                
+
                 // Decorative stars at bottom
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -213,7 +213,7 @@ class AngelCardWidget extends StatelessWidget {
               painter: _AngelCardBackPainter(),
             ),
           ),
-          
+
           // Center design
           Center(
             child: Column(
@@ -293,11 +293,12 @@ class AngelCardWidget extends StatelessWidget {
       ),
     };
 
-    return gradients[cardName] ?? LinearGradient(
-      colors: [Color(0xFFE1BEE7), Color(0xFFBA68C8), Color(0xFF9C27B0)],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-    );
+    return gradients[cardName] ??
+        LinearGradient(
+          colors: [Color(0xFFE1BEE7), Color(0xFFBA68C8), Color(0xFF9C27B0)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        );
   }
 
   IconData _getCardIcon(String cardName) {
@@ -368,13 +369,13 @@ class _AngelCardGlowPainter extends CustomPainter {
     for (int i = 0; i < 5; i++) {
       final opacity = 0.05 - (i * 0.01);
       paint.color = Colors.white.withOpacity(opacity);
-      
+
       canvas.drawCircle(
         Offset(size.width * 0.3, size.height * 0.3),
         50.0 + (i * 20),
         paint,
       );
-      
+
       canvas.drawCircle(
         Offset(size.width * 0.7, size.height * 0.7),
         40.0 + (i * 15),
@@ -403,19 +404,23 @@ class _AngelCardBackPainter extends CustomPainter {
     for (int i = 0; i < 3; i++) {
       final path = Path();
       final offset = i * 30.0;
-      
+
       path.moveTo(centerX - 60 - offset, centerY);
       path.quadraticBezierTo(
-        centerX - 80 - offset, centerY - 40,
-        centerX - 60 - offset, centerY - 80,
+        centerX - 80 - offset,
+        centerY - 40,
+        centerX - 60 - offset,
+        centerY - 80,
       );
-      
+
       path.moveTo(centerX + 60 + offset, centerY);
       path.quadraticBezierTo(
-        centerX + 80 + offset, centerY - 40,
-        centerX + 60 + offset, centerY - 80,
+        centerX + 80 + offset,
+        centerY - 40,
+        centerX + 60 + offset,
+        centerY - 80,
       );
-      
+
       canvas.drawPath(path, paint);
     }
 

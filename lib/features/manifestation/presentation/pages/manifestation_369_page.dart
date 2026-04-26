@@ -14,19 +14,20 @@ class Manifestation369Page extends StatefulWidget {
 }
 
 class _Manifestation369PageState extends State<Manifestation369Page> {
-  final TextEditingController _manifestationController = TextEditingController();
+  final TextEditingController _manifestationController =
+      TextEditingController();
   final NotificationService _notificationService = NotificationService();
-  
+
   bool _isScheduled = false;
   int _selectedDays = 21; // Default 21 days for manifestation
   String _manifestationText = '';
   String _selectedSound = 'Calm Bell';
-  
+
   // Default 369 method times: 6:30 AM, 12:30 PM, 9:30 PM
   List<TimeOfDay> _selectedTimes = [
-    const TimeOfDay(hour: 6, minute: 30),   // Morning
-    const TimeOfDay(hour: 12, minute: 30),  // Afternoon  
-    const TimeOfDay(hour: 21, minute: 30),  // Evening
+    const TimeOfDay(hour: 6, minute: 30), // Morning
+    const TimeOfDay(hour: 12, minute: 30), // Afternoon
+    const TimeOfDay(hour: 21, minute: 30), // Evening
   ];
 
   @override
@@ -53,13 +54,15 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
     }
 
     try {
-      final reminderTimes = _selectedTimes.map((time) => DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
-        time.hour,
-        time.minute,
-      )).toList();
+      final reminderTimes = _selectedTimes
+          .map((time) => DateTime(
+                DateTime.now().year,
+                DateTime.now().month,
+                DateTime.now().day,
+                time.hour,
+                time.minute,
+              ))
+          .toList();
 
       await _notificationService.schedule369ManifestationReminders(
         manifestationText: _manifestationText,
@@ -71,7 +74,8 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
         _isScheduled = true;
       });
 
-      _showSnackBar('369 Manifestation reminders scheduled with $_selectedSound sound! 🌟');
+      _showSnackBar(
+          '369 Manifestation reminders scheduled with $_selectedSound sound! 🌟');
     } catch (e) {
       _showSnackBar('Failed to schedule reminders: $e', isError: true);
     }
@@ -113,8 +117,9 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
       "Abundance flows to me from multiple sources in expected and unexpected ways.",
       "I trust the process of life and know that everything is working out perfectly.",
     ];
-    
-    final randomSuggestion = suggestions[DateTime.now().millisecond % suggestions.length];
+
+    final randomSuggestion =
+        suggestions[DateTime.now().millisecond % suggestions.length];
     setState(() {
       _manifestationText = randomSuggestion;
       _manifestationController.text = randomSuggestion;
@@ -136,10 +141,9 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const ManifestationGuideCard().animate().fadeIn(
-              duration: const Duration(milliseconds: 600),
-            ),
+                  duration: const Duration(milliseconds: 600),
+                ),
             const SizedBox(height: 24),
-            
             ManifestationTextEditor(
               controller: _manifestationController,
               onChanged: (value) {
@@ -149,12 +153,11 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
               },
               onAIGenerate: _generateAIManifestationText,
             ).animate().slideX(
-              begin: -0.3,
-              duration: const Duration(milliseconds: 600),
-              delay: const Duration(milliseconds: 200),
-            ),
+                  begin: -0.3,
+                  duration: const Duration(milliseconds: 600),
+                  delay: const Duration(milliseconds: 200),
+                ),
             const SizedBox(height: 24),
-            
             ManifestationScheduleCard(
               selectedDays: _selectedDays,
               onDaysChanged: (days) {
@@ -177,13 +180,11 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
                 });
               },
             ).animate().slideX(
-              begin: 0.3,
-              duration: const Duration(milliseconds: 600),
-              delay: const Duration(milliseconds: 400),
-            ),
-            
+                  begin: 0.3,
+                  duration: const Duration(milliseconds: 600),
+                  delay: const Duration(milliseconds: 400),
+                ),
             const SizedBox(height: 32),
-            
             if (_isScheduled) ...[
               Container(
                 width: double.infinity,
@@ -204,24 +205,24 @@ class _Manifestation369PageState extends State<Manifestation369Page> {
                     Text(
                       '369 Method Active!',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppTheme.success,
-                        fontWeight: FontWeight.bold,
-                      ),
+                            color: AppTheme.success,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       'You\'ll receive 3 daily reminders for $_selectedDays days',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.success,
-                      ),
+                            color: AppTheme.success,
+                          ),
                       textAlign: TextAlign.center,
                     ),
                   ],
                 ),
               ).animate().fadeIn(
-                duration: const Duration(milliseconds: 600),
-                delay: const Duration(milliseconds: 600),
-              ),
+                    duration: const Duration(milliseconds: 600),
+                    delay: const Duration(milliseconds: 600),
+                  ),
             ],
           ],
         ),

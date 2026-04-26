@@ -60,7 +60,7 @@ class TarotCardWidget extends StatelessWidget {
               painter: _TarotCardPatternPainter(),
             ),
           ),
-          
+
           // Card content
           Padding(
             padding: const EdgeInsets.all(20),
@@ -68,7 +68,8 @@ class TarotCardWidget extends StatelessWidget {
               children: [
                 // Card number/title at top
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.9),
                     borderRadius: BorderRadius.circular(20),
@@ -84,9 +85,9 @@ class TarotCardWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                
+
                 const Spacer(),
-                
+
                 // Main icon
                 Container(
                   padding: const EdgeInsets.all(24),
@@ -107,9 +108,9 @@ class TarotCardWidget extends StatelessWidget {
                     color: _getIconColor(card.name),
                   ),
                 ),
-                
+
                 const Spacer(),
-                
+
                 // Card name at bottom
                 Container(
                   padding: const EdgeInsets.all(12),
@@ -156,7 +157,7 @@ class TarotCardWidget extends StatelessWidget {
               painter: _TarotCardBackPainter(),
             ),
           ),
-          
+
           // Center icon
           Center(
             child: Container(
@@ -227,11 +228,12 @@ class TarotCardWidget extends StatelessWidget {
       ),
     };
 
-    return gradients[cardName] ?? LinearGradient(
-      colors: [AppTheme.lightBlue, AppTheme.mediumBlue, AppTheme.primary],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-    );
+    return gradients[cardName] ??
+        LinearGradient(
+          colors: [AppTheme.lightBlue, AppTheme.mediumBlue, AppTheme.primary],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        );
   }
 
   IconData _getCardIcon(String cardName) {

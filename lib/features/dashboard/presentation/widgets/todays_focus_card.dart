@@ -30,7 +30,7 @@ class _TodaysFocusCardState extends State<TodaysFocusCard> {
       currentMood: null, // TODO: Get from user's current mood
       date: DateTime.now(),
     );
-    
+
     _dailyTip = DailyFocusGenerator.generateDailyTip(DateTime.now());
   }
 
@@ -67,7 +67,8 @@ class _TodaysFocusCardState extends State<TodaysFocusCard> {
                 ),
                 if (_isCompleted)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: AppTheme.success.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
@@ -75,7 +76,8 @@ class _TodaysFocusCardState extends State<TodaysFocusCard> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.check_circle, color: AppTheme.success, size: 16),
+                        Icon(Icons.check_circle,
+                            color: AppTheme.success, size: 16),
                         const SizedBox(width: 4),
                         Text(
                           'Done',
@@ -100,7 +102,8 @@ class _TodaysFocusCardState extends State<TodaysFocusCard> {
             ),
             const SizedBox(height: 8),
             Text(
-              _dailyFocus['description'] ?? 'Take 10 minutes today to focus on your breath.',
+              _dailyFocus['description'] ??
+                  'Take 10 minutes today to focus on your breath.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppTheme.onSurface,
                     height: 1.5,
@@ -116,7 +119,8 @@ class _TodaysFocusCardState extends State<TodaysFocusCard> {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.lightbulb_outline, color: AppTheme.primary, size: 16),
+                  Icon(Icons.lightbulb_outline,
+                      color: AppTheme.primary, size: 16),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -135,17 +139,20 @@ class _TodaysFocusCardState extends State<TodaysFocusCard> {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: _isCompleted ? null : () {
-                      setState(() {
-                        _isCompleted = true;
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Great job! Keep up the good work! 🌟'),
-                          backgroundColor: AppTheme.success,
-                        ),
-                      );
-                    },
+                    onPressed: _isCompleted
+                        ? null
+                        : () {
+                            setState(() {
+                              _isCompleted = true;
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Great job! Keep up the good work! 🌟'),
+                                backgroundColor: AppTheme.success,
+                              ),
+                            );
+                          },
                     child: Text(_isCompleted ? 'Completed' : 'Mark Complete'),
                   ),
                 ),

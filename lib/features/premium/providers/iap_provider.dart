@@ -20,7 +20,7 @@ final isPremiumProvider = FutureProvider<bool>((ref) async {
   // Check test mode first
   final testMode = ref.watch(testPremiumModeProvider);
   if (testMode) return true;
-  
+
   final service = ref.watch(iapServiceProvider);
   return await service.isPremium();
 });

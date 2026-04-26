@@ -296,10 +296,13 @@ class SupportPage extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: 8),
-            _buildTechItem(context, 'iOS: iPhone/iPad running iOS 12.0 or later'),
-            _buildTechItem(context, 'Android: Android 6.0 (API level 23) or later'),
+            _buildTechItem(
+                context, 'iOS: iPhone/iPad running iOS 12.0 or later'),
+            _buildTechItem(
+                context, 'Android: Android 6.0 (API level 23) or later'),
             _buildTechItem(context, 'Storage: 100MB free space'),
-            _buildTechItem(context, 'Internet: Required for AI features and syncing'),
+            _buildTechItem(
+                context, 'Internet: Required for AI features and syncing'),
           ],
         ),
       ),
@@ -333,7 +336,7 @@ class SupportPage extends StatelessWidget {
       path: 'support@growwithlumen.com',
       query: 'subject=Lumen Support Request',
     );
-    
+
     if (await canLaunchUrl(emailUri)) {
       await launchUrl(emailUri);
     }

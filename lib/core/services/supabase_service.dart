@@ -7,13 +7,13 @@ class SupabaseService {
   static Future<void> initialize() async {
     final url = AppConstants.supabaseUrl;
     final key = AppConstants.supabaseAnonKey;
-    
+
     if (url.isEmpty || key.isEmpty) {
       print('WARNING: Supabase credentials missing. Skipping initialization.');
       print('URL empty: ${url.isEmpty}, Key empty: ${key.isEmpty}');
       return;
     }
-    
+
     try {
       await Supabase.initialize(
         url: url,

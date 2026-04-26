@@ -5,72 +5,102 @@ class AIAdvisor {
     final patterns = _detectConflictPatterns(content);
     final severity = _assessConflictSeverity(content);
     final emotionalTone = _detectEmotionalTone(content);
-    
+
     // Multi-pattern conflicts get more nuanced advice
     if (patterns.length > 1) {
       return _generateMultiPatternAdvice(patterns, severity, emotionalTone);
     }
-    
+
     // Single pattern conflicts
     if (patterns.isNotEmpty) {
-      return _generateSinglePatternAdvice(patterns.first, severity, emotionalTone);
+      return _generateSinglePatternAdvice(
+          patterns.first, severity, emotionalTone);
     }
 
     // Default advice with emotional awareness
     if (emotionalTone == 'distressed') {
       return 'I can sense this situation is causing you distress. Take a moment to breathe and center yourself. When you\'re ready, approach the conversation with curiosity rather than judgment. Ask yourself: "What is this conflict trying to teach me?" Remember, you have the strength to navigate this challenge.';
     }
-    
+
     return 'Take time to understand both perspectives. Approach the situation with empathy and focus on finding solutions together. Remember that conflicts can strengthen relationships when handled with care and respect.';
   }
-  
+
   static List<String> _detectConflictPatterns(String content) {
     final patterns = <String>[];
-    
-    if (content.contains(RegExp(r'\b(communication|talking|listen|hear|speak|say|tell)\b'))) {
+
+    if (content.contains(
+        RegExp(r'\b(communication|talking|listen|hear|speak|say|tell)\b'))) {
       patterns.add('communication');
     }
-    if (content.contains(RegExp(r'\b(trust|betrayal|lie|lying|lied|cheat|honest)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(trust|betrayal|lie|lying|lied|cheat|honest)\b'))) {
       patterns.add('trust');
     }
-    if (content.contains(RegExp(r'\b(jealous|envy|insecure|compare|comparing)\b'))) {
+    if (content
+        .contains(RegExp(r'\b(jealous|envy|insecure|compare|comparing)\b'))) {
       patterns.add('jealousy');
     }
-    if (content.contains(RegExp(r'\b(money|financial|spending|budget|debt|bills)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(money|financial|spending|budget|debt|bills)\b'))) {
       patterns.add('financial');
     }
-    if (content.contains(RegExp(r'\b(family|in-laws|parents|mother|father|sibling)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(family|in-laws|parents|mother|father|sibling)\b'))) {
       patterns.add('family');
     }
-    if (content.contains(RegExp(r'\b(time|attention|neglect|ignore|busy|priority)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(time|attention|neglect|ignore|busy|priority)\b'))) {
       patterns.add('attention');
     }
-    if (content.contains(RegExp(r'\b(chores|housework|cleaning|cook|dishes|laundry)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(chores|housework|cleaning|cook|dishes|laundry)\b'))) {
       patterns.add('household');
     }
-    if (content.contains(RegExp(r'\b(intimacy|physical|sex|affection|touch|close)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(intimacy|physical|sex|affection|touch|close)\b'))) {
       patterns.add('intimacy');
     }
-    if (content.contains(RegExp(r'\b(future|goals|plans|marriage|children|career)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(future|goals|plans|marriage|children|career)\b'))) {
       patterns.add('future');
     }
-    if (content.contains(RegExp(r'\b(angry|mad|fight|argument|yell|scream|rage)\b'))) {
+    if (content
+        .contains(RegExp(r'\b(angry|mad|fight|argument|yell|scream|rage)\b'))) {
       patterns.add('anger');
     }
-    if (content.contains(RegExp(r'\b(respect|disrespect|value|appreciate|dismiss)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(respect|disrespect|value|appreciate|dismiss)\b'))) {
       patterns.add('respect');
     }
-    if (content.contains(RegExp(r'\b(control|controlling|manipulate|power|dominate)\b'))) {
+    if (content.contains(
+        RegExp(r'\b(control|controlling|manipulate|power|dominate)\b'))) {
       patterns.add('control');
     }
-    
+
     return patterns;
   }
-  
+
   static String _assessConflictSeverity(String content) {
-    final highSeverityWords = ['abuse', 'violence', 'dangerous', 'threat', 'harm', 'scared', 'afraid', 'terrified'];
-    final mediumSeverityWords = ['always', 'never', 'hate', 'can\'t stand', 'unbearable', 'breaking up', 'divorce'];
-    
+    final highSeverityWords = [
+      'abuse',
+      'violence',
+      'dangerous',
+      'threat',
+      'harm',
+      'scared',
+      'afraid',
+      'terrified'
+    ];
+    final mediumSeverityWords = [
+      'always',
+      'never',
+      'hate',
+      'can\'t stand',
+      'unbearable',
+      'breaking up',
+      'divorce'
+    ];
+
     for (final word in highSeverityWords) {
       if (content.contains(word)) return 'high';
     }
@@ -79,70 +109,82 @@ class AIAdvisor {
     }
     return 'low';
   }
-  
+
   static String _detectEmotionalTone(String content) {
-    if (content.contains(RegExp(r'\b(hurt|pain|sad|cry|devastated|heartbroken)\b'))) {
+    if (content
+        .contains(RegExp(r'\b(hurt|pain|sad|cry|devastated|heartbroken)\b'))) {
       return 'distressed';
     }
-    if (content.contains(RegExp(r'\b(frustrated|annoyed|irritated|fed up)\b'))) {
+    if (content
+        .contains(RegExp(r'\b(frustrated|annoyed|irritated|fed up)\b'))) {
       return 'frustrated';
     }
-    if (content.contains(RegExp(r"\b(confused|lost|don't know|uncertain|unclear)\b"))) {
+    if (content.contains(
+        RegExp(r"\b(confused|lost|don't know|uncertain|unclear)\b"))) {
       return 'confused';
     }
-    if (content.contains(RegExp(r'\b(hopeful|trying|want to|willing|open)\b'))) {
+    if (content
+        .contains(RegExp(r'\b(hopeful|trying|want to|willing|open)\b'))) {
       return 'hopeful';
     }
     return 'neutral';
   }
-  
-  static String _generateMultiPatternAdvice(List<String> patterns, String severity, String emotionalTone) {
+
+  static String _generateMultiPatternAdvice(
+      List<String> patterns, String severity, String emotionalTone) {
     final primaryPattern = patterns.first;
     final secondaryPattern = patterns.length > 1 ? patterns[1] : null;
-    
+
     String advice = '';
-    
+
     // Add severity-based opening
     if (severity == 'high') {
-      advice += 'This sounds like a serious situation that may benefit from professional support. ';
+      advice +=
+          'This sounds like a serious situation that may benefit from professional support. ';
     } else if (severity == 'medium') {
       advice += 'I can see this is a significant challenge for you. ';
     }
-    
+
     // Primary pattern advice
     advice += _getPatternAdvice(primaryPattern);
-    
+
     // Add secondary pattern connection
     if (secondaryPattern != null) {
-      advice += '\n\nI also notice ${_getPatternName(secondaryPattern)} is involved. ${_getPatternAdvice(secondaryPattern)}';
+      advice +=
+          '\n\nI also notice ${_getPatternName(secondaryPattern)} is involved. ${_getPatternAdvice(secondaryPattern)}';
     }
-    
+
     // Add emotional validation
     if (emotionalTone == 'distressed') {
-      advice += '\n\nYour feelings are valid. Be gentle with yourself as you work through this.';
+      advice +=
+          '\n\nYour feelings are valid. Be gentle with yourself as you work through this.';
     } else if (emotionalTone == 'hopeful') {
-      advice += '\n\nYour willingness to work on this shows strength and commitment.';
+      advice +=
+          '\n\nYour willingness to work on this shows strength and commitment.';
     }
-    
+
     return advice;
   }
-  
-  static String _generateSinglePatternAdvice(String pattern, String severity, String emotionalTone) {
+
+  static String _generateSinglePatternAdvice(
+      String pattern, String severity, String emotionalTone) {
     String advice = '';
-    
+
     if (severity == 'high') {
-      advice += 'This sounds serious. Please consider reaching out to a professional counselor or therapist who can provide personalized support. ';
+      advice +=
+          'This sounds serious. Please consider reaching out to a professional counselor or therapist who can provide personalized support. ';
     }
-    
+
     advice += _getPatternAdvice(pattern);
-    
+
     if (emotionalTone == 'distressed') {
-      advice += '\n\nRemember to take care of yourself during this challenging time.';
+      advice +=
+          '\n\nRemember to take care of yourself during this challenging time.';
     }
-    
+
     return advice;
   }
-  
+
   static String _getPatternName(String pattern) {
     final names = {
       'communication': 'communication',
@@ -160,24 +202,37 @@ class AIAdvisor {
     };
     return names[pattern] ?? pattern;
   }
-  
+
   static String _getPatternAdvice(String pattern) {
     final adviceMap = {
-      'communication': 'Focus on active listening and expressing your feelings with "I" statements. Clear communication is the foundation of resolving conflicts. Take turns speaking and really hear what the other person is saying without planning your response.',
-      'trust': 'Rebuilding trust takes time and consistent actions. Be patient with the process and focus on transparency and reliability. Small, consistent gestures matter more than grand promises. Consider what specific actions would help rebuild trust.',
-      'jealousy': 'Jealousy often stems from insecurity or unmet needs. Work on building self-confidence and communicate your needs openly. Ask yourself what you truly need to feel secure, then express that clearly.',
-      'financial': 'Financial disagreements often reflect different values and priorities. Create a budget together and establish clear agreements about spending and saving. Focus on shared goals rather than individual wants.',
-      'family': 'Family conflicts require setting healthy boundaries while maintaining respect. Discuss your needs privately first, then present a united front when addressing family issues. Remember, you\'re building your own family unit.',
-      'attention': 'Quality time is essential for relationships. Schedule regular one-on-one time and be fully present. Discuss how you both prefer to give and receive attention, as people have different needs.',
-      'household': 'Household responsibilities should be shared fairly based on capacity and preference. Create a clear division of tasks and appreciate each other\'s contributions. Resentment builds when expectations aren\'t discussed.',
-      'intimacy': 'Physical and emotional intimacy require open communication about needs and boundaries. Create a safe space to discuss desires and concerns without judgment. Intimacy includes emotional connection, not just physical.',
-      'future': 'Align your future visions through honest conversation about individual and shared goals. Find compromises that honor both of your dreams. It\'s okay to have different timelines if you\'re moving in the same direction.',
-      'anger': 'When emotions run high, take a 20-minute break to cool down before continuing the discussion. Focus on the issue, not personal attacks. Use "I feel" statements instead of "You always" accusations.',
-      'respect': 'Mutual respect is non-negotiable in healthy relationships. Identify specific behaviors that feel disrespectful and communicate how they impact you. Model the respect you want to receive.',
-      'control': 'Healthy relationships involve equal partnership, not control. If you feel controlled, set firm boundaries. If you\'re being controlling, examine what fear is driving that behavior and address it directly.',
+      'communication':
+          'Focus on active listening and expressing your feelings with "I" statements. Clear communication is the foundation of resolving conflicts. Take turns speaking and really hear what the other person is saying without planning your response.',
+      'trust':
+          'Rebuilding trust takes time and consistent actions. Be patient with the process and focus on transparency and reliability. Small, consistent gestures matter more than grand promises. Consider what specific actions would help rebuild trust.',
+      'jealousy':
+          'Jealousy often stems from insecurity or unmet needs. Work on building self-confidence and communicate your needs openly. Ask yourself what you truly need to feel secure, then express that clearly.',
+      'financial':
+          'Financial disagreements often reflect different values and priorities. Create a budget together and establish clear agreements about spending and saving. Focus on shared goals rather than individual wants.',
+      'family':
+          'Family conflicts require setting healthy boundaries while maintaining respect. Discuss your needs privately first, then present a united front when addressing family issues. Remember, you\'re building your own family unit.',
+      'attention':
+          'Quality time is essential for relationships. Schedule regular one-on-one time and be fully present. Discuss how you both prefer to give and receive attention, as people have different needs.',
+      'household':
+          'Household responsibilities should be shared fairly based on capacity and preference. Create a clear division of tasks and appreciate each other\'s contributions. Resentment builds when expectations aren\'t discussed.',
+      'intimacy':
+          'Physical and emotional intimacy require open communication about needs and boundaries. Create a safe space to discuss desires and concerns without judgment. Intimacy includes emotional connection, not just physical.',
+      'future':
+          'Align your future visions through honest conversation about individual and shared goals. Find compromises that honor both of your dreams. It\'s okay to have different timelines if you\'re moving in the same direction.',
+      'anger':
+          'When emotions run high, take a 20-minute break to cool down before continuing the discussion. Focus on the issue, not personal attacks. Use "I feel" statements instead of "You always" accusations.',
+      'respect':
+          'Mutual respect is non-negotiable in healthy relationships. Identify specific behaviors that feel disrespectful and communicate how they impact you. Model the respect you want to receive.',
+      'control':
+          'Healthy relationships involve equal partnership, not control. If you feel controlled, set firm boundaries. If you\'re being controlling, examine what fear is driving that behavior and address it directly.',
     };
-    
-    return adviceMap[pattern] ?? 'Approach this challenge with empathy and openness to understanding.';
+
+    return adviceMap[pattern] ??
+        'Approach this challenge with empathy and openness to understanding.';
   }
 
   static List<String> generateSelfGrowthSuggestions(String growthArea) {
