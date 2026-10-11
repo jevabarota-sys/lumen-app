@@ -1,0 +1,13 @@
+# Android Release Signing Configuration
+# Copy this file to key.properties and fill in your actual values
+# IMPORTANT: Never commit key.properties to version control!
+
+storePassword=YOUR_KEYSTORE_PASSWORD_HERE
+keyPassword=YOUR_KEY_PASSWORD_HERE
+keyAlias=lumen-key
+storeFile=/path/to/your/lumen-upload-key.keystore
+
+# To generate a keystore, run:
+# keytool -genkey -v -keystore ~/lumen-upload-key.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias lumen-key
+#
+# Then update storeFile above with the full path to your keystore file

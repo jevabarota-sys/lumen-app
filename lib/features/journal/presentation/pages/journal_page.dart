@@ -16,9 +16,11 @@ class _JournalPageState extends State<JournalPage> {
       id: '1',
       userId: 'demo_user',
       title: 'Morning Reflection',
-      content: 'Today I felt a strong connection to my inner wisdom during meditation. The number 7 energy seems to be guiding me toward deeper understanding of myself and my purpose.',
+      content:
+          'Today I felt a strong connection to my inner wisdom during meditation. The number 7 energy seems to be guiding me toward deeper understanding of myself and my purpose.',
       tags: ['meditation', 'wisdom', 'purpose'],
-      aiSummary: 'This entry reflects a spiritual awakening and connection to inner guidance.',
+      aiSummary:
+          'This entry reflects a spiritual awakening and connection to inner guidance.',
       aiAffirmations: [
         'I trust my inner wisdom to guide me',
         'I am open to spiritual growth and understanding',
@@ -31,9 +33,11 @@ class _JournalPageState extends State<JournalPage> {
       id: '2',
       userId: 'demo_user',
       title: 'Gratitude Practice',
-      content: 'Grateful for the small moments today - the warm coffee, the smile from a stranger, the way the light filtered through my window. These simple joys remind me of the abundance in my life.',
+      content:
+          'Grateful for the small moments today - the warm coffee, the smile from a stranger, the way the light filtered through my window. These simple joys remind me of the abundance in my life.',
       tags: ['gratitude', 'mindfulness', 'joy'],
-      aiSummary: 'A beautiful practice of finding joy in everyday moments and cultivating gratitude.',
+      aiSummary:
+          'A beautiful practice of finding joy in everyday moments and cultivating gratitude.',
       aiAffirmations: [
         'I find joy in simple moments',
         'Gratitude fills my heart with abundance',
@@ -91,15 +95,16 @@ class _JournalPageState extends State<JournalPage> {
             Text(
               'Start Your Journey',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.onBackground,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               'Begin documenting your thoughts, feelings, and insights. Our AI will help you discover patterns and provide personalized affirmations.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppTheme.neutral,
-              ),
+                    color: AppTheme.onBackground.withOpacity(0.9),
+                  ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
@@ -142,15 +147,15 @@ class _JournalPageState extends State<JournalPage> {
                     child: Text(
                       entry.title,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                   ),
                   Text(
                     _formatDate(entry.createdAt),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppTheme.neutral,
-                    ),
+                          color: AppTheme.neutral,
+                        ),
                   ),
                 ],
               ),
@@ -187,10 +192,11 @@ class _JournalPageState extends State<JournalPage> {
                       Expanded(
                         child: Text(
                           entry.aiSummary!,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppTheme.accent,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: AppTheme.accent,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       ),
                     ],
@@ -202,10 +208,10 @@ class _JournalPageState extends State<JournalPage> {
         ),
       ),
     ).animate().slideX(
-      begin: index % 2 == 0 ? -0.3 : 0.3,
-      duration: const Duration(milliseconds: 600),
-      delay: Duration(milliseconds: index * 100),
-    );
+          begin: index % 2 == 0 ? -0.3 : 0.3,
+          duration: const Duration(milliseconds: 600),
+          delay: Duration(milliseconds: index * 100),
+        );
   }
 
   Widget _buildTag(String tag) {
@@ -218,9 +224,9 @@ class _JournalPageState extends State<JournalPage> {
       child: Text(
         '#$tag',
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: AppTheme.secondary,
-          fontWeight: FontWeight.w500,
-        ),
+              color: AppTheme.secondary,
+              fontWeight: FontWeight.w500,
+            ),
       ),
     );
   }
@@ -228,7 +234,7 @@ class _JournalPageState extends State<JournalPage> {
   String _formatDate(DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date);
-    
+
     if (difference.inDays == 0) {
       return 'Today';
     } else if (difference.inDays == 1) {
@@ -258,7 +264,7 @@ class _JournalPageState extends State<JournalPage> {
             createdAt: DateTime.now(),
             updatedAt: DateTime.now(),
           );
-          
+
           setState(() {
             _entries.insert(0, newEntry);
           });
@@ -277,11 +283,14 @@ class _JournalPageState extends State<JournalPage> {
   }
 
   String _generateAISummary(String content) {
-    if (content.toLowerCase().contains('grateful') || content.toLowerCase().contains('gratitude')) {
+    if (content.toLowerCase().contains('grateful') ||
+        content.toLowerCase().contains('gratitude')) {
       return 'This entry reflects a practice of gratitude and appreciation for life\'s blessings.';
-    } else if (content.toLowerCase().contains('meditation') || content.toLowerCase().contains('spiritual')) {
+    } else if (content.toLowerCase().contains('meditation') ||
+        content.toLowerCase().contains('spiritual')) {
       return 'This entry shows spiritual growth and connection to inner wisdom.';
-    } else if (content.toLowerCase().contains('challenge') || content.toLowerCase().contains('difficult')) {
+    } else if (content.toLowerCase().contains('challenge') ||
+        content.toLowerCase().contains('difficult')) {
       return 'This entry explores personal challenges and opportunities for growth.';
     } else {
       return 'This entry captures important thoughts and feelings on your personal journey.';
@@ -289,13 +298,15 @@ class _JournalPageState extends State<JournalPage> {
   }
 
   List<String> _generateAIAffirmations(String content) {
-    if (content.toLowerCase().contains('grateful') || content.toLowerCase().contains('gratitude')) {
+    if (content.toLowerCase().contains('grateful') ||
+        content.toLowerCase().contains('gratitude')) {
       return [
         'I am grateful for all the abundance in my life',
         'I notice and appreciate life\'s simple pleasures',
         'Gratitude fills my heart with joy and peace'
       ];
-    } else if (content.toLowerCase().contains('meditation') || content.toLowerCase().contains('spiritual')) {
+    } else if (content.toLowerCase().contains('meditation') ||
+        content.toLowerCase().contains('spiritual')) {
       return [
         'I trust my inner wisdom to guide me',
         'I am connected to my highest self',
@@ -352,8 +363,8 @@ class _NewEntrySheetState extends State<_NewEntrySheet> {
                 Text(
                   'New Entry',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const Spacer(),
                 TextButton(
@@ -417,14 +428,16 @@ class _NewEntrySheetState extends State<_NewEntrySheet> {
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 8,
-                      children: _tags.map((tag) => Chip(
-                        label: Text(tag),
-                        onDeleted: () {
-                          setState(() {
-                            _tags.remove(tag);
-                          });
-                        },
-                      )).toList(),
+                      children: _tags
+                          .map((tag) => Chip(
+                                label: Text(tag),
+                                onDeleted: () {
+                                  setState(() {
+                                    _tags.remove(tag);
+                                  });
+                                },
+                              ))
+                          .toList(),
                     ),
                   ],
                 ],
@@ -446,7 +459,8 @@ class _NewEntrySheetState extends State<_NewEntrySheet> {
   }
 
   void _saveEntry() {
-    if (_titleController.text.isNotEmpty && _contentController.text.isNotEmpty) {
+    if (_titleController.text.isNotEmpty &&
+        _contentController.text.isNotEmpty) {
       widget.onSave(_titleController.text, _contentController.text, _tags);
       Navigator.pop(context);
     }
@@ -493,8 +507,8 @@ class _EntryDetailsSheet extends StatelessWidget {
                   child: Text(
                     entry.title,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ),
                 IconButton(
@@ -514,21 +528,23 @@ class _EntryDetailsSheet extends StatelessWidget {
                   Text(
                     entry.content,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      height: 1.6,
-                    ),
+                          height: 1.6,
+                        ),
                   ),
                   if (entry.tags != null && entry.tags!.isNotEmpty) ...[
                     const SizedBox(height: 24),
                     Text(
                       'Tags',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 8,
-                      children: entry.tags!.map((tag) => Chip(label: Text('#$tag'))).toList(),
+                      children: entry.tags!
+                          .map((tag) => Chip(label: Text('#$tag')))
+                          .toList(),
                     ),
                   ],
                   if (entry.aiSummary != null) ...[
@@ -541,7 +557,8 @@ class _EntryDetailsSheet extends StatelessWidget {
                       AppTheme.accent,
                     ),
                   ],
-                  if (entry.aiAffirmations != null && entry.aiAffirmations!.isNotEmpty) ...[
+                  if (entry.aiAffirmations != null &&
+                      entry.aiAffirmations!.isNotEmpty) ...[
                     const SizedBox(height: 24),
                     _buildAffirmationsSection(context, entry.aiAffirmations!),
                   ],
@@ -554,7 +571,8 @@ class _EntryDetailsSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildAISection(BuildContext context, String title, String content, IconData icon, Color color) {
+  Widget _buildAISection(BuildContext context, String title, String content,
+      IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -572,9 +590,9 @@ class _EntryDetailsSheet extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: color,
-                ),
+                      fontWeight: FontWeight.w600,
+                      color: color,
+                    ),
               ),
             ],
           ),
@@ -582,15 +600,16 @@ class _EntryDetailsSheet extends StatelessWidget {
           Text(
             content,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              height: 1.5,
-            ),
+                  height: 1.5,
+                ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildAffirmationsSection(BuildContext context, List<String> affirmations) {
+  Widget _buildAffirmationsSection(
+      BuildContext context, List<String> affirmations) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -608,38 +627,38 @@ class _EntryDetailsSheet extends StatelessWidget {
               Text(
                 'Personal Affirmations',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: AppTheme.primary,
-                ),
+                      fontWeight: FontWeight.w600,
+                      color: AppTheme.primary,
+                    ),
               ),
             ],
           ),
           const SizedBox(height: 12),
           ...affirmations.map((affirmation) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 6,
-                  height: 6,
-                  margin: const EdgeInsets.only(top: 8, right: 12),
-                  decoration: BoxDecoration(
-                    color: AppTheme.primary,
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    affirmation,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      height: 1.5,
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 6,
+                      height: 6,
+                      margin: const EdgeInsets.only(top: 8, right: 12),
+                      decoration: BoxDecoration(
+                        color: AppTheme.primary,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      child: Text(
+                        affirmation,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              height: 1.5,
+                            ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          )),
+              )),
         ],
       ),
     );

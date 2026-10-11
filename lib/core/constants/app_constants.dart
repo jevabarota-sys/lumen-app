@@ -1,16 +1,37 @@
 class AppConstants {
   static const String appName = 'Lumen';
   static const String appTagline = 'Your Personalized Growth Compass';
-  
-  static const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
-  static const String supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
-  static const String stripePublishableKey = String.fromEnvironment('STRIPE_PUBLISHABLE_KEY');
-  
+
+  // Supabase Configuration
+  static const String supabaseUrl = String.fromEnvironment(
+    'SUPABASE_URL',
+    defaultValue: '',
+  );
+  static const String supabaseAnonKey = String.fromEnvironment(
+    'SUPABASE_ANON_KEY',
+    defaultValue: '',
+  );
+
+  // Stripe Configuration
+  static const String stripePublishableKey = String.fromEnvironment(
+    'STRIPE_PUBLISHABLE_KEY',
+    defaultValue: '',
+  );
+  static const String premiumPriceId = String.fromEnvironment(
+    'STRIPE_PRICE_ID',
+    defaultValue: '',
+  );
+
+  // App Configuration
   static const double premiumPrice = 9.99;
-  static const String premiumPriceId = String.fromEnvironment('STRIPE_PRICE_ID');
-  
   static const int maxFreeJournalEntries = 10;
   static const int maxFreeTarotDraws = 3;
+
+  // Validation helpers
+  static bool get isSupabaseConfigured =>
+      supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty;
+  static bool get isStripeConfigured =>
+      stripePublishableKey.isNotEmpty && premiumPriceId.isNotEmpty;
 }
 
 class AppRoutes {
@@ -22,6 +43,13 @@ class AppRoutes {
   static const String tarot = '/tarot';
   static const String journal = '/journal';
   static const String community = '/community';
+  static const String relationships = '/relationships';
   static const String premium = '/premium';
   static const String profile = '/profile';
+  static const String notificationSettings = '/notification-settings';
+  static const String manifestation369 = '/manifestation-369';
+  static const String support = '/support';
+  static const String menu = '/menu';
+  static const String angelCards = '/angel-cards';
+  static const String settings = '/settings';
 }

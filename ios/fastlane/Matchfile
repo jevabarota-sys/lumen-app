@@ -1,0 +1,5 @@
+git_url("https://github.com/jevabarota-sys/lumen-certificates")
+storage_mode("git")
+type("appstore")
+app_identifier(["com.growwithlumen.app"])
+username("jevabarota@gmail.com")

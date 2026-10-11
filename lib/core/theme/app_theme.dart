@@ -2,24 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const Color deepBlue = Color(0xFF1E3A8A);
-  static const Color teal = Color(0xFF0D9488);
-  static const Color softGreen = Color(0xFF10B981);
-  static const Color warmGray = Color(0xFF6B7280);
-  static const Color lightGray = Color(0xFFF9FAFB);
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color black = Color(0xFF111827);
-  
-  static const Color primary = deepBlue;
-  static const Color secondary = teal;
-  static const Color accent = softGreen;
-  static const Color neutral = warmGray;
-  static const Color background = lightGray;
-  static const Color surface = white;
-  static const Color onPrimary = white;
-  static const Color onSecondary = white;
-  static const Color onSurface = black;
-  static const Color onBackground = black;
+  // Color palette based on Eva's logo: pink, white, and royal blue
+  static const Color royalBlue =
+      Color(0xFF1E3A8A); // Deep royal blue from logo background
+  static const Color mediumBlue = Color(0xFF3B82F6); // Medium royal blue
+  static const Color lightBlue = Color(0xFF60A5FA); // Light royal blue
+  static const Color pink = Color(0xFFEC4899); // Pink from logo mandala glow
+  static const Color lightPink = Color(0xFFF9A8D4); // Light pink accent
+  static const Color softPink = Color(0xFFFCE7F3); // Very light pink
+  static const Color lightPurple =
+      Color(0xFFE9D5FF); // Light purple for background
+  static const Color lightRoyalBlue =
+      Color(0xFFDDD6FE); // Light royal blue for background gradient
+  static const Color white = Color(0xFFFFFFFF); // Pure white from logo symbol
+  static const Color lightGray = Color(0xFFF8FAFC); // Very light gray
+  static const Color darkGray = Color(0xFF374151); // Dark gray for text
+  static const Color black = Color(0xFF111827); // Deep black for contrast
+
+  static const Color primary = royalBlue; // Royal blue as main brand color
+  static const Color secondary = pink; // Pink as secondary accent color
+  static const Color accent = mediumBlue; // Medium blue for highlights
+  static const Color backgroundGradientStart =
+      royalBlue; // Royal blue gradient start
+  static const Color backgroundGradientEnd =
+      mediumBlue; // Medium blue gradient end
+  static const Color neutral = darkGray;
+  static const Color background =
+      royalBlue; // Royal blue background as requested
+  static const Color surface = white; // White surface for cards
+  static const Color onPrimary = white; // White text on royal blue primary
+  static const Color onSecondary = white; // White text on pink secondary
+  static const Color onSurface = black; // Dark text on light surface
+  static const Color onBackground =
+      white; // White text on royal blue background
+
+  // Additional theme properties for notifications
+  static const Color error = Color(0xFFEF4444); // Red for error states
+  static const Color success = Color(0xFF10B981); // Green for success states
+  static const Color border = Color(0xFFE5E7EB); // Light gray for borders
 
   static ThemeData get lightTheme {
     return ThemeData(
@@ -35,7 +55,12 @@ class AppTheme {
         onSurface: onSurface,
         onBackground: onBackground,
       ),
-      textTheme: GoogleFonts.interTextTheme(),
+      textTheme: GoogleFonts.interTextTheme(
+        ThemeData.light().textTheme.apply(
+              bodyColor: onSurface,
+              displayColor: onSurface,
+            ),
+      ),
       appBarTheme: AppBarTheme(
         backgroundColor: surface,
         foregroundColor: onSurface,
@@ -83,7 +108,15 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: primary, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        labelStyle: const TextStyle(color: neutral),
+        hintStyle: TextStyle(color: neutral.withOpacity(0.6)),
+      ),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: primary,
+        selectionColor: lightBlue,
+        selectionHandleColor: primary,
       ),
     );
   }
