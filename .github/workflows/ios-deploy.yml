@@ -2,6 +2,11 @@ name: iOS Deploy to TestFlight
 
 on:
   workflow_dispatch:
+    inputs:
+      create_signing_certificates:
+        description: 'Create a new distribution certificate/profile if none is valid (stores it in lumen-certificates)'
+        type: boolean
+        default: false
   push:
     branches:
       - main
@@ -90,6 +95,7 @@ jobs:
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           ASC_API_KEY_P8_PATH: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_READONLY: ${{ inputs.create_signing_certificates == true && 'false' || 'true' }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
