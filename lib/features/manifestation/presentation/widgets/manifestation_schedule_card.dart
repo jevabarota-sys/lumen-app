@@ -241,9 +241,10 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                   const SizedBox(height: 12),
                   Slider(
                     value: widget.selectedDays.toDouble(),
-                    min: 7,
+                    min: 1,
                     max: 90,
-                    divisions: 11,
+                    divisions: 89,
+                    label: '${widget.selectedDays} days',
                     activeColor: AppTheme.primary,
                     inactiveColor: AppTheme.border,
                     onChanged: (value) {
@@ -254,7 +255,7 @@ class _ManifestationScheduleCardState extends State<ManifestationScheduleCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '7 days',
+                        '1 day',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: AppTheme.neutral,
                             ),
