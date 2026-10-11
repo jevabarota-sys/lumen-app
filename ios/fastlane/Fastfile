@@ -19,7 +19,7 @@ platform :ios do
     match(
       type: "appstore",
       app_identifier: "com.growwithlumen.app",
-      readonly: ENV['MATCH_READONLY'] != 'false',
+      readonly: ENV['CREATE_SIGNING_CERTIFICATES'] != 'true',
       api_key: api_key
     )
     
