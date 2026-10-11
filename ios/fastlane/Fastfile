@@ -59,7 +59,7 @@ platform :ios do
   end
   
   desc "Register new devices for development"
-  lane :register_devices do
+  lane :register_test_devices do
     register_devices(
       devices_file: "./fastlane/devices.txt"
     )
