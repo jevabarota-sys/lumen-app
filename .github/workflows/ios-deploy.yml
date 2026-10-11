@@ -50,23 +50,33 @@ jobs:
       - name: Prepare and verify certificates repo access
         env:
           RAW_MATCH_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_GIT_USER: jevabarota-sys
         run: |
-          decoded=$(printf '%s' "$RAW_MATCH_AUTH" | tr -d '[:space:]' | base64 --decode 2>/dev/null | tr -d '\r\n' || true)
-          user="${decoded%%:*}"
-          token="${decoded#*:}"
-          if [ -n "$token" ] && [ "$token" != "$decoded" ]; then echo "::add-mask::$token"; fi
-          if [ -z "$user" ] || [ -z "$token" ] || [ "$token" = "$decoded" ]; then
-            echo "::error::MATCH_GIT_BASIC_AUTHORIZATION is not base64 of 'username:token'. Recreate it with: printf '%s' 'jevabarota-sys:<token>' | base64"
-            exit 1
-          fi
+          export LC_ALL=C
+          raw=$(printf '%s' "$RAW_MATCH_AUTH" | tr -d '[:space:]')
+          case "$raw" in
+            ghp_*|github_pat_*)
+              echo "Secret is a plain GitHub token; encoding it for user '$MATCH_GIT_USER'."
+              user="$MATCH_GIT_USER"
+              token="$raw" ;;
+            *)
+              decoded=$(printf '%s' "$raw" | base64 --decode 2>/dev/null | tr -d '\r\n' || true)
+              user="${decoded%%:*}"
+              token="${decoded#*:}"
+              if [ -z "$user" ] || [ -z "$token" ] || [ "$token" = "$decoded" ]; then
+                echo "::error::MATCH_GIT_BASIC_AUTHORIZATION (length ${#raw}) is neither a GitHub token (ghp_...) nor base64 of 'username:token'. Easiest fix: set the secret to the token itself."
+                exit 1
+              fi ;;
+          esac
+          echo "::add-mask::$token"
           case "$token" in
             *PASTE_TOKEN_HERE*|*YOURTOKEN*)
-              echo "::error::MATCH_GIT_BASIC_AUTHORIZATION still contains the placeholder text instead of a real token."
+              echo "::error::MATCH_GIT_BASIC_AUTHORIZATION contains placeholder text instead of a real token."
               exit 1 ;;
           esac
           auth=$(printf '%s' "$user:$token" | base64 | tr -d '\n')
           echo "::add-mask::$auth"
-          echo "Credential decoded OK for user '$user' (token length ${#token})."
+          echo "Credential OK for user '$user' (token length ${#token})."
           if ! git -c http.extraheader="AUTHORIZATION: basic $auth" ls-remote https://github.com/jevabarota-sys/lumen-certificates HEAD > /dev/null; then
             echo "::error::GitHub rejected the token for jevabarota-sys/lumen-certificates. Check it is not expired/revoked and has the 'repo' scope."
             exit 1
