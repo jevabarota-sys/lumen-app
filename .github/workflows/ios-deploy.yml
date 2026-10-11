@@ -47,13 +47,39 @@ jobs:
           mkdir -p "${{ runner.temp }}/private_keys"
           echo "${{ secrets.APP_STORE_CONNECT_API_KEY }}" | base64 --decode > "${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8"
       
+      - name: Prepare and verify certificates repo access
+        env:
+          RAW_MATCH_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        run: |
+          decoded=$(printf '%s' "$RAW_MATCH_AUTH" | tr -d '[:space:]' | base64 --decode 2>/dev/null | tr -d '\r\n' || true)
+          user="${decoded%%:*}"
+          token="${decoded#*:}"
+          if [ -n "$token" ] && [ "$token" != "$decoded" ]; then echo "::add-mask::$token"; fi
+          if [ -z "$user" ] || [ -z "$token" ] || [ "$token" = "$decoded" ]; then
+            echo "::error::MATCH_GIT_BASIC_AUTHORIZATION is not base64 of 'username:token'. Recreate it with: printf '%s' 'jevabarota-sys:<token>' | base64"
+            exit 1
+          fi
+          case "$token" in
+            *PASTE_TOKEN_HERE*|*YOURTOKEN*)
+              echo "::error::MATCH_GIT_BASIC_AUTHORIZATION still contains the placeholder text instead of a real token."
+              exit 1 ;;
+          esac
+          auth=$(printf '%s' "$user:$token" | base64 | tr -d '\n')
+          echo "::add-mask::$auth"
+          echo "Credential decoded OK for user '$user' (token length ${#token})."
+          if ! git -c http.extraheader="AUTHORIZATION: basic $auth" ls-remote https://github.com/jevabarota-sys/lumen-certificates HEAD > /dev/null; then
+            echo "::error::GitHub rejected the token for jevabarota-sys/lumen-certificates. Check it is not expired/revoked and has the 'repo' scope."
+            exit 1
+          fi
+          echo "Certificates repo access OK."
+          echo "MATCH_GIT_BASIC_AUTHORIZATION=$auth" >> "$GITHUB_ENV"
+
       - name: Build and deploy to TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           ASC_API_KEY_P8_PATH: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
