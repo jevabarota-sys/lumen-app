@@ -10,7 +10,7 @@ platform :ios do
     api_key = app_store_connect_api_key(
       key_id: ENV['APP_STORE_CONNECT_API_KEY_ID'],
       issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
-      key_filepath: ENV['APP_STORE_CONNECT_API_KEY_PATH'],
+      key_filepath: File.expand_path(ENV['ASC_API_KEY_P8_PATH']),
       duration: 1200,
       in_house: false
     )
@@ -19,7 +19,7 @@ platform :ios do
     match(
       type: "appstore",
       app_identifier: "com.growwithlumen.app",
-      readonly: true,
+      readonly: ENV['CREATE_SIGNING_CERTIFICATES'] != 'true',
       api_key: api_key
     )
     
@@ -59,7 +59,7 @@ platform :ios do
   end
   
   desc "Register new devices for development"
-  lane :register_devices do
+  lane :register_test_devices do
     register_devices(
       devices_file: "./fastlane/devices.txt"
     )
